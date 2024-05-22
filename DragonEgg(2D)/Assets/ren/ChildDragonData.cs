@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChildDragonData", menuName = "ScriptableObjects/ChildDragonData")]
+[CreateAssetMenu(menuName = "aaaaaaaaaaaaaaaaaaaaaaa")]
 public class ChildDragonData : ScriptableObject
 {
-    public string Id;
-    public int Hp;
-    public int Attack;
-    public int Exp;
+    [SerializeField] int hp;
+    [SerializeField] int attack;
+    [SerializeField] int speed;
+    [SerializeField] public int exp = 80;
+    [SerializeField] string childDragonName;
+    
+
 }

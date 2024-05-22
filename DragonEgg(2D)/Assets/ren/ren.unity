@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0444dbebca63d24ca0e7049d58e7ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childDragonData: {fileID: 0}
+  childDragonData: {fileID: 11400000, guid: d0ee36b64ebfce845a9c18f38c17f023, type: 2}
   slider: {fileID: 962915663}
 --- !u!4 &424746198
 Transform:

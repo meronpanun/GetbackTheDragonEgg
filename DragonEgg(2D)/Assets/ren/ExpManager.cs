@@ -6,25 +6,31 @@ using System.Linq;
 
 public class ExpManager : MonoBehaviour
 {
+    // エディタでアタッチ
+    [SerializeField] public ChildDragonData childDragonData;
+
+    
     int maxExp;//レベルアップに必要な量
-    int nowExp;      //現在の経験値
+    int nowExp;
     int addExp = 30; //加える経験値
-    public ChildDragonData childDragonData;
+    
     public Slider slider;
     // Start is called before the first frame update
-    void Start()
+    void Start()//逆だとバグる
     {
-        slider.value = 0;
         maxExp = 100;
         slider.maxValue = maxExp;
+        nowExp = childDragonData.exp; //現在の経験値
+        slider.value = nowExp;
+        
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ShowScriptableObjectData();
+
             nowExp += addExp;//経験値を加える
             slider.value = (float)nowExp;
         }
@@ -38,9 +44,5 @@ public class ExpManager : MonoBehaviour
         }
     }
 
-    void ShowScriptableObjectData()
-    {
-        // 参照しているEnemyDataの中身をコンソールに表示する
-        Debug.Log(childDragonData.Exp);
-    }
+
 }
