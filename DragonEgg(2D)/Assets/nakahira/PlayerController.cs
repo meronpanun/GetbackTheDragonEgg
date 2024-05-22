@@ -21,22 +21,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 移動！ 後ろに下がるときは少し遅い
+        // 移動！
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0f, speedy, 0f);
+            Move(0f, speedy);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(-speedx, 0f, 0f);
+            Move(-speedx, 0f);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0f, -speedy / 2, 0f);
+            Move(0f, -speedy);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(speedx, 0f, 0f);
+            Move(speedx, 0f);
         }
 
         // スペースキーで弾を発射
@@ -49,10 +49,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move(Vector2 speed) // 移動可能判定とかを詰め込んだ
+    private void Move(float x, float y) // 移動可能判定とかを詰め込んだ
     {
-        //cameraComponent.orthographicSize
-        //if 
-        //transform.Translate(speed);
+        // 自分の座標がカメラから出ないように制限
+        Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
+        Debug.Log(viewPos);
+        // x,yがビューポートの0～1におさまってたら動いてよい
+        if (viewPos.x < 1.0f && viewPos.x > 0f ||
+            viewPos.y < 1.0f && viewPos.y > 0f)
+        {
+            transform.Translate(x, y, 0f);
+        }
+
     }
 }

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerRapidBulletController : MonoBehaviour
 {
+    [SerializeField] Dragon dragon;
+
+    int i;
+
     private float bulletSpeed = 1f; // íeë¨ÅBìÆÇ≠ë¨Ç≥
     // Start is called before the first frame update
     void Start()
     {
-        
+        i = dragon.num_a;
+        Debug.Log(i);
     }
 
     // Update is called once per frame
