@@ -8,7 +8,7 @@ public class ChildDragonData : ScriptableObject
     [SerializeField] int hp;
     [SerializeField] int attack;
     [SerializeField] int speed;
-    [SerializeField] public int exp = 80;
+    [SerializeField] public int exp;
     [SerializeField] string childDragonName;
     
 
