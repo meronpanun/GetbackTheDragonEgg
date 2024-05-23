@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TestDragon")]
-public class Dragon : ScriptableObject
+public class EnemyBulletController : MonoBehaviour
 {
-    public int num_a;
+    [SerializeField] private float speedx = 0f;
+    [SerializeField] private float speedy = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class Dragon : ScriptableObject
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(speedx, speedy, 0f);
     }
 }

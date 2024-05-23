@@ -51,14 +51,17 @@ public class PlayerController : MonoBehaviour
 
     private void Move(float x, float y) // 移動可能判定とかを詰め込んだ
     {
-        // 自分の座標がカメラから出ないように制限
+
+        // 自分の座標(+補正)がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        Debug.Log(viewPos);
-        // x,yがビューポートの0～1におさまってたら動いてよい
-        if (viewPos.x < 1.0f && viewPos.x > 0f ||
-            viewPos.y < 1.0f && viewPos.y > 0f)
+        // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
+        if (viewPos.x + x < 1.0f && viewPos.x + x > 0f)
         {
-            transform.Translate(x, y, 0f);
+            transform.Translate(x, 0f, 0f);
+        }
+        if (viewPos.y + y < 1.0f && viewPos.y + y > 0f)
+        {
+            transform.Translate(0f, y, 0f);
         }
 
     }
