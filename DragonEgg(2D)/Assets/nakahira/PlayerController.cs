@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speedx = 0.1f;
-    private float speedy = 0.1f;
+    private float speedx = 0.05f;
+    private float speedy = 0.05f;
 
     // エディタでアタッチ
     [SerializeField] private GameObject playerRapidBullet;

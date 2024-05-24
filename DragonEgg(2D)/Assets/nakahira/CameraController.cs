@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float cameraSpeedy = 0.05f; // カメラの縦の移動スピード
+    private float cameraSpeedy = 0.03f; // カメラの縦の移動スピード
     // Start is called before the first frame update
     void Start()
     {
