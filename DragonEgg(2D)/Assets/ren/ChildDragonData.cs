@@ -11,5 +11,11 @@ public class ChildDragonData : ScriptableObject
     [SerializeField] public int exp;
     [SerializeField] string childDragonName;
     
+    //他のファイルから値の取得はできるが変更はできない
+    public int Hp {  get => hp; }
+    public int Attack {  get => attack; }
+    public int Speed {  get => speed; }
+    public int Exp {  get => exp; }
+    public int ChildDragonName {  get => childDragonName; }
 
 }
