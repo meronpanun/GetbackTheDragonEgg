@@ -14,13 +14,14 @@ public class ORBController : MonoBehaviour
 
     private float angle; // 角度の計算に使うタイマー
     private float shootTimer; // 弾の発射を制御するタイマー
-    private float shootSpan = 1; // 何秒おきに弾を発射するか
+    private float shootSpan = 2; // 何秒おきに弾を発射するか
 
     private bool canMove = true; // 動けるか
     private bool canShoot = true;  // 弾撃てるか
 
     private Animator animator;
     private Camera cameraComponent;
+    private GameObject player;
      //プレハブなのでエディタからよろしく
     public GameObject bullet;
 
@@ -28,7 +29,8 @@ public class ORBController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        cameraComponent = Camera.current;
+        cameraComponent = Camera.main;
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -39,8 +41,8 @@ public class ORBController : MonoBehaviour
 
         if (canMove) // 動く関連の処理
         {
-            speedx = (float)Math.Cos(angle * cycleSpeed) * Time.deltaTime * moveSpeed;
-            transform.Translate(speedx, speedy, 0f);
+            speedx = (float)Math.Cos(angle * cycleSpeed) * moveSpeed;
+            transform.Translate(speedx * Time.deltaTime, speedy * Time.deltaTime, 0f);
         }
 
         if (canShoot)
@@ -48,28 +50,34 @@ public class ORBController : MonoBehaviour
             if (shootTimer > shootSpan)
             {
                 shootTimer = 0;
-                Instantiate(bullet, transform.position, Quaternion.identity);
+                // プレイヤーに向けて球を撃つ処理
+                Vector3 relativeDistance = player.transform.position - transform.position;
+                GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
+                bulletInstance.GetComponent<ORBBulletController>().speed = relativeDistance.normalized; // Vector2にVector3ぶち込んで大丈夫かなあ
             }
         }
 
         // 画面外に出たら消す
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        if (viewPos.y > 1)
+        if (viewPos.y < 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private async Task OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("通貨");
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            canMove = false;
+            //canMove = false;
             canShoot = false;
-            animator.SetTrigger("Death"); // 死亡モーションを再生
-            await Task.Delay(TimeSpan.FromSeconds(0.5f));// モーション終了(0.5秒固定、毎回編集しようね)まで待つ
-            Destroy(gameObject);
+            animator.SetTrigger("Death"); // 死亡モーションを再生。終了したらDestroy
         }
+    }
+
+    private void DestroyThisGameobject() // アニメーションイベントに献上するやつ
+    {
+        Destroy(gameObject);
     }
 }

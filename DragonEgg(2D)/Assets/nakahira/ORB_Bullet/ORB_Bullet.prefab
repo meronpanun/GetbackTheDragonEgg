@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec953b0520032ed4a892ab6c81957be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedx: 0
-  speedy: 0
+  speed: {x: 0, y: 0}
 --- !u!58 &182493404108724353
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,9 +132,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0012624115, y: 0.00067632645}
   serializedVersion: 2
-  m_Radius: 0.50000006
+  m_Radius: 0.07478117
 --- !u!95 &-3283842020989068012
 Animator:
   serializedVersion: 5

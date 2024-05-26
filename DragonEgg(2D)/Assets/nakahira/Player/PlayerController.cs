@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject cameraObject;
 
     private Camera cameraComponent;
+
+    private int hitPoint = 10;
+
+    private Coroutine blinking; // 自身が点滅中か記憶する
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(blinking);
+
         // 移動！
         if (Input.GetKey(KeyCode.W))
         {
@@ -65,13 +71,50 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
+    //    {
+    //        hitPoint--;
+    //        if (hitPoint > 0)
+    //        {
+    //            StartCoroutine(Blinking(4, 0.5f));
+    //        }
+    //        else
+    //        {
+    //            // HPがゼロになったら死亡アニメーションを再生してリトライ画面なりなんなり
+    //        }
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
         {
-            // HPを減らす
-            // まだHPが残っていたらスプライトを点滅させる
-            // HPがゼロになったら死亡アニメーションを再生してリトライ画面なりなんなり
+            hitPoint--;
+            if (hitPoint > 0)
+            {
+                blinking = StartCoroutine(Blinking(4, 0.05f));
+            }
+            else
+            {
+                Destroy(gameObject); // 仮
+                // HPがゼロになったら死亡アニメーションを再生してリトライ画面なりなんなり
+            }
+        }
+    }
+
+    IEnumerator Blinking(int count, float interval) // intervalは秒単位
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color visibleColor = new Color(255, 255, 255, 255);
+        Color invisibleColor = new Color(255, 255, 255, 0);
+        for (int i = 0; i < count; i++) // count回繰り返す
+        {
+            spriteRenderer.color = invisibleColor;
+            yield return new WaitForSeconds(interval); // interval秒待つ
+            spriteRenderer.color = visibleColor;
+            yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
         }
     }
 }

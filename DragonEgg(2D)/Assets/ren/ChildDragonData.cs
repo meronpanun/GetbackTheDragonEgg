@@ -16,6 +16,7 @@ public class ChildDragonData : ScriptableObject
     public int Attack {  get => attack; }
     public int Speed {  get => speed; }
     public int Exp {  get => exp; }
-    public int ChildDragonName {  get => childDragonName; }
+    //public int ChildDragonName {  get => childDragonName; } // 一か所バグってると全部実行できなくなるんすわ
+    public string ChildDragonName { get => childDragonName; }
 
 }

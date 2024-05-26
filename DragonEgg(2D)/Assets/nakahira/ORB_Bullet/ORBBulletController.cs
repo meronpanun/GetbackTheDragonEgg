@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletController : MonoBehaviour
+public class ORBBulletController : MonoBehaviour
 {
-    [SerializeField] private float speedx = 0f;
-    [SerializeField] private float speedy = -1f;
+    public Vector2 speed = Vector2.zero;
 
     private Camera cameraComponent;
     // Start is called before the first frame update
     void Start()
     {
-        cameraComponent = Camera.current;
+        cameraComponent = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speedx * Time.deltaTime, speedy * Time.deltaTime, 0f);
+        transform.Translate(speed.x * Time.deltaTime, speed.y * Time.deltaTime, 0f);
 
         // ‰æ–ÊŠO‚Éo‚½‚çÁ‚·
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        if (viewPos.y > 1)
+        if (viewPos.y < 0 ||
+            viewPos.y > 1 ||
+            viewPos.x < 0 ||
+            viewPos.x > 1) // ‚±‚ê‰½‚Æ‚©’Z‚­‚È‚ç‚È‚¢‚©‚È
         {
             Destroy(gameObject);
         }
