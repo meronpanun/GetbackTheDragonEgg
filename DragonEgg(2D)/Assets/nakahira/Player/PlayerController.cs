@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     private int hitPoint = 10;
 
-    private Coroutine blinking; // 自身が点滅中か記憶する
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(blinking);
+        //Debug.Log(blinking);
 
         // 移動！
         if (Input.GetKey(KeyCode.W))
@@ -53,6 +52,10 @@ public class PlayerController : MonoBehaviour
             // 自分の現在位置に弾のプレハブを召喚
             Instantiate(playerRapidBullet, transform.position, Quaternion.identity);
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+
+        }
     }
 
     private void Move(float x, float y) // 移動可能判定とかを詰め込んだ
@@ -71,22 +74,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
-    //    {
-    //        hitPoint--;
-    //        if (hitPoint > 0)
-    //        {
-    //            StartCoroutine(Blinking(4, 0.5f));
-    //        }
-    //        else
-    //        {
-    //            // HPがゼロになったら死亡アニメーションを再生してリトライ画面なりなんなり
-    //        }
-    //    }
-    //}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
@@ -94,7 +81,7 @@ public class PlayerController : MonoBehaviour
             hitPoint--;
             if (hitPoint > 0)
             {
-                blinking = StartCoroutine(Blinking(4, 0.05f));
+                StartCoroutine(Blinking(4, 0.05f));
             }
             else
             {

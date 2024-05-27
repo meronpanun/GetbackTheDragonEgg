@@ -6,6 +6,8 @@ public class ORBBulletController : MonoBehaviour
 {
     public Vector2 speed = Vector2.zero;
 
+    private float speedyOffset = 0.5f;
+
     private Camera cameraComponent;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +18,7 @@ public class ORBBulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed.x * Time.deltaTime, speed.y * Time.deltaTime, 0f);
+        transform.Translate(speed.x * Time.deltaTime, (speed.y + speedyOffset) * Time.deltaTime, 0f);
 
         // âÊñ äOÇ…èoÇΩÇÁè¡Ç∑
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
