@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRapidBulletController : MonoBehaviour
 {
-    // エディタでアタッチ
+
     private GameObject cameraObject;
     private Camera cameraComponent;
     private float bulletSpeed = 10f; // 弾速。動く速さ

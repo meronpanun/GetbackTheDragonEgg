@@ -9,21 +9,22 @@ public class PlayerController : MonoBehaviour
 
     // エディタでアタッチ
     [SerializeField] private GameObject playerRapidBullet;
-    [SerializeField] private GameObject cameraObject;
+    [SerializeField] private GameObject playerFireBullet;
 
     private Camera cameraComponent;
 
     private int hitPoint = 10;
 
-    private bool canFire; // 炎がうてる状況かどうか
-
-    private float fireRate; // 発射感覚
+    private float fireInterval = 0.2f; // 発射するまでの長押し時間
     private float fireTimer;
+    private float fireRate = 0.1f; // 発射間隔
 
+    private Vector3 instanceOffset = new Vector3(0, 0.15f, 0); // 口元から発射するための補正です。
     // Start is called before the first frame update
     void Start()
     {
-        cameraComponent = cameraObject.GetComponent<Camera>(); // カメラコンポーネント取得
+        fireRate += fireInterval; // 実行開始しないとメンバーを参照して値を取れない
+        cameraComponent = Camera.main; // カメラコンポーネント取得
     }
 
     // Update is called once per frame
@@ -55,14 +56,24 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // 自分の現在位置に弾のプレハブを召喚
-            Instantiate(playerRapidBullet, transform.position, Quaternion.identity);
-
-            StartCoroutine(FireCharge(0.5f)); // 引数秒チャージしてcanFireをtrueに
+            Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+        }
+        if (Input.GetKey(KeyCode.Space)) // Spaceキー長押しで
+        {
+            fireTimer += Time.deltaTime;
+            if (fireTimer > fireInterval) // fireInterval秒押し続けたら
+            {
+                if (fireTimer > fireRate) // fireRate秒に一回炎が発射される
+                {
+                    Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                    fireTimer = fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+                }
+            }
         }
 
-        if (canFire)
+        if (Input.GetKeyUp(KeyCode.Space)) // キーを離したら
         {
-
+            fireTimer = 0; // タイマーリセット
         }
     }
 
@@ -111,24 +122,5 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.color = visibleColor;
             yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
         }
-    }
-
-    IEnumerator FireCharge(float chargeTime)
-    {
-        for (float time = 0; time < chargeTime; time += Time.deltaTime) // chargeTime秒まで待つ
-        {
-            if (Input.GetKey(KeyCode.Space)) // ボタンおしっぱなら
-            {
-                Debug.Log("ちゃーじ");
-                yield return null;
-            }
-            else // 長押し辞めたら
-            {
-                Debug.Log("中断");
-                yield break; // コルーチン終了
-            }
-        }
-        Debug.Log("びゅーん");
-        canFire = true;
     }
 }

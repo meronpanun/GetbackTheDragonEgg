@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRapidBullet: {fileID: 4522569728849120872, guid: ae454b34242c13f4e88a48b16d91c577, type: 3}
-  cameraObject: {fileID: 1877200258}
+  playerFireBullet: {fileID: 4188075682072775462, guid: cab398cc15df7e34aa832dd5b96c412f, type: 3}
 --- !u!212 &1250275993
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 1250275991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.758, z: 10}
+  m_LocalPosition: {x: 0, y: -1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
