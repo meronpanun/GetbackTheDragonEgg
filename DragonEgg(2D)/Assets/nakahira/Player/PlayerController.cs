@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
 
     private int hitPoint = 10;
 
+    private bool canFire; // 炎がうてる状況かどうか
+
+    private float fireRate; // 発射感覚
+    private float fireTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +56,11 @@ public class PlayerController : MonoBehaviour
         {
             // 自分の現在位置に弾のプレハブを召喚
             Instantiate(playerRapidBullet, transform.position, Quaternion.identity);
+
+            StartCoroutine(FireCharge(0.5f)); // 引数秒チャージしてcanFireをtrueに
         }
-        if (Input.GetKey(KeyCode.Space))
+
+        if (canFire)
         {
 
         }
@@ -79,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
         {
             hitPoint--;
-            if (hitPoint > 0)
+            if (hitPoint > 0) // 生きていたら点滅させる
             {
                 StartCoroutine(Blinking(4, 0.05f));
             }
@@ -103,5 +111,24 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.color = visibleColor;
             yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
         }
+    }
+
+    IEnumerator FireCharge(float chargeTime)
+    {
+        for (float time = 0; time < chargeTime; time += Time.deltaTime) // chargeTime秒まで待つ
+        {
+            if (Input.GetKey(KeyCode.Space)) // ボタンおしっぱなら
+            {
+                Debug.Log("ちゃーじ");
+                yield return null;
+            }
+            else // 長押し辞めたら
+            {
+                Debug.Log("中断");
+                yield break; // コルーチン終了
+            }
+        }
+        Debug.Log("びゅーん");
+        canFire = true;
     }
 }
