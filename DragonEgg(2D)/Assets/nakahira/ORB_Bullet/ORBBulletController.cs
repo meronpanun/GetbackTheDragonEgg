@@ -6,7 +6,7 @@ public class ORBBulletController : MonoBehaviour
 {
     public Vector2 speed = Vector2.zero;
 
-    private float speedyOffset = 0.5f;
+    private float speedyOffset;
 
     private Camera cameraComponent;
     // Start is called before the first frame update
