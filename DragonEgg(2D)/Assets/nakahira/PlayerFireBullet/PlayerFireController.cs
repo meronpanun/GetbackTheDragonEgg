@@ -23,7 +23,7 @@ public class PlayerFireController : PlayerBullet
         bulletSpeedy *= 0.99f;
 
         // ‘¬“x‚ªˆê’èˆÈ‰º‚É‚È‚Á‚Ä‚àÁ‚·
-        if (bulletSpeedy < 0.5f)
+        if (bulletSpeedy < 0.8f)
         {
             Destroy(gameObject);
         }

@@ -11,6 +11,9 @@ public class PlayerRapidBulletController : PlayerBullet
         base.Start();
         bulletSpeedy = 10f; // íeë¨ÅBìÆÇ≠ë¨Ç≥
         bulletSpeedx = 0;
+        //if (Random.Range(0,1) == 0)
+        //{
+        //}
     }
 
     // Update is called once per frame
