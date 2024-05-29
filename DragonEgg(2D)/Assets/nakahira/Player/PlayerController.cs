@@ -9,16 +9,23 @@ public class PlayerController : MonoBehaviour
 
     // エディタでアタッチ
     [SerializeField] private GameObject playerRapidBullet;
-    [SerializeField] private GameObject cameraObject;
+    [SerializeField] private GameObject playerFireBullet;
 
     private Camera cameraComponent;
 
     private int hitPoint = 10;
 
+    private float rapidFireWait = 0;
+    private float fireInterval = 0.2f; // 発射するまでの長押し時間
+    private float fireTimer = 0;
+    private float srowFireRate = 0.1f; // 発射間隔
+
+    private Vector3 instanceOffset = new Vector3(0, 0.15f, 0); // 口元から発射するための補正です。
     // Start is called before the first frame update
     void Start()
     {
-        cameraComponent = cameraObject.GetComponent<Camera>(); // カメラコンポーネント取得
+        fireTimer -= fireInterval; // 最初の一回だけ許して
+        cameraComponent = Camera.main; // カメラコンポーネント取得
     }
 
     // Update is called once per frame
@@ -49,12 +56,27 @@ public class PlayerController : MonoBehaviour
         // 長押ししていると広範囲に広がる炎が出る
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // 自分の現在位置に弾のプレハブを召喚
-            Instantiate(playerRapidBullet, transform.position, Quaternion.identity);
+            if (rapidFireWait <= 0) // もし打てる状況なら
+            {
+                // 自分の現在位置に弾のプレハブを召喚
+                Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+                StartCoroutine(RapidFireSetWait(0.5f)); // クールタイムを設ける
+            }
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space)) // Spaceキー長押しで
         {
+            fireTimer += Time.deltaTime;
+            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
+            {
+                Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                fireTimer = 0; // タイマーリセット
+            }
+        }
 
+        if (Input.GetKeyUp(KeyCode.Space)) // キーを離したら
+        {
+            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+            StartCoroutine(RapidFireSetWait(0.5f)); // この後すぐにRapidFireを撃つのは許さん
         }
     }
 
@@ -79,7 +101,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
         {
             hitPoint--;
-            if (hitPoint > 0)
+            if (hitPoint > 0) // 生きていたら点滅させる
             {
                 StartCoroutine(Blinking(4, 0.05f));
             }
@@ -102,6 +124,16 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(interval); // interval秒待つ
             spriteRenderer.color = visibleColor;
             yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
+        }
+    }
+
+    IEnumerator RapidFireSetWait(float count) // count秒の待ち時間を付与します。
+    {
+        rapidFireWait = count;
+        while (rapidFireWait > 0)
+        {
+            rapidFireWait -= Time.deltaTime;
+            yield return null;
         }
     }
 }
