@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float cameraSpeedy = 0.5f; // カメラの縦の移動スピード
+    public static Vector2 cameraSpeed = new Vector2(0, 0.5f);// カメラの移動スピード
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0f, cameraSpeedy * Time.deltaTime, 0f);
+        transform.Translate(cameraSpeed.x * Time.deltaTime, cameraSpeed.y * Time.deltaTime, 0f);
     }
 }

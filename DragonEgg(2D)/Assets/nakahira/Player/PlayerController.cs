@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static GameObject player;
+
     private float speedx = 1f;
     private float speedy = 1f;
 
@@ -15,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     private int hitPoint = 10;
 
-    private float rapidFireWait = 0;
     private float fireInterval = 0.2f; // 発射するまでの長押し時間
     private float fireTimer = 0;
     private float srowFireRate = 0.1f; // 発射間隔
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = gameObject; // これで個人情報公開できるかな
         fireTimer -= fireInterval; // 最初の一回だけ許して
         cameraComponent = Camera.main; // カメラコンポーネント取得
     }
@@ -56,12 +58,8 @@ public class PlayerController : MonoBehaviour
         // 長押ししていると広範囲に広がる炎が出る
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (rapidFireWait <= 0) // もし打てる状況なら
-            {
-                // 自分の現在位置に弾のプレハブを召喚
-                Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
-                StartCoroutine(RapidFireSetWait(0.5f)); // クールタイムを設ける
-            }
+            // 自分の現在位置に弾のプレハブを召喚
+            Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
         }
         if (Input.GetKey(KeyCode.Space)) // Spaceキー長押しで
         {
@@ -76,7 +74,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space)) // キーを離したら
         {
             fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
-            StartCoroutine(RapidFireSetWait(0.5f)); // この後すぐにRapidFireを撃つのは許さん
         }
     }
 
@@ -124,16 +121,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(interval); // interval秒待つ
             spriteRenderer.color = visibleColor;
             yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
-        }
-    }
-
-    IEnumerator RapidFireSetWait(float count) // count秒の待ち時間を付与します。
-    {
-        rapidFireWait = count;
-        while (rapidFireWait > 0)
-        {
-            rapidFireWait -= Time.deltaTime;
-            yield return null;
         }
     }
 }
