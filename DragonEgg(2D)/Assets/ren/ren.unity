@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 24568939}
   - component: {fileID: 24568941}
   m_Layer: 0
-  m_Name: FireDragon
+  m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 24568938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 395b56c0af9702046b27e701eb316bb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 65d2696d5f9eae74386cb05b4410c2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
@@ -225,10 +225,9 @@ MonoBehaviour:
   speed: 0.1
   exp: 0
   maxExp: 100
-  childDragonName: 
+  childDragonName: FireDragon
   Level: 1
-  levelMaxHp: 1000
-  levelMaxAttack: 500
+  ID: 0
 --- !u!1 &195522482
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424746198}
-  - component: {fileID: 424746197}
+  - component: {fileID: 424746199}
   m_Layer: 0
   m_Name: ExpManager
   m_TagString: Untagged
@@ -485,19 +484,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &424746197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424746196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0444dbebca63d24ca0e7049d58e7ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 962915663}
 --- !u!4 &424746198
 Transform:
   m_ObjectHideFlags: 0
@@ -513,6 +499,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1523752853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424746199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424746196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0444dbebca63d24ca0e7049d58e7ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childDragonDataMax: {fileID: 11400000, guid: 6034ccb286189ac46be66971b27b39d6, type: 2}
+  slider: {fileID: 962915663}
 --- !u!1 &472308951
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 740879415}
   - component: {fileID: 740879414}
-  - component: {fileID: 740879416}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -854,18 +853,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &740879416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740879412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &805166811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479102973}
-  - component: {fileID: 1479102972}
+  - component: {fileID: 1479102974}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -1457,18 +1444,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1479102972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479102971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96032a98de41b7e4a85d82dba5e3f109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1479102973
 Transform:
   m_ObjectHideFlags: 0
@@ -1484,6 +1459,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1479102974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479102971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa3e229ec6de414abd9acc358111e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514211032
 GameObject:
   m_ObjectHideFlags: 0

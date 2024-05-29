@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "ChildDragonData")]
+//[CreateAssetMenu(menuName = "ChildDragonData")]
 
-public class ChildDragonData : ScriptableObject
+public class ChildDragonData :MonoBehaviour
 {
     [SerializeField] public int hp = 100;
     [SerializeField] public int attack = 10;
@@ -12,4 +12,7 @@ public class ChildDragonData : ScriptableObject
     [SerializeField] public int maxExp;
     [SerializeField] string childDragonName;
     [SerializeField] public int Level;
+    [SerializeField] public int ID;
+
+
 }

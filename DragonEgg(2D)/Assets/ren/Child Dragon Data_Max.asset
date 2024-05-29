@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7317b4221fe193d4f9c218ab3c15d089, type: 3}
   m_Name: Child Dragon Data_Max
   m_EditorClassIdentifier: 
-  maxHp: 0
-  maxAttack: 0
+  maxHp: 1000
+  maxAttack: 1000

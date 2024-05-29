@@ -7,6 +7,7 @@ public class BootsupandsquadManager : MonoBehaviour
 {
     private Vector2 tmp;
     GameObject powerUpCanvas;
+    int flag = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,16 +24,26 @@ public class BootsupandsquadManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameObject.Find("Main Camera").transform.position = new Vector3(tmp.x -80, tmp.y);
+            GameObject.Find("Main Camera").transform.position = new Vector3(-80, 0,-10);
+            flag = 1;
+
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && flag != 0)
+        {
+            GameObject.Find("Main Camera").transform.position = new Vector3(0,0,-10);
+            flag = 0;
+
         }
 
-        //if (x <= -80 && y <= 0)
-        //{
-        //    powerUpCanvas.SetActive(false);
-        //}
-        //else if (x == 0 && y == 0)
-        //{
-             
-        //}
+        if (flag == 1)
+        {
+            powerUpCanvas.SetActive(false);
+        }
+        else if (flag == 0)
+        {
+            powerUpCanvas.SetActive(true);
+        }
+
     }
 }
+
