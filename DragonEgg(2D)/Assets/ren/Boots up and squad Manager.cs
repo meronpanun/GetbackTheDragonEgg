@@ -27,9 +27,9 @@ public class BootsupandsquadManager : MonoBehaviour
         }
 
         //if (x <= -80 && y <= 0)
-        {
-            powerUpCanvas.SetActive(false);
-        }
+        //{
+        //    powerUpCanvas.SetActive(false);
+        //}
         //else if (x == 0 && y == 0)
         //{
              
