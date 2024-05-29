@@ -10,11 +10,15 @@ public class DialogBuild : MonoBehaviour
     [SerializeField] private GameObject _noButton;
     [SerializeField] private GameObject _goButton;
     [TextArea(5, 5)]
-    [SerializeField] private string msgText;
+    //[SerializeField] private string msgText;  // 使わなくなった
     private float msgSpeed = 0.03f;  // テキスト表示間隔
+
+    int stageNum = 0;
+    string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
+
     void Start()
     {
-        DialogText.text = "";
+        //DialogText.text = dialogText;
         _noButton.SetActive(false);  // ボタンを隠す
         _goButton.SetActive(false);
         StartCoroutine(TypeDisplay());
@@ -24,16 +28,33 @@ public class DialogBuild : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
         {
             StopAllCoroutines();
-            DialogText.text = msgText;
+            //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
+            //DialogText.text = msgText;  // 使わなくなった
             _noButton.SetActive(true);  // ボタンを表示
             _goButton.SetActive(true);
         }
     }
+
+    public void Push_Button(int number)
+    {
+        int stageNum = number;  // ボタン側からステージ数を取得
+        dialogText = "Stage " + stageNum + "||Ready?";  // dialogText変数に文を代入
+    }
+
     IEnumerator TypeDisplay()  // メッセージを表示させる機構？ IEnumeratorは非同期処理を行うために用いるデータ型の一種
     {
-        foreach (char item in msgText.ToCharArray())
+        foreach (char item in dialogText)
         {
-            DialogText.text += item;
+            if(item == '|')
+            {
+                // <br>をDialogText.textに代入する
+            }
+            else
+            {
+                DialogText.text += item;  // 
+            }
+
+            
             yield return new WaitForSeconds(msgSpeed);  // メッセージをmsgSpeed毎に表示？
         }
         _noButton.SetActive(true);  // ボタンを表示
