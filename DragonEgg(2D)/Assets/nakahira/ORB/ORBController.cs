@@ -67,7 +67,6 @@ public class ORBController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("’Ê‰Ý");
         if (collision.gameObject.tag == "PlayerBullet")
         {
             //canMove = false;
