@@ -20,12 +20,12 @@ public class StageSelect : MonoBehaviour
 
     public void OnPressed()
     {
-        Debug.Log("test");
+        Debug.Log("StageSelect");
         _selectUI.SetActive(true);
     }
     public void SummonStageSelect()
     {
-        Debug.Log("test");
+        Debug.Log("NoButton");
         _stageUI.SetActive(true);
     }
 }
