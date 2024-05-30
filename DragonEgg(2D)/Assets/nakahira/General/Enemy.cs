@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     private static bool s_dontGetPlayer = true; // 一番最初、一回だけplayerを取得するためのフラグ
 
     protected float hitPoint = 1; // 体力！
+
+    // エディタでアタッチ
+    public GameObject damageText;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -25,7 +29,7 @@ public class Enemy : MonoBehaviour
     {
         if (OffScreenJudgment()) // 画面外にでたら
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -59,10 +63,18 @@ public class Enemy : MonoBehaviour
 
     protected void Damage(float attack) // hitPointはここから減らすこと
     {
+        GenerateDamageText(attack);
         hitPoint -= attack;
         if (hitPoint <= 0)
         {
+            GetComponent<CircleCollider2D>().enabled = false; // 当たり判定を消す
             animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
         }
+    }
+
+    protected void GenerateDamageText(float attack) // 長いから分ける
+    {
+        GameObject damageTextInstance = Instantiate(damageText, transform.position, Quaternion.identity);
+        damageTextInstance.GetComponent<DamageNumberController>().SetDamageText(attack.ToString());
     }
 }
