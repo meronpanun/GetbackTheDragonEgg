@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleDirector : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -14,7 +13,7 @@ public class TitleDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene("SaveScene");
         }
