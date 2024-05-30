@@ -5,7 +5,7 @@ using UnityEngine;
 public class ORBBulletController : MonoBehaviour
 {
     public Vector2 speed = Vector2.zero;
-
+    public const float ATTACK = 1f;
     private Camera cameraComponent;
     // Start is called before the first frame update
     void Start()

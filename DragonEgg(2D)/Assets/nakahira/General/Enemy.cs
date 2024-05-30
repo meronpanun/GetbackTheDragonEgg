@@ -10,16 +10,16 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
     protected Camera cameraComponent;
 
-    private static bool s_dontGetPlayer = true; // 一番最初、一回だけplayerを取得するためのフラグ
-
     protected float hitPoint = 1; // 体力！
 
-    // エディタでアタッチ
-    public GameObject damageText;
+    protected GameObject prefabStore;
 
+    protected bool canMove = true; // 動けるか
+    protected bool canShoot = true;  // 弾撃てるか
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        prefabStore = GameObject.Find("PrefabStore");
         animator = GetComponent<Animator>();
         cameraComponent = Camera.main;
     }
@@ -27,9 +27,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (OffScreenJudgment()) // 画面外にでたら
+        if (canMove)
         {
-            //Destroy(gameObject);
+            Move();
+        }
+        if (canShoot)
+        {
+            Shoot();
         }
     }
 
@@ -37,9 +41,9 @@ public class Enemy : MonoBehaviour
     {
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
         return (viewPos.y < 0 ||
-                viewPos.y > 1 ||
-                viewPos.x < 0 ||
-                viewPos.x > 1); // これ短くならないかな
+                   viewPos.y > 1 ||
+                   viewPos.x < 0 ||
+                   viewPos.x > 1); // これ短くならないかな
     }
 
     protected void DestroyThisGameobject() // アニメーションイベントに献上するやつ
@@ -55,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerBullet")
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             Damage(collision.gameObject.GetComponent<PlayerBullet>().attack);
         }
@@ -63,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     protected void Damage(float attack) // hitPointはここから減らすこと
     {
-        GenerateDamageText(attack);
+        DamageNumberGenerator.GenerateText(attack, transform.position, Color.white);
         hitPoint -= attack;
         if (hitPoint <= 0)
         {
@@ -72,9 +76,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void GenerateDamageText(float attack) // 長いから分ける
+    protected virtual void Move() // 移動関連の処理はここに書きましょう
     {
-        GameObject damageTextInstance = Instantiate(damageText, transform.position, Quaternion.identity);
-        damageTextInstance.GetComponent<DamageNumberController>().SetDamageText(attack.ToString());
+        
+    }
+    protected virtual void Shoot() // 弾撃つ関連の処理はここに書きましょう
+    {
+
     }
 }

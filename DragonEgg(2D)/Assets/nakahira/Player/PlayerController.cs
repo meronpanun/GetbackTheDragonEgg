@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private Camera cameraComponent;
 
-    private int hitPoint = 10;
+    private float hitPoint = 10;
 
     private float fireInterval = 0.2f; // 発射するまでの長押し時間
     private float fireTimer = 0;
@@ -97,16 +97,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
         {
-            hitPoint--;
-            if (hitPoint > 0) // 生きていたら点滅させる
-            {
-                StartCoroutine(Blinking(4, 0.05f));
-            }
-            else
-            {
-                Destroy(gameObject); // 仮
-                // HPがゼロになったら死亡アニメーションを再生してリトライ画面なりなんなり
-            }
+
+        }
+    }
+
+    private void Damage(float attack) // hitPointはここから減らすこと
+    {
+        DamageNumberGenerator.GenerateText(attack, transform.position, Color.red);
+        hitPoint -= attack;
+        if (hitPoint > 0) // 生きていたら
+        {
+            StartCoroutine(Blinking(4, 0.05f)); // 点滅
         }
     }
 
