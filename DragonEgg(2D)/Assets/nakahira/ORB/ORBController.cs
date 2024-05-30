@@ -4,10 +4,8 @@ using UnityEngine;
 using System;
 using System.Threading.Tasks;
 
-public class ORBController : MonoBehaviour
+public class ORBController : Enemy
 {
-    public float speedx = 0f;
-    public float speedy = 0f;
 
     public float cycleSpeed = 5f; // 大きくすれば回転周期が小さくなり、より早く往復します。
     public float moveSpeed = 5f; // 大きくすればより早く移動し、半径が大きくなります。
@@ -19,23 +17,20 @@ public class ORBController : MonoBehaviour
     private bool canMove = true; // 動けるか
     private bool canShoot = true;  // 弾撃てるか
 
-    private Animator animator;
-    private Camera cameraComponent;
-    private GameObject player;
      //プレハブなのでエディタからよろしく
     public GameObject bullet;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
-        cameraComponent = Camera.main;
-        player = GameObject.Find("Player");
+        base.Start();
+        hitPoint = 3;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         angle += Time.deltaTime;
         shootTimer += Time.deltaTime;
 
@@ -51,32 +46,11 @@ public class ORBController : MonoBehaviour
             {
                 shootTimer = 0;
                 // プレイヤーに向けて球を撃つ処理
-                Vector3 relativeDistance = player.transform.position - transform.position;
                 GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-                bulletInstance.GetComponent<ORBBulletController>().speed = relativeDistance.normalized; // Vector2にVector3ぶち込んで大丈夫かなあ
+                bulletInstance.GetComponent<ORBBulletController>().speed = UnitVector(PlayerController.player); // Vector2にVector3ぶち込んで大丈夫かなあ
             }
         }
-
-        // 画面外に出たら消す
-        Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        if (viewPos.y < 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerBullet")
-        {
-            //canMove = false;
-            canShoot = false;
-            animator.SetTrigger("Death"); // 死亡モーションを再生。終了したらDestroy
-        }
-    }
 
-    private void DestroyThisGameobject() // アニメーションイベントに献上するやつ
-    {
-        Destroy(gameObject);
-    }
 }
