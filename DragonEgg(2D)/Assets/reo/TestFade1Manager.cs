@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;  // scene切り替えを行うため
 
-public class FadeManager : MonoBehaviour
+public class TestFade1Manager : MonoBehaviour
 {
     float Speed = 0.001f;        //フェードするスピード、多いと早くフェードする
     float red, green, blue, alfa;
+    string loadScene = "TestErrorScene";
 
     public bool Out = false;
     public bool In = false;
 
     Image fadeImage;                //パネル
+
+    // このスクリプトを使う際は
+    // ・パネルのImageのチェックボックスを切る
+    // ・パネルのalfaを255に設定
+    // ・シーン移行するボタンから FadeOutSwitch(int number) を送るように設定する;
 
     void Start()
     {
@@ -21,6 +27,8 @@ public class FadeManager : MonoBehaviour
         green = fadeImage.color.g;
         blue = fadeImage.color.b;
         alfa = fadeImage.color.a;
+
+        FadeInSwitch();
     }
 
     void Update()
@@ -37,9 +45,31 @@ public class FadeManager : MonoBehaviour
             FadeOut();
         }
     }
-
-    public void FadeSwitch()
+    public void FadeInSwitch()
     {
+        fadeImage.enabled = true;
+        In = true;
+    }
+
+    public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
+    {
+        switch (number)  // シーン切り替え
+        {
+            case 1:
+                loadScene = "TestFade1";
+                break;
+            case 2:
+                loadScene = "TestFade2";
+                break;
+            case 3:
+                loadScene = "TestStageSelectScene";
+                break;
+
+
+        }
+
+        alfa = 0;
+        //fadeImage.enabled = true;
         Out = true;
     }
 
@@ -62,7 +92,7 @@ public class FadeManager : MonoBehaviour
         if (alfa >= 1)
         {
             Out = false;
-            SceneManager.LoadSceneAsync("TestFade2");
+            SceneManager.LoadSceneAsync(loadScene);
         }
     }
 
