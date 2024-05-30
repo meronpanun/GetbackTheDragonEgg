@@ -6,6 +6,9 @@ public class LoadingScene : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingUI;
     [SerializeField] private Slider _slider;
+
+    public static int stageNum;
+
     public void LoadNextScene()
     {
         _loadingUI.SetActive(true);
@@ -13,11 +16,66 @@ public class LoadingScene : MonoBehaviour
     }
     IEnumerator LoadScene()
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync("TestStageSelectScene");
-        while (!async.isDone)
+        AsyncOperation async;
+
+        switch (LoadingScene.stageNum)
         {
-            _slider.value = async.progress;
-            yield return null;
+            case 1:
+                async = SceneManager.LoadSceneAsync("TestStage1");
+                while (!async.isDone)
+                {
+                    _slider.value = async.progress;
+                    yield return null;
+                }
+                break;
+
+
+            case 2:
+                async = SceneManager.LoadSceneAsync("TestStage2");
+                while (!async.isDone)
+                {
+                    _slider.value = async.progress;
+                    yield return null;
+                }
+                break;
+
+
+            case 3:
+                async = SceneManager.LoadSceneAsync("TestStage3");
+                while (!async.isDone)
+                {
+                    _slider.value = async.progress;
+                    yield return null;
+                }
+                break;
+
+
+            case 4:
+                async = SceneManager.LoadSceneAsync("TestStage4");
+                while (!async.isDone)
+                {
+                    _slider.value = async.progress;
+                    yield return null;
+                }
+                break;
+
+
+            default:
+                async = SceneManager.LoadSceneAsync("TestErrorScene");
+                while (!async.isDone)
+                {
+                    _slider.value = async.progress;
+                    yield return null;
+                }
+                break;
         }
+
+
+        //AsyncOperation async = SceneManager.LoadSceneAsync("TestStageSelectScene");
+        //while (!async.isDone)
+        //{
+        //    _slider.value = async.progress;
+        //    yield return null;
+        //}
     }
 }
