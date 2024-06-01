@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class ChildDragonData :MonoBehaviour
 {
-    [SerializeField] public int hp = 100;
-    [SerializeField] public int attack = 10;
+    [SerializeField] public int hp;
+    [SerializeField] public int attack;
+    //[SerializeField] public int dafaultHp = 100;
+    //[SerializeField] public int dafaultAttack = 10;
     [SerializeField] float speed = 0.1f;
     [SerializeField] public int exp;
     [SerializeField] public int maxExp;
     [SerializeField] string childDragonName;
     [SerializeField] public int Level;
     [SerializeField] public int ID;
-
-
 }

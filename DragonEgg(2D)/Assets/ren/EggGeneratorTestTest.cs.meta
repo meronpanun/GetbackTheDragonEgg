@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: d34b7c46256fa6a469cb41b6bf7d2118
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ChildDoragonPrefab: {fileID: 3712178278127806331, guid: e8102c216425f534a933606e158fb031, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

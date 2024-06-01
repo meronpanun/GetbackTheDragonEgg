@@ -9,7 +9,7 @@ public class ExpManager : MonoBehaviour
 {
     // エディタでアタッチ
     //[SerializeField] public ChildDragonData childDragonData;
-    GameObject FireDragon;
+    GameObject childDragon;
     private ChildDragonData childDragonData;
     public ChildDragonData_Max childDragonDataMax;
 
@@ -26,8 +26,8 @@ public class ExpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()//逆だとバグる
     {
-        FireDragon = GameObject.Find("Dragon");
-        childDragonData = FireDragon.GetComponent<ChildDragonData>();
+        childDragon = GameObject.Find("ChildDragon");
+        childDragonData = childDragon.GetComponent<ChildDragonData>();
 
     }
 
@@ -88,12 +88,14 @@ public class ExpManager : MonoBehaviour
     }
     int Attack()
     {
-        childDragonData.attack = (int)(childDragonDataMax.maxAttack * childDragonData.Level) / 100;
+       // childDragonData.attack = childDragonData.dafaultAttack + (int)(childDragonDataMax.maxAttack * childDragonData.Level) / 100;
+        childDragonData.attack += Random.Range(1, 5);
         return childDragonData.attack;
     }
     int Hp()
     {
-        childDragonData.hp = (int)(childDragonDataMax.maxHp * childDragonData.Level) / 100;
+       // childDragonData.hp = childDragonData.dafaultHp + (int)(childDragonDataMax.maxHp * childDragonData.Level) / 100;
+        childDragonData.hp += Random.Range(1, 5);
         return childDragonData.hp;
     }
 }

@@ -50,13 +50,13 @@ public class BootsupandsquadManager : MonoBehaviour
 
     }
 
-    void MonsterBox(float y)
+    void MonsterBox(float y)//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
     {
-        if (Input.GetKey(KeyCode.UpArrow) && flag != 0 && y < 0)
+        if (Input.GetKey(KeyCode.UpArrow) && flag != 0 && y <= 0.00f)
         {
             GameObject.Find("Main Camera").transform.position += new Vector3(0.0f, 0.01f, 0.0f); //カメラを上へ移動。
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && flag != 0 && y > -28)
+        else if (Input.GetKey(KeyCode.DownArrow) && flag != 0 && y >= -28.00f)
         {
             GameObject.Find("Main Camera").transform.position += new Vector3(0.0f, -0.01f, 0.0f); //カメラを下へ移動。
         }
