@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
 
     protected bool canMove = true; // “®‚¯‚é‚©
     protected bool canShoot = true;  // ’eŒ‚‚Ä‚é‚©
+
+    public float attack { get; protected set; }
     // Start is called before the first frame update
     protected virtual void Start()
     {

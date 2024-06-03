@@ -11,7 +11,6 @@ public class DamageNumberController : MonoBehaviour
     void Start()
     {
         textMeshPro = GetComponent<TextMeshPro>();
-        Debug.Log(textMeshPro);
     }
 
     // Update is called once per frame

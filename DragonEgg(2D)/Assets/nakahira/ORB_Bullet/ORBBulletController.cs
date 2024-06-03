@@ -7,9 +7,13 @@ public class ORBBulletController : MonoBehaviour
     public Vector2 speed = Vector2.zero;
     public const float ATTACK = 1f;
     private Camera cameraComponent;
+
+    public float attack { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
+        attack = 1f;
         cameraComponent = Camera.main;
     }
 
