@@ -17,10 +17,13 @@ public class ReturnSelectScene : MonoBehaviour
         
     }
 
+    /*
+
     public void ReturnStageSelectScene()
     {
         Debug.Log("ReturnStageSelect");
         SceneManager.LoadSceneAsync("TestStageSelectScene");
     }
 
+    */
 }

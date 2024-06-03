@@ -22,6 +22,8 @@ public class TestFade1Manager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         fadeImage = GetComponent<Image>();
         red = fadeImage.color.r;
         green = fadeImage.color.g;
@@ -53,16 +55,39 @@ public class TestFade1Manager : MonoBehaviour
 
     public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
     {
-        switch (number)  // シーン切り替え
+        if (number != 0)
         {
+            LoadingScene.stageNum = number;
+        }
+
+        switch (LoadingScene.stageNum)  // シーン切り替え
+        {
+            case 100:
+                loadScene = "TestStageSelectScene";
+                break;
+
             case 1:
-                loadScene = "TestFade1";
+                loadScene = "TestStage1";
                 break;
             case 2:
-                loadScene = "TestFade2";
+                loadScene = "TestStage2";
                 break;
             case 3:
-                loadScene = "TestStageSelectScene";
+                loadScene = "TestStage3";
+                break;
+            case 4:
+                loadScene = "TestStage4";
+                break;
+
+            case 11:
+                loadScene = "TestFade1";
+                break;
+            case 12:
+                loadScene = "TestFade2";
+                break;
+
+            default:
+                loadScene = "TestErrorScene";
                 break;
 
 
