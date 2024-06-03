@@ -14,7 +14,31 @@ public class SaveDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("joystick button 0"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 2"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 3"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 4"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 5"))
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        if (Input.GetKeyDown("joystick button 6"))
         {
             SceneManager.LoadScene("HomeScene");
         }
