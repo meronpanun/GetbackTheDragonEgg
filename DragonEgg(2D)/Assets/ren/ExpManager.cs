@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Linq;
 
 
@@ -23,17 +24,33 @@ public class ExpManager : MonoBehaviour
     //int addExp = 30; //加える経験値
 
     public Slider slider;
+    public GameObject textExp;
+    public GameObject addExpPoint;
+    public GameObject hpPointText;
+    public GameObject atkPointText;
+    public GameObject levelPointText;
     // Start is called before the first frame update
     void Start()//逆だとバグる
     {
         childDragon = GameObject.Find("ChildDragon");
         childDragonData = childDragon.GetComponent<ChildDragonData>();
-
+        textExp = GameObject.Find("ExpText");
+        addExpPoint = GameObject.Find("AddExpPoint");
+        hpPointText  = GameObject.Find("HpPoint");
+        atkPointText = GameObject.Find("AtkPoint");
+        levelPointText = GameObject.Find("LevelPoint");
+       
     }
 
     //Update is called once per frame
     void Update()
     {
+        textExp.GetComponent<TextMeshProUGUI>().text = "EXP  " + childDragonData.exp.ToString() + '/' + childDragonData.maxExp.ToString();//テキスト
+        addExpPoint.GetComponent<TextMeshProUGUI>().text = "ADD EXP? " + '+' + useExp.ToString();
+        hpPointText.GetComponent<TextMeshProUGUI>().text = childDragonData.hp.ToString();
+        atkPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.attack.ToString();
+        levelPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.Level.ToString();
+        
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && childDragonData.Level != 100)
         {
@@ -44,14 +61,14 @@ public class ExpManager : MonoBehaviour
         {
             useExp = useExp - 10;
             Debug.Log(useExp);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && childDragonData.Level != 100)
-        {
             if (useExp <= 0)
             {
                 useExp = 0;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && childDragonData.Level != 100)
+        {
             Debug.Log(expManager(useExp));
             useExp = 0;
         }
