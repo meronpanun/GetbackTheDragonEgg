@@ -95,9 +95,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "PlayerBullet") // 自分の弾以外に当たったら
+        if (collision.gameObject.CompareTag("Enemy")) // 敵に当たったら
         {
-
+            Damage(collision.GetComponent<Enemy>().attack);
+        }
+        else if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Damage(collision.GetComponent<ORBBulletController>().attack);
         }
     }
 
@@ -108,6 +112,10 @@ public class PlayerController : MonoBehaviour
         if (hitPoint > 0) // 生きていたら
         {
             StartCoroutine(Blinking(4, 0.05f)); // 点滅
+        }
+        else // でなければ
+        {
+            Destroy(gameObject); // 消す（仮）
         }
     }
 

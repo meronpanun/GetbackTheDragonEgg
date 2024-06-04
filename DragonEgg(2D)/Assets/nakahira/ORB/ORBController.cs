@@ -22,6 +22,7 @@ public class ORBController : Enemy
     {
         base.Start();
         hitPoint = 3;
+        attack = 1;
     }
 
     // Update is called once per frame
