@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 public class ORBController : Enemy
 {
 
-    private float cycleSpeed = 2f; // 大きくすれば回転周期が小さくなり、より早く往復します。
-    private float moveSpeed = 2f; // 大きくすればより早く移動し、半径が大きくなります。
+    protected float cycleSpeed = 2f; // 大きくすれば回転周期が小さくなり、より早く往復します。
+    protected float moveSpeed = 2f; // 大きくすればより早く移動し、半径が大きくなります。
 
-    private float angle; // 角度の計算に使うタイマー
-    private float shootTimer; // 弾の発射を制御するタイマー
-    private float shootSpan = 2; // 何秒おきに弾を発射するか
+    protected float angle; // 角度の計算に使うタイマー
+    protected float shootTimer; // 弾の発射を制御するタイマー
+    protected float shootSpan = 2; // 何秒おきに弾を発射するか
 
      //プレハブなのでエディタからよろしく
     public GameObject bullet;
@@ -50,5 +50,11 @@ public class ORBController : Enemy
             GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
             bulletInstance.GetComponent<ORBBulletController>().speed = UnitVector(PlayerController.player); // Vector2にVector3ぶち込んで大丈夫かなあ
         }
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        canShoot = false;
     }
 }
