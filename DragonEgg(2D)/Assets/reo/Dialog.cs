@@ -1,3 +1,5 @@
+// ステージに入る際に表示させるメッセージを操作するスクリプト
+
 // 表示+徐々に文字が表示される+
 // メッセージが全て表示されたらボタン表示+
 // スペースキーを押すとメッセージを即全部表示
@@ -11,7 +13,8 @@ public class DialogBuild : MonoBehaviour
     [SerializeField] private GameObject _goButton;
     [TextArea(5, 5)]
     //[SerializeField] private string msgText;  // 使わなくなった
-    private float msgSpeed = 0.07f;  // テキスト表示間隔
+    private float msgSpeed = 0.03f;  // テキスト表示間隔
+    private float msgSpeedEnter = 0.08f;  // 改行時待機時間
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
@@ -63,12 +66,16 @@ public class DialogBuild : MonoBehaviour
 
     IEnumerator TypeDisplay()  // メッセージを表示させる機構？ IEnumeratorは非同期処理を行うために用いるデータ型の一種
     {
+        _noButton.SetActive(false);  // ボタンを隠す
+        _goButton.SetActive(false);
+
         foreach (char item in dialogText)
         {
             if(item == '|')
             {
                 // <br>をDialogText.textに代入する
                 DialogText.text += "<br>";
+                yield return new WaitForSeconds(msgSpeedEnter);
             }
             else
             {
