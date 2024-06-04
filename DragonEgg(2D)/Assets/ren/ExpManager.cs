@@ -52,12 +52,12 @@ public class ExpManager : MonoBehaviour
         levelPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.Level.ToString();
         
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && childDragonData.Level != 100)
+        if (Input.GetKey(KeyCode.RightArrow) && childDragonData.Level != 100)
         {
             useExp = useExp + 10;
             Debug.Log(useExp);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && childDragonData.Level != 100)
+        else if (Input.GetKey(KeyCode.LeftArrow) && childDragonData.Level != 100)
         {
             useExp = useExp - 10;
             Debug.Log(useExp);
@@ -69,7 +69,7 @@ public class ExpManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && childDragonData.Level != 100)
         {
-            Debug.Log(expManager(useExp));
+            expManager(useExp);
             useExp = 0;
         }
 
@@ -84,22 +84,26 @@ public class ExpManager : MonoBehaviour
     (int, int) expManager(int getExp) //ƒ^ƒvƒ‹
     {
         childDragonData.exp += getExp;
-        if (childDragonData.maxExp <= childDragonData.exp && childDragonData.Level != 100)
+        while(childDragonData.exp > childDragonData.maxExp)
         {
-            childDragonData.exp -= childDragonData.maxExp;
-            childDragonData.maxExp = (int)(childDragonData.maxExp * 1.1f);
-            childDragonData.Level++;
-            childDragonData.attack = Attack();
-            childDragonData.hp = Hp();
+            if (childDragonData.maxExp <= childDragonData.exp && childDragonData.Level != 100)
+            {
+                childDragonData.exp -= childDragonData.maxExp;
+                childDragonData.maxExp = (int)(childDragonData.maxExp * 1.1f);
+                childDragonData.Level++;
+                childDragonData.attack = Attack();
+                childDragonData.hp = Hp();
+            }
+            else if (childDragonData.Level >= 100)
+            {
+                childDragonData.maxExp = (int)(childDragonData.maxExp * 1.1f);
+                childDragonData.exp = childDragonData.maxExp;
+                childDragonData.Level = 100;
+                childDragonData.attack = Attack();
+                childDragonData.hp = Hp();
+            }
         }
-        else if (childDragonData.Level >= 100)
-        {
-            childDragonData.maxExp = (int)(childDragonData.maxExp * 1.1f);
-            childDragonData.exp = childDragonData.maxExp;
-            childDragonData.Level = 100;
-            childDragonData.attack = Attack();
-            childDragonData.hp = Hp();
-        }
+       
 
         return (childDragonData.exp, childDragonData.maxExp);
     }

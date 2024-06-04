@@ -73,6 +73,7 @@ public class Enemy : MonoBehaviour
         hitPoint -= attack;
         if (hitPoint <= 0)
         {
+            OnDeath();
             GetComponent<CircleCollider2D>().enabled = false; // 当たり判定を消す
             animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
         }
@@ -83,6 +84,11 @@ public class Enemy : MonoBehaviour
         
     }
     protected virtual void Shoot() // 弾撃つ関連の処理はここに書きましょう
+    {
+
+    }
+
+    protected virtual void OnDeath() // 自作のOnメソッドです。Hpが0になったときに実行されます。
     {
 
     }
