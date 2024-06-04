@@ -14,6 +14,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(cameraSpeed.x * Time.deltaTime, cameraSpeed.y * Time.deltaTime, 0f);
+        if (transform.position.y <19) // ƒ{ƒXí‚ÅŽ~‚Ü‚é
+        {
+            transform.Translate(cameraSpeed.x * Time.deltaTime, cameraSpeed.y * Time.deltaTime, 0f);
+        }
     }
 }
