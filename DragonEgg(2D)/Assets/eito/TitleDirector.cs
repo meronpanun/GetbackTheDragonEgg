@@ -48,9 +48,11 @@ public class TitleDirector : MonoBehaviour
         {
             SceneManager.LoadScene("SaveScene");
         }
-        //if (Input.GetkeyDown("joystick axis 7"))
+        //if (Input.GetAxisRaw(axisName))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
     }
 }

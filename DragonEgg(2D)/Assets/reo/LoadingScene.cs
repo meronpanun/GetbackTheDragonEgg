@@ -11,8 +11,8 @@ public class LoadingScene : MonoBehaviour
 
     public void LoadNextScene()
     {
-        _loadingUI.SetActive(true);
-        StartCoroutine(LoadScene());
+        //_loadingUI.SetActive(true);
+        //StartCoroutine(LoadScene());
     }
     IEnumerator LoadScene()
     {
