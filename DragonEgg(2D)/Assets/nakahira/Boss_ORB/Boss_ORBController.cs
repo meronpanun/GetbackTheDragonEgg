@@ -9,7 +9,8 @@ public class Boss_ORBController : ORBController // 継承
     protected override void Start()
     {
         base.Start();
-        hitPoint = 100; // なんか
+        hitPoint = 100;
+        shootSpan = 0.3f;
     }
 
     // 動く関連の処理はORBと同じ
@@ -23,5 +24,11 @@ public class Boss_ORBController : ORBController // 継承
     {
         yield return new WaitForSeconds(interval);
         SceneManager.LoadScene("ClearScene");
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        canMove = false; // 親のORBスクリプトでcanShootもfalseにしてます。
     }
 }

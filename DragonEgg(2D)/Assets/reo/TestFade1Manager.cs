@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;  // scene切り替えを行うため
 
+// フェードイン、フェードアウト管理スクリプト
+
 public class TestFade1Manager : MonoBehaviour
 {
     float Speed = 0.001f;        //フェードするスピード、多いと早くフェードする

@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+// ローディング画面を管理するスクリプト
+
 public class LoadingScene : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingUI;
@@ -9,12 +12,16 @@ public class LoadingScene : MonoBehaviour
 
     public static int stageNum;
 
+    /*
+
     public void LoadNextScene()
     {
         //_loadingUI.SetActive(true);
         //StartCoroutine(LoadScene());
     }
-    IEnumerator LoadScene()
+
+    
+    IEnumerator LoadScene()  // ロード画面は使わないので今は無効化している
     {
         AsyncOperation async;
 
@@ -78,4 +85,6 @@ public class LoadingScene : MonoBehaviour
         //    yield return null;
         //}
     }
+
+    */
 }
