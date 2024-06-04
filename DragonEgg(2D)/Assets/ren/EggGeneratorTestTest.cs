@@ -6,24 +6,18 @@ using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 public class EggGeneratorTestTest : MonoBehaviour
 {
     public GameObject ChildDoragonPrefab;
-    private ChildDragonData childDragonData;
+    [SerializeField] ChildDragonData childDragonData;
     int x = -86;
     int y = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        for (int i = 0; i < 10; i++)
         {
             Eggspawn();
             x += 3;
-            if(x >= -71)
+            if (x >= -71)
             {
                 x = -86;
                 y -= 3;
@@ -31,10 +25,16 @@ public class EggGeneratorTestTest : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+
     void Eggspawn()
     {
         GameObject childDragon = Instantiate(ChildDoragonPrefab);//インスタンス化
-        childDragonData = childDragon.GetComponent<ChildDragonData>();
+       // childDragonData = childDragon.GetComponent<ChildDragonData>();
         childDragonData.hp = IndividualValueGetHp(Random.Range(10, 15));
         childDragonData.attack = IndividualValueGetAttack(Random.Range(1, 5));
         childDragon.transform.localScale = new Vector3(0.3f, 0.3f, 1);

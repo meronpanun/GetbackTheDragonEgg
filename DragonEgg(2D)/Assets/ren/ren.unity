@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0444dbebca63d24ca0e7049d58e7ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  childDragonData: {fileID: 0}
   childDragonDataMax: {fileID: 11400000, guid: 6034ccb286189ac46be66971b27b39d6, type: 2}
   slider: {fileID: 962915663}
   textExp: {fileID: 0}
@@ -1976,6 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChildDoragonPrefab: {fileID: 3712178278127806331, guid: e8102c216425f534a933606e158fb031, type: 3}
+  childDragonData: {fileID: 11400000, guid: d78beb5b7ee4b9e4a8371549e2625019, type: 2}
 --- !u!4 &1497686978
 Transform:
   m_ObjectHideFlags: 0
@@ -3309,18 +3311,6 @@ PrefabInstance:
     - target: {fileID: 3712178278127806331, guid: e8102c216425f534a933606e158fb031, type: 3}
       propertyPath: m_Name
       value: ChildDragon
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712178278127806331, guid: e8102c216425f534a933606e158fb031, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421882092780971023, guid: e8102c216425f534a933606e158fb031, type: 3}
-      propertyPath: hp
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421882092780971023, guid: e8102c216425f534a933606e158fb031, type: 3}
-      propertyPath: attack
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

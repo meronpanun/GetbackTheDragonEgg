@@ -11,7 +11,7 @@ public class ExpManager : MonoBehaviour
     // エディタでアタッチ
     //[SerializeField] public ChildDragonData childDragonData;
     GameObject childDragon;
-    private ChildDragonData childDragonData;
+    [SerializeField] ChildDragonData childDragonData;
     public ChildDragonData_Max childDragonDataMax;
 
     //int maxExpBar;//レベルアップに必要な量
@@ -33,7 +33,7 @@ public class ExpManager : MonoBehaviour
     void Start()//逆だとバグる
     {
         childDragon = GameObject.Find("ChildDragon");
-        childDragonData = childDragon.GetComponent<ChildDragonData>();
+        //childDragonData = childDragon.GetComponent<ChildDragonData>();
         textExp = GameObject.Find("ExpText");
         addExpPoint = GameObject.Find("AddExpPoint");
         hpPointText  = GameObject.Find("HpPoint");

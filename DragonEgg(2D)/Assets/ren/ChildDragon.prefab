@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305379691850687908}
   - component: {fileID: 2812096197404686451}
-  - component: {fileID: 5421882092780971023}
+  - component: {fileID: 2276673769151891418}
   m_Layer: 0
   m_Name: ChildDragon
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5421882092780971023
+--- !u!114 &2276673769151891418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3712178278127806331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d2696d5f9eae74386cb05b4410c2ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ecfd246f632d14e94fdcace3ad0165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  attack: 0
-  speed: 0.1
-  exp: 0
-  maxExp: 100
-  childDragonName: FireDragon
-  Level: 1
-  ID: 0
+  childDragonData: {fileID: 11400000, guid: d78beb5b7ee4b9e4a8371549e2625019, type: 2}

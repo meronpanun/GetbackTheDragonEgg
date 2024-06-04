@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//[CreateAssetMenu(menuName = "ChildDragonData")]
+[CreateAssetMenu(menuName = "ChildDragonData")]
 
-public class ChildDragonData :MonoBehaviour
+public class ChildDragonData :ScriptableObject
 {
     [SerializeField] public int hp;
     [SerializeField] public int attack;
