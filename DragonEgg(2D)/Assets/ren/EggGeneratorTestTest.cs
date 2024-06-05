@@ -34,7 +34,9 @@ public class EggGeneratorTestTest : MonoBehaviour
     void Eggspawn()
     {
         GameObject childDragon = Instantiate(ChildDoragonPrefab);//インスタンス化
-       // childDragonData = childDragon.GetComponent<ChildDragonData>();
+        //ChildDragonData ChildDragonData = ScriptableObject.CreateInstance<ChildDragonData>();
+        //childDragonData = ScriptableObject.Instantiate(Resources.Load("EnemyDataTable")) as childDragonData;
+        childDragonData = childDragon.GetComponent<ChildDragonData>();
         childDragonData.hp = IndividualValueGetHp(Random.Range(10, 15));
         childDragonData.attack = IndividualValueGetAttack(Random.Range(1, 5));
         childDragon.transform.localScale = new Vector3(0.3f, 0.3f, 1);
