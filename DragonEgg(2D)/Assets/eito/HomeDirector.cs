@@ -42,5 +42,8 @@ public class HomeDirector : MonoBehaviour
         {
             SceneManager.LoadScene("LevelUpScene");
         }
+        Input.GetAxis("Horizontal");
+        
+        Input.GetAxis("Vertical");
     }
 }

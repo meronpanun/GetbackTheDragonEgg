@@ -39,6 +39,8 @@ public class ExpManager : MonoBehaviour
         hpPointText  = GameObject.Find("HpPoint");
         atkPointText = GameObject.Find("AtkPoint");
         levelPointText = GameObject.Find("LevelPoint");
+
+
        
     }
 
@@ -111,12 +113,16 @@ public class ExpManager : MonoBehaviour
     {
        // childDragonData.attack = childDragonData.dafaultAttack + (int)(childDragonDataMax.maxAttack * childDragonData.Level) / 100;
         childDragonData.attack += Random.Range(1, 5);
+        //•Û‘¶
+        PlayerPrefs.SetFloat("Hp", childDragonData.hp);
         return childDragonData.attack;
     }
     int Hp()
     {
        // childDragonData.hp = childDragonData.dafaultHp + (int)(childDragonDataMax.maxHp * childDragonData.Level) / 100;
         childDragonData.hp += Random.Range(1, 5);
+        //•Û‘¶
+        PlayerPrefs.SetInt("Attack", childDragonData.attack);
         return childDragonData.hp;
     }
 }

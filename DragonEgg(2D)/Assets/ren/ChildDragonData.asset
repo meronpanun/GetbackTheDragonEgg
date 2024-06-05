@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d2696d5f9eae74386cb05b4410c2ac, type: 3}
+  m_Script: {fileID: 11500000, guid: aa1ef7dcf0d8c624e9c971c1b033b1f4, type: 3}
   m_Name: ChildDragonData
   m_EditorClassIdentifier: 
-  hp: 14
+  hp: 12
   attack: 4
-  speed: 0.1
   exp: 0
   maxExp: 0
-  childDragonName: 
+  name: 
   Level: 0
-  ID: 0
+  RACENUM: 0
