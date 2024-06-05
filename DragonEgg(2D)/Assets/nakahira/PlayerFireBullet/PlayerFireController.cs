@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFireController : PlayerBullet
 {
-    private float FIREATTACK = 1f;
+    private float FIREATTACK = 1f; // ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -29,9 +29,10 @@ public class PlayerFireController : PlayerBullet
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // “G‚É“–‚½‚Á‚½‚ç‰Š©g‚àÁ‚¦‚é
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") ||
+            collision.gameObject.CompareTag("Boss"))
         {
             Destroy(gameObject);
         }
