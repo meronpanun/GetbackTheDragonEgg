@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 704d2ba6b7a28a340806ecb5e1c5b94e
+guid: 0253a1c89a84b434bb768011e0f46693
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New_Piskel_firedoragon_0
+      name: firedoragon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +118,20 @@ TextureImporter:
         width: 32
         height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de3705a6c59cd92489f7069e547ac011
-      internalID: -1122883856
+      spriteID: cbfe0bad68a26834e99f7b98c36b5a17
+      internalID: -2014657712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New_Piskel_firedoragon_1
+      name: firedoragon_1
       rect:
         serializedVersion: 2
         x: 34
@@ -152,20 +139,20 @@ TextureImporter:
         width: 28
         height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30d5883ec1c637b40b0859ae6207adc3
-      internalID: 1698877605
+      spriteID: 6518aa8165ca2184b9896b86354274a4
+      internalID: 1211645572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New_Piskel_firedoragon_2
+      name: firedoragon_2
       rect:
         serializedVersion: 2
         x: 4
@@ -173,20 +160,20 @@ TextureImporter:
         width: 24
         height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54e5be66eb2574343afa773470301f56
-      internalID: -459088809
+      spriteID: 1762cbd396cbecb4b86b8eee830829fd
+      internalID: -344291781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New_Piskel_firedoragon_3
+      name: firedoragon_3
       rect:
         serializedVersion: 2
         x: 34
@@ -194,14 +181,14 @@ TextureImporter:
         width: 28
         height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1af9334cec492e49b231425034d4211
-      internalID: -1154713053
+      spriteID: fee9ed95f5b788a418d97f8a43ed87c7
+      internalID: -1833780899
       vertices: []
       indices: 
       edges: []
@@ -217,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      New_Piskel_firedoragon_0: -1122883856
-      New_Piskel_firedoragon_1: 1698877605
-      New_Piskel_firedoragon_2: -459088809
-      New_Piskel_firedoragon_3: -1154713053
+      firedoragon_0: -2014657712
+      firedoragon_1: 1211645572
+      firedoragon_2: -344291781
+      firedoragon_3: -1833780899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

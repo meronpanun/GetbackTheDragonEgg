@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float fireTimer = 0;
     private float srowFireRate = 0.1f; // ”­ËŠÔŠu
 
-    private Vector3 instanceOffset = new Vector3(0, 0.15f, 0); // ŒûŒ³‚©‚ç”­Ë‚·‚é‚½‚ß‚Ì•â³‚Å‚·B
+    private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // ŒûŒ³‚©‚ç”­Ë‚·‚é‚½‚ß‚Ì•â³‚Å‚·B
     // Start is called before the first frame update
     void Start()
     {

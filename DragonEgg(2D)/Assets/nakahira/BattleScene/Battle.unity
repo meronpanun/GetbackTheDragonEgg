@@ -361,10 +361,10 @@ GameObject:
   m_Component:
   - component: {fileID: 451092201}
   - component: {fileID: 451092206}
-  - component: {fileID: 451092205}
   - component: {fileID: 451092204}
   - component: {fileID: 451092203}
   - component: {fileID: 451092202}
+  - component: {fileID: 451092207}
   m_Layer: 0
   m_Name: ChildDragonLeft
   m_TagString: Player
@@ -432,7 +432,7 @@ Animator:
   m_GameObject: {fileID: 451092200}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7a60babb093c7554fa618aa18960b005, type: 2}
+  m_Controller: {fileID: 9100000, guid: c46aad9e587581b45ad1426aca728e7e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -470,20 +470,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &451092205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451092200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e95e1252fae4bc4697ffb0f069d337b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRapidBullet: {fileID: 4522569728849120872, guid: ae454b34242c13f4e88a48b16d91c577, type: 3}
-  playerFireBullet: {fileID: 4188075682072775462, guid: cab398cc15df7e34aa832dd5b96c412f, type: 3}
 --- !u!212 &451092206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -525,7 +511,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -880708439, guid: 283abb55f5954974d849b23558f6f31e, type: 3}
+  m_Sprite: {fileID: -2014657712, guid: 0253a1c89a84b434bb768011e0f46693, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -536,6 +522,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &451092207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451092200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4135fe03411b848944bff97bc70a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &512648085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,10 +658,10 @@ GameObject:
   m_Component:
   - component: {fileID: 639833483}
   - component: {fileID: 639833488}
-  - component: {fileID: 639833487}
   - component: {fileID: 639833486}
   - component: {fileID: 639833485}
   - component: {fileID: 639833484}
+  - component: {fileID: 639833489}
   m_Layer: 0
   m_Name: ChildDragonRight
   m_TagString: Player
@@ -731,7 +729,7 @@ Animator:
   m_GameObject: {fileID: 639833482}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7a60babb093c7554fa618aa18960b005, type: 2}
+  m_Controller: {fileID: 9100000, guid: c8b8deb703d2f1b40aec4ac3b3147a93, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -769,20 +767,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &639833487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639833482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e95e1252fae4bc4697ffb0f069d337b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRapidBullet: {fileID: 4522569728849120872, guid: ae454b34242c13f4e88a48b16d91c577, type: 3}
-  playerFireBullet: {fileID: 4188075682072775462, guid: cab398cc15df7e34aa832dd5b96c412f, type: 3}
 --- !u!212 &639833488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -824,7 +808,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -880708439, guid: 283abb55f5954974d849b23558f6f31e, type: 3}
+  m_Sprite: {fileID: 404329898, guid: 69a26525e4e82d14b8fd8d0dde5d8814, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -835,6 +819,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &639833489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639833482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4135fe03411b848944bff97bc70a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &653661658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1724,7 +1720,7 @@ Transform:
   m_GameObject: {fileID: 1877200258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
