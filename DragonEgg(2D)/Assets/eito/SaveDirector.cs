@@ -42,5 +42,9 @@ public class SaveDirector : MonoBehaviour
         {
             SceneManager.LoadScene("HomeScene");
         }
+        Input.GetAxis("Horizontal");
+       
+        Input.GetAxis("Vertical");
+        
     }
 }
