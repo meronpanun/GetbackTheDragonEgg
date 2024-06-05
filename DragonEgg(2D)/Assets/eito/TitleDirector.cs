@@ -48,11 +48,9 @@ public class TitleDirector : MonoBehaviour
         {
             SceneManager.LoadScene("SaveScene");
         }
-        //if (Input.GetAxisRaw(axisName))
-        //{
-        //    SceneManager.LoadScene("SaveScene");
-        //}
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        Input.GetAxis("Horizontal");
+       
+        Input.GetAxis("Vertical");
+        
     }
 }
