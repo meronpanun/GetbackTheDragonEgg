@@ -49,40 +49,37 @@ public class TitleDirector : MonoBehaviour
         {
             SceneManager.LoadScene("SaveScene");
         }
-        //Input.GetAxis("Horizontal");
-
-        //Input.GetAxis("Vertical");
 
         //左スティック
         if (Input.GetAxisRaw("Vertical") < 0)
         {
             //上に傾いている
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 1");
         }
         else if (0 < Input.GetAxisRaw("Vertical"))
         {
             //下に傾いている
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 2");
         }
         else
         {
             //上下方向には傾いていない
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 3");
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
             //左に傾いている
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 4");
         }
         else if (0 < Input.GetAxisRaw("Horizontal"))
         {
             //右に傾いている
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 5");
         }
         else
         {
             //左右方向には傾いていない
-            Debug.Log("ボタンが押された");
+            Debug.Log("ボタンが押された 6");
         }
 
         ////右スティック
