@@ -7,7 +7,7 @@ public class BootsupandsquadManager : MonoBehaviour
 {
     private Vector2 tmp;
     GameObject powerUpCanvas;
-    int flag = 1;
+    public static int flag = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -22,19 +22,16 @@ public class BootsupandsquadManager : MonoBehaviour
         tmp = GameObject.Find("Main Camera").transform.position;
         float x = tmp.x;
         float y = tmp.y;
-        Debug.Log(y);
+        //Debug.Log(y);
 
         if (Input.GetKeyDown(KeyCode.Escape))//強化画面からモンスターBOXへ
         {
-            GameObject.Find("Main Camera").transform.position = new Vector3(-80, 0,-10);
-            flag = 1;
+            CameraMove1();
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && flag != 0.0f)//モンスターBOXから強化画面へ
         {
-            GameObject.Find("Main Camera").transform.position = new Vector3(0,0,-10);
-            flag = 0;
-
+            CameraMove2();
         }
 
 
@@ -48,6 +45,17 @@ public class BootsupandsquadManager : MonoBehaviour
             powerUpCanvas.SetActive(true);
         }
 
+    }
+
+    public static void CameraMove1()
+    {
+        GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -10);
+        flag = 1;
+    }
+    public static void CameraMove2()
+    {
+        GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -10);
+        flag = 0;
     }
 
     void MonsterBox(float y)//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正

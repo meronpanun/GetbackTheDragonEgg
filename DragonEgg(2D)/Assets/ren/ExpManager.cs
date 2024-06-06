@@ -11,8 +11,8 @@ public class ExpManager : MonoBehaviour
     // エディタでアタッチ
     //[SerializeField] public ChildDragonData childDragonData;
     GameObject childDragon;
-    [SerializeField] ChildDragonData childDragonData;
-    public ChildDragonData_Max childDragonDataMax;
+    public ChildDragonData childDragonData;
+    //public ChildDragonData_Max childDragonDataMax;
 
     //int maxExpBar;//レベルアップに必要な量
     //int nowExpBar;
@@ -32,6 +32,7 @@ public class ExpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()//逆だとバグる
     {
+        Application.targetFrameRate = 60;
         childDragon = GameObject.Find("ChildDragon");
         //childDragonData = childDragon.GetComponent<ChildDragonData>();
         textExp = GameObject.Find("ExpText");
