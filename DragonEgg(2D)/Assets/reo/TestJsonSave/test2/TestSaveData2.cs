@@ -29,6 +29,6 @@ namespace App.SaveSystem
             get => maxScore;
             set => maxScore = value;
         }
-        public int maxScore; // 外部で参照させない
+        private int maxScore; // 外部で参照させない
     }
 }
