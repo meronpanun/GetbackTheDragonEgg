@@ -8,7 +8,7 @@ public class PlayerBullet : MonoBehaviour
     protected Camera cameraComponent;
     protected float bulletSpeedy = 2f; // 移動速度
     protected float bulletSpeedx = 0;
-    public float attack { get; protected set; }
+    public int attack { get; protected set; }
 
     // Start is called before the first frame update
     protected virtual void Start()

@@ -15,11 +15,11 @@ public class DamageNumberGenerator : MonoBehaviour
         s_damageText = objTemp;
     }
 
-    public static void GenerateText(float damage, Vector2 pos, Color color) // 与えられた数字を持ったテキストを生成する
+    public static void GenerateText(int damage, Vector2 pos, Color color) // 与えられた数字を持ったテキストを生成する
     {
         GameObject instance = Instantiate(s_damageText, pos, Quaternion.identity);
         TextMeshPro temp = instance.GetComponent<TextMeshPro>();
-        temp.text = damage.ToString("f"); // 小数点第二位まで表示（仮）
+        temp.text = damage.ToString();
         temp.color = color; // 色も指定
     }
 }

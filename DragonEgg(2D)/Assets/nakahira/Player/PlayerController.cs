@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Damage(float attack) // hitPoint‚Í‚±‚±‚©‚çŒ¸‚ç‚·‚±‚Æ
+    private void Damage(int attack) // hitPoint‚Í‚±‚±‚©‚çŒ¸‚ç‚·‚±‚Æ
     {
         DamageNumberGenerator.GenerateText(attack, transform.position, Color.red);
         hitPoint -= attack;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFireController : PlayerBullet
 {
-    private float FIREATTACK = 1f; // ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+    private int FIREATTACK = 1; // ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
     // Start is called before the first frame update
     protected override void Start()
     {
