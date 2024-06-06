@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     protected bool canMove = true; // “®‚¯‚é‚©
     protected bool canShoot = true;  // ’eŒ‚‚Ä‚é‚©
 
-    public float attack { get; protected set; }
+    public int attack { get; protected set; }
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void Damage(float attack) // hitPoint‚Í‚±‚±‚©‚çŒ¸‚ç‚·‚±‚Æ
+    protected void Damage(int attack) // hitPoint‚Í‚±‚±‚©‚çŒ¸‚ç‚·‚±‚Æ
     {
         DamageNumberGenerator.GenerateText(attack, transform.position, Color.white);
         hitPoint -= attack;

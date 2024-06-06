@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRapidBulletController : PlayerBullet
 {
-    private float RAPIDFIREATTACK = 3f;@// ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+    private int RAPIDFIREATTACK = 3;@// ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
     // Start is called before the first frame update
     protected override void Start()
     {

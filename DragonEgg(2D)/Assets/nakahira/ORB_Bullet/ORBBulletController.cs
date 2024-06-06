@@ -5,15 +5,15 @@ using UnityEngine;
 public class ORBBulletController : MonoBehaviour
 {
     public Vector2 speed = Vector2.zero;
-    public const float ATTACK = 1f;
+    public const int ATTACK = 1;
     private Camera cameraComponent;
 
-    public float attack { get; private set; }
+    public int attack { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        attack = 1f;
+        attack = 1;
         cameraComponent = Camera.main;
     }
 
