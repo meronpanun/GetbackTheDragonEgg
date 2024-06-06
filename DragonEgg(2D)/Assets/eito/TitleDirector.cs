@@ -17,6 +17,7 @@ public class TitleDirector : MonoBehaviour
         if (Input.GetKeyDown("joystick button 0"))
         {
             SceneManager.LoadScene("SaveScene");
+            Debug.Log("ボタンが押された");
         }
         //B
         if (Input.GetKeyDown("joystick button 1"))
@@ -48,9 +49,73 @@ public class TitleDirector : MonoBehaviour
         {
             SceneManager.LoadScene("SaveScene");
         }
-        Input.GetAxis("Horizontal");
-       
-        Input.GetAxis("Vertical");
-        
+        //Input.GetAxis("Horizontal");
+
+        //Input.GetAxis("Vertical");
+
+        //左スティック
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            //上に傾いている
+            Debug.Log("ボタンが押された");
+        }
+        else if (0 < Input.GetAxisRaw("Vertical"))
+        {
+            //下に傾いている
+            Debug.Log("ボタンが押された");
+        }
+        else
+        {
+            //上下方向には傾いていない
+            Debug.Log("ボタンが押された");
+        }
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            //左に傾いている
+            Debug.Log("ボタンが押された");
+        }
+        else if (0 < Input.GetAxisRaw("Horizontal"))
+        {
+            //右に傾いている
+            Debug.Log("ボタンが押された");
+        }
+        else
+        {
+            //左右方向には傾いていない
+            Debug.Log("ボタンが押された");
+        }
+
+        ////右スティック
+        //if (Input.GetAxisRaw("Vertical2") < 0)
+        //{
+        //    //上に傾いている
+        //    Debug.Log("ボタンが押された");
+        //}
+        //else if (0 < Input.GetAxisRaw("Vertical2"))
+        //{
+        //    //下に傾いている
+        //    Debug.Log("ボタンが押された");
+        //}
+        //else
+        //{
+        //    //上下方向には傾いていない
+        //    Debug.Log("ボタンが押された");
+        //}
+        //if (Input.GetAxisRaw("Horizontal2") < 0)
+        //{
+        //    //左に傾いている
+        //    Debug.Log("ボタンが押された");
+        //}
+        //else if (0 < Input.GetAxisRaw("Horizontal2"))
+        //{
+        //    //右に傾いている
+        //    Debug.Log("ボタンが押された");
+        //}
+        //else
+        //{
+        //    //左右方向には傾いていない
+        //    Debug.Log("ボタンが押された");
+        //}
+
     }
 }
