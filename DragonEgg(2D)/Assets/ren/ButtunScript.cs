@@ -29,22 +29,11 @@ public class ButtunScript : MonoBehaviour
 
     //    }
 
-    //    if (CameraContoller.flag == 1)
-    //    {
-    //        CameraContoller.powerUpCanvas.SetActive(false);
-    //        CameraContoller.canvas.SetActive(true);
-    //        CameraContoller.MonsterBox(y);
-    //    }
-    //    else if (CameraContoller.flag == 0)
-    //    {
-    //        CameraContoller.powerUpCanvas.SetActive(true);
-    //        CameraContoller.canvas.SetActive(false);
-    //    }
-    //}
-    //public void OnClick()
-    //{
-    //    Debug.Log("押された!");  // ログを出力
-    //    CameraContoller.CameraMove1();
-    //}
+       
+//public void OnClick()
+//    {
+//        Debug.Log("押された!");  // ログを出力
+//        CameraContoller.CameraMove1();
+//    }
 
 }
