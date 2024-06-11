@@ -41,10 +41,10 @@ public class ButtunScript : MonoBehaviour
     //        CameraContoller.canvas.SetActive(false);
     //    }
     //}
-    public void OnClick()
-    {
-        Debug.Log("押された!");  // ログを出力
-        CameraContoller.CameraMove1();
-    }
+    //public void OnClick()
+    //{
+    //    Debug.Log("押された!");  // ログを出力
+    //    CameraContoller.CameraMove1();
+    //}
 
 }
