@@ -67,6 +67,8 @@
 //        {
 //            // 返す値
 //            string value = "";
+//            value = raceNum + INDEXWORD + 
+//                    hp + INDEXWORD + attack + "," + speed + "," ;
 //        }
 //    }
 
@@ -89,7 +91,7 @@
 //        }
 //        if (elementCount != ELEMENTS) // 正しい要素数でなければ
 //        {
-//            throw new Exception("要素数おかしくない？")
+//            throw new Exception("要素数おかしくない？");
 //        }
 //        else
 //        {
