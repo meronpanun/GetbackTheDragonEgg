@@ -5,17 +5,19 @@ using UnityEngine.UI;//スクリプトでUI(テキストなど)扱うときはこれ必須！！
 
 public class CursorManager : MonoBehaviour
 {
-    public RectTransform cursor;//RectTransform型の変数aを宣言　作成したテキストオブジェクトをアタッチしておく
-
-    //スタート関数
-    void Start()
-    {
-    }
-
+    public RectTransform childDragonIcon;//RectTransform型の変数aを宣言　作成したテキストオブジェクトをアタッチしておく
     //アップデート関数
     void Update()
     {
-        cursor.position += new Vector3(0.1f, 0, 0);//毎フレームx座標を0.1ずつプラス
-                                                   //
+       
+
+        //if (Input.GetKey(KeyCode.UpArrow) && flag != 0 && y <= 0.00f)
+        //{
+        //    childDragonIcon.position += new Vector3(0.1f, 0, 0);//毎フレームx座標を0.1ずつプラス
+        //}
+        //else if (Input.GetKey(KeyCode.DownArrow) && flag != 0 && y >= -28.00f)
+        //{
+        //    childDragonIcon.position += new Vector3(0.1f, 0, 0);//毎フレームx座標を0.1ずつプラス
+        //}
     }
 }

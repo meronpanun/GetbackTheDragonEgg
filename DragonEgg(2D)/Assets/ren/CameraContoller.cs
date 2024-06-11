@@ -7,17 +7,19 @@ public class CameraContoller : MonoBehaviour
 {
     private Vector2 tmp;
     public static GameObject powerUpCanvas;
-    //public static GameObject canvas;//あとで変更
+    public static GameObject icon;//あとで変更
     public static int flag = 1;
     public GameObject camera;
     float x, y;
+
+    //public RectTransform childDragonIcon;//RectTransform型の変数aを宣言　作成したテキストオブジェクトをアタッチしておく
 
     // Start is called before the first frame update
     void Start()
     {
         // tmp = GameObject.Find("Main Camera").transform.position;
         powerUpCanvas = GameObject.Find("PowerUpCanvas");
-        //canvas = GameObject.Find("Canvas");
+        icon = GameObject.Find("ChildDragonIcon");
         //camera = GameObject.Find("CameraController");
     }
 
@@ -43,23 +45,23 @@ public class CameraContoller : MonoBehaviour
         if (flag == 1)
         {
             powerUpCanvas.SetActive(false);
-            //canvas.SetActive(true);
+            icon.SetActive(true);
             MonsterBox(y);
         }
         else if (flag == 0)
         {
             powerUpCanvas.SetActive(true);
-            //canvas.SetActive(false);
+            icon.SetActive(false);
         }
 
     }
 
-    public void CameraMove1()
+    public static void CameraMove1()
     {
         GameObject.Find("Main Camera").transform.position = new Vector3(-80, 0, -10);
         flag = 1;
     }
-    public void CameraMove2()
+    public static void CameraMove2()
     {
         GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -10);
         flag = 0;
@@ -75,6 +77,15 @@ public class CameraContoller : MonoBehaviour
         {
             GameObject.Find("Main Camera").transform.position += new Vector3(0.0f, -0.01f, 0.0f); //カメラを下へ移動。
         }
+
+        //if (Input.GetKey(KeyCode.UpArrow) && flag != 0 && y <= 0.00f)
+        //{
+        //    childDragonIcon.position += new Vector3(0.0f, 0.01f, 0.0f);//毎フレームx座標を0.1ずつプラス
+        //}
+        //else if (Input.GetKey(KeyCode.DownArrow) && flag != 0 && y >= -28.00f)
+        //{
+        //    childDragonIcon.position += new Vector3(0.0f, -0.01f, 0.0f); ;//毎フレームx座標を0.1ずつプラス
+        //}
     }
 
 
