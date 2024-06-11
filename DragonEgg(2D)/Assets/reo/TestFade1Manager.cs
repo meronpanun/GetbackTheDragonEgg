@@ -68,8 +68,10 @@ public class TestFade1Manager : MonoBehaviour
                 loadScene = "TestStageSelectScene";
                 break;
 
+            //case 1:
+            //    loadScene = "TestStage1";
             case 1:
-                loadScene = "TestStage1";
+                loadScene = "Battle";
                 break;
             case 2:
                 loadScene = "TestStage2";
