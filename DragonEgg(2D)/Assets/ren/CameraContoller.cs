@@ -54,18 +54,18 @@ public class CameraContoller : MonoBehaviour
 
     }
 
-    public static void CameraMove1()
+    public void CameraMove1()
     {
         GameObject.Find("Main Camera").transform.position = new Vector3(-80, 0, -10);
         flag = 1;
     }
-    public static void CameraMove2()
+    public void CameraMove2()
     {
         GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -10);
         flag = 0;
     }
 
-    public static void MonsterBox(float y)//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
+    public void MonsterBox(float y)//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
     {
         if (Input.GetKey(KeyCode.UpArrow) && flag != 0 && y <= 0.00f)
         {
