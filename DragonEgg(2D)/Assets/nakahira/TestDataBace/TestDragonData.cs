@@ -22,11 +22,11 @@ public class TestDragonStatus
         Debug.Log($"{raceNum}, {hp}, {attack}, {speed}, {level}, {nowExp}, {name}");
     }
 
-    private const int PLAYER = 0;
-    private const int FIRE = 1;
-    private const int ICE = 2;
-    private const int WIND = 3;
-    private const int THUNDER = 4;
+    //private const int PLAYER = 0;
+    //private const int FIRE = 1;
+    //private const int ICE = 2;
+    //private const int WIND = 3;
+    //private const int THUNDER = 4;
 
     // メンバ変数
 
@@ -85,6 +85,7 @@ public class TestDragonStatus
             value.Append(INDEXWORD);
             value.Append(nowExp.ToString());
             return value.ToString(); // 扱う型をそもそもStringBuilderにしたほうがいいかなあ
+                                     // とも思ったけどPlayerPlefsがstringしか受け付けないわ
         }
     }
 
@@ -136,7 +137,10 @@ public class TestDragonStatus
             {
                 // 今やっているステータスに代入(ネストすげえ)
                 // 各ステータスもクラス化してインターフェースとかで
-                // つないだ方が絶対きれい(なのは分かってる)
+                // つなげれねえかな
+                // ステータスを配列にしたら解決しそうだけど
+                // あんまり順番を設定したくない（列挙してるけど）
+                // でも順番を設定しないと繰り返し処理で実装できないんだよなあ　
                 switch (elementNumber)
                 {
                     // キャストバグったら勝手にエラー吐くでしょう
