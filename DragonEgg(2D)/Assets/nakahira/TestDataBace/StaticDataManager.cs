@@ -9,12 +9,13 @@ public static class StaticDataManager
     // キーの固定の文字
     private const string KEYBASE = "Dragon_";
 
-    // コドモドラゴンのデータ等を文字列でずらーっと記憶する…？
+    // ドラゴンのデータが入った型の配列を作る
     // データの0番目は親ドラゴンにしよう
-    static string[] dragonData = new string[DATANUMBER];
+    // でもこれゲーム中ずっと存在するのは無駄があるなあ。べつにいいかあ。
+    private static TestDragonStatus[] s_dragonData = new TestDragonStatus[DATANUMBER];
 
     // メンバ関数
-    public static void LoadAllSaveData() // PlayerPlefsから全データを取得
+    public static void LoadAllDragonData() // PlayerPlefsから全データを取得
     {
         for (int i = 0; i < DATANUMBER; i++)
         {
@@ -23,6 +24,13 @@ public static class StaticDataManager
 
             // TestDragonStatus型に格納
             TestDragonStatus data = new TestDragonStatus(PlayerPrefs.GetString(key));
+            // 配列に保存
+            s_dragonData[i] = data;
         }
+    }
+
+    public static TestDragonStatus GetDragonData(int index)
+    {
+        return s_dragonData[index];
     }
 }
