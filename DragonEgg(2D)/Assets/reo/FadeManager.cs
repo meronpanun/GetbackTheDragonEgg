@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;  // scene切り替えを行うため
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;  // scene切り替えを行うため
 
 // フェードイン、フェードアウト管理スクリプト
 
-public class TestFade1Manager : MonoBehaviour
+public class FadeManager : MonoBehaviour
 {
     float speed = 0.001f;        //フェードするスピード、多いと早くフェードする
     float red, green, blue, alfa;
@@ -36,7 +38,7 @@ public class TestFade1Manager : MonoBehaviour
 
     void Update()
     {
-        
+
         // スイッチがオンになっているならそれぞれの処理
         if (In)
         {
