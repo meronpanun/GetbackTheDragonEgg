@@ -6,8 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public static GameObject player;
 
+    private TestDragonStatus playerStatus;
+    // エディタ
+    public BattleTeam battleTeam;
+
     private float speedx = 1f;
     private float speedy = 1f;
+    private float hitPoint = 10;
 
     // エディタでアタッチ
     [SerializeField] private GameObject playerRapidBullet;
@@ -15,19 +20,30 @@ public class PlayerController : MonoBehaviour
 
     private Camera cameraComponent;
 
-    private float hitPoint = 10;
 
-    private float fireInterval = 0.2f; // 発射するまでの長押し時間
-    private float fireTimer = 0;
-    private float srowFireRate = 0.1f; // 発射間隔
+
+    private const float fireInterval = 0.2f; // 発射するまでの長押し時間
+    private const float srowFireRate = 0.1f; // 発射間隔
+    private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
 
     private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // 口元から発射するための補正です。
+
+    private Animator animator; // 自分のアニメーターコンポーネント
     // Start is called before the first frame update
     void Start()
     {
         player = gameObject; // これで個人情報公開できるかな
-        fireTimer -= fireInterval; // 最初の一回だけ許して
         cameraComponent = Camera.main; // カメラコンポーネント取得
+        animator = GetComponent<Animator>();
+        SetStatusFromData();
+    }
+
+    private void SetStatusFromData()
+    {
+        // ScriptableObjectから自分のデータを取得
+        playerStatus = battleTeam.ParentDragon;
+        hitPoint = playerStatus.hp;
+        speedx = playerStatus.speed;
     }
 
     // Update is called once per frame
@@ -115,7 +131,7 @@ public class PlayerController : MonoBehaviour
         }
         else // でなければ
         {
-            Destroy(gameObject); // 消す（仮）
+            animator.SetTrigger("Death"); // 脂肪モーションを再生
         }
     }
 
