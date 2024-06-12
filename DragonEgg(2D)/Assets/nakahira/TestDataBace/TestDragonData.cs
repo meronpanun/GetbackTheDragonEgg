@@ -43,28 +43,28 @@ public class TestDragonStatus
     }
 
     // こいつがどの種類のドラゴンなのか
-    int raceNum;
+    public int raceNum;
 
     // 体力。プレイヤーに加算する予定
-    int hp;
+    public int hp;
 
     // 攻撃力。これを弾の基礎値に掛け算するつもり
-    int attack;
+    public int attack;
 
     // 移動スピード
-    float speed;
+    public float speed;
 
     // 名前。できたら
-    string name;
+    public string name;
 
     // 現在レベル
-    int level;
+    public int level;
 
     // 現在の経験値
-    int nowExp;
+    public int nowExp;
 
     // 現在のデータをstring一行で返す処理をプロパティで実装
-    string dataString
+    public string dataString
     {
         get
         {

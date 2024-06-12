@@ -12,10 +12,10 @@ public static class StaticDataManager
     // ドラゴンのデータが入った型の配列を作る
     // データの0番目は親ドラゴンにしよう
     // でもこれゲーム中ずっと存在するのは無駄があるなあ。べつにいいかあ。
-    static TestDragonStatus[] dragonData = new TestDragonStatus[DATANUMBER];
+    private static TestDragonStatus[] s_dragonData = new TestDragonStatus[DATANUMBER];
 
     // メンバ関数
-    public static void LoadAllSaveData() // PlayerPlefsから全データを取得
+    public static void LoadAllDragonData() // PlayerPlefsから全データを取得
     {
         for (int i = 0; i < DATANUMBER; i++)
         {
@@ -25,7 +25,12 @@ public static class StaticDataManager
             // TestDragonStatus型に格納
             TestDragonStatus data = new TestDragonStatus(PlayerPrefs.GetString(key));
             // 配列に保存
-            dragonData[i] = data;
+            s_dragonData[i] = data;
         }
+    }
+
+    public static TestDragonStatus GetDragonData(int index)
+    {
+        return s_dragonData[index];
     }
 }
