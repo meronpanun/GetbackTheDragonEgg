@@ -7,7 +7,7 @@ using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 public class EggGeneratorTestTest : MonoBehaviour
 {
     public GameObject ChildDoragonIconPrefab;
-    //[SerializeField] GameObject childDragonIcon;
+    [SerializeField] GameObject childDragonIcon;
     int x = -86;
     int y = 1;
 
