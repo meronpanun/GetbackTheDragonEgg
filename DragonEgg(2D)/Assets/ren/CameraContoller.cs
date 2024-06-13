@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CameraContoller : MonoBehaviour
 {
-    private Vector2 tmp;
+    private Vector3 tmp;
     public static GameObject powerUpCanvas;
     public static GameObject icon;//あとで変更
     public static int flag = 1;
@@ -15,26 +15,26 @@ public class CameraContoller : MonoBehaviour
     //public RectTransform childDragonIcon;//RectTransform型の変数aを宣言　作成したテキストオブジェクトをアタッチしておく
     void Start()
     {
-        // tmp = GameObject.Find("Main Camera").transform.position;
+        tmp = GameObject.Find("Main Camera").transform.position;
         powerUpCanvas = GameObject.Find("PowerUpCanvas");
         icon = GameObject.Find("ChildDragonIcon");
-        camera = GameObject.Find("Main Camera");
+        camera = GameObject.Find("MainCamera");
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.Log(flag);
-        tmp = camera.transform.position;
         x = tmp.x;
         y = tmp.y;
-        //Debug.Log(y);
+        Debug.Log(y);
 
-        if (flag == 0)
+        if (flag == 0)//なぜか0になる
         {
             CameraMove0();
             powerUpCanvas.SetActive(false);
             icon.SetActive(false);
+            
         }
         if (flag == 1)
         {
@@ -42,12 +42,20 @@ public class CameraContoller : MonoBehaviour
             icon.SetActive(true);
             MonsterBox(y);
             CameraMove1();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                flag = 0;
+            }
         }
         if (flag == 2)
         {
             powerUpCanvas.SetActive(true);
             icon.SetActive(false);
             CameraMove2();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                flag = 1;
+            }
         }
 
         //なぜか0になるくそ
@@ -59,8 +67,8 @@ public class CameraContoller : MonoBehaviour
         //{
         //    CameraMove0();
         //}
-    }
 
+    }
     // Start is called before the first frame update
     public static void CameraMove0()
     {
@@ -87,7 +95,7 @@ public class CameraContoller : MonoBehaviour
             camera.transform.position += new Vector3(0.0f, 0.01f, 0.0f); //カメラを上へ移動。
             if (y >= 0.00f)
             {
-               camera.transform.position = new Vector3(-80.0f, 0.01f, -10.0f);
+                camera.transform.position = new Vector3(-80.0f, 0.01f, -10.0f);
             }
         }
         else if (Input.GetKey(KeyCode.DownArrow))
@@ -100,4 +108,6 @@ public class CameraContoller : MonoBehaviour
             }
         }
     }
+
+
 }
