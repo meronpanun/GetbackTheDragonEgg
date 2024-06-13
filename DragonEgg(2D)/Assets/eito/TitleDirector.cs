@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;  // UIコンポーネントの使用
 
 public class TitleDirector : MonoBehaviour
 {
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
