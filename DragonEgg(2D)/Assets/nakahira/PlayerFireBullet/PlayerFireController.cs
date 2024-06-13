@@ -9,7 +9,7 @@ public class PlayerFireController : PlayerBullet
     protected override void Start()
     {
         base.Start();
-        attack = FIREATTACK;
+        baseAttack = FIREATTACK;
         bulletSpeedx = Random.Range(-1f, 1f); // ‚Î‚ç‚Â‚©‚¹‚é
     }
 

@@ -14,6 +14,10 @@ public static class StaticDataManager
     // でもこれゲーム中ずっと存在するのは無駄があるなあ。べつにいいかあ。
     private static TestDragonStatus[] s_dragonData = new TestDragonStatus[DATANUMBER];
 
+    public static TestDragonStatus sParentDragonData;
+    public static TestDragonStatus sChildDragonDataRight;
+    public static TestDragonStatus sChildDragonDataLeft;
+
     // メンバ関数
     public static void LoadAllDragonData() // PlayerPlefsから全データを取得
     {

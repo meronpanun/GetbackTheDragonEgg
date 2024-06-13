@@ -22,15 +22,19 @@ public class TestDragonStatus
         Debug.Log($"{raceNum}, {hp}, {attack}, {speed}, {level}, {nowExp}, {name}");
     }
 
-    //private const int PLAYER = 0;
-    //private const int FIRE = 1;
-    //private const int ICE = 2;
-    //private const int WIND = 3;
-    //private const int THUNDER = 4;
-
     // メンバ変数
 
     // 列挙しとく
+    enum races
+    {
+        player,
+        fire,
+        ice,
+        wind,
+        thunder,
+        none
+    }
+
     enum status
     {
         raceNum,
@@ -96,7 +100,7 @@ public class TestDragonStatus
     private void CheckElements(string data)
     {
         // とりあえず与えられたデータの要素数が想定どおりなのか確認
-        int elementCount = 0;
+        int elementCount = 1;
         // 文字列の中で既定の区切り文字を探す
         foreach (char c in data)
         {
@@ -135,6 +139,8 @@ public class TestDragonStatus
             // でなければ
             else
             {
+                Debug.Log(value);
+                Debug.Log(elementNumber);
                 // 今やっているステータスに代入(ネストすげえ)
                 // 各ステータスもクラス化してインターフェースとかで
                 // つなげれねえかな
@@ -155,6 +161,9 @@ public class TestDragonStatus
                         break;
                     case status.speed:
                         speed = int.Parse(value);
+                        break;
+                    case status.level:
+                        level = int.Parse(value);
                         break;
                     case status.nowExp:
                         nowExp = int.Parse(value);

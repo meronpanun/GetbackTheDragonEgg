@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BattleSceneManager : MonoBehaviour
 {
-    private GameObject ORB;
-
     // Start is called before the first frame update
     void Start()
     {
