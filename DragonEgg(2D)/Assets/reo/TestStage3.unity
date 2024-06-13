@@ -250,20 +250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 694496232}
-        m_TargetAssemblyTypeName: ReturnSelectScene, Assembly-CSharp
-        m_MethodName: ReturnStageSelectScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7195753890258677662}
-        m_TargetAssemblyTypeName: TestFade1Manager, Assembly-CSharp
+      - m_Target: {fileID: 7548389608049803794}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
         m_MethodName: FadeOutSwitch
         m_Mode: 3
         m_Arguments:
@@ -768,20 +756,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7195753890258677662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7548389608049803793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ff25acf5bcdda48842e01aba828e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Out: 0
-  In: 0
 --- !u!1 &7548389608049803793
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +767,7 @@ GameObject:
   - component: {fileID: 1398593341704934775}
   - component: {fileID: 2288993151313269727}
   - component: {fileID: 6938234443647057852}
-  - component: {fileID: 7195753890258677662}
+  - component: {fileID: 7548389608049803794}
   m_Layer: 6
   m_Name: FadePanel
   m_TagString: Untagged
@@ -801,6 +775,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7548389608049803794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7548389608049803793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d36cb5f2907434a8941a84cc83a690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Out: 0
+  In: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
