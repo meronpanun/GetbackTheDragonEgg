@@ -7,12 +7,11 @@ public class PlayerController : MonoBehaviour
     public static GameObject player;
 
     private TestDragonStatus playerStatus;
-    // エディタ
-    public BattleTeam battleTeam;
 
     private float speedx = 1f;
     private float speedy = 1f;
     private float hitPoint = 10;
+    private int attack = 1;
 
     // エディタでアタッチ
     [SerializeField] private GameObject playerRapidBullet;
@@ -41,9 +40,12 @@ public class PlayerController : MonoBehaviour
     private void SetStatusFromData()
     {
         // ScriptableObjectから自分のデータを取得
-        playerStatus = battleTeam.ParentDragon;
+        // これはあくまでもテスト
+        StaticDataManager.sParentDragonData = new TestDragonStatus("0,50,2,3,4,5,6");
+        playerStatus = StaticDataManager.sParentDragonData;
         hitPoint = playerStatus.hp;
         speedx = playerStatus.speed;
+        attack = playerStatus.attack;
     }
 
     // Update is called once per frame
@@ -82,7 +84,9 @@ public class PlayerController : MonoBehaviour
             fireTimer += Time.deltaTime;
             if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
             {
-                Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                // 自分の攻撃力を上乗せ
+                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
                 fireTimer = 0; // タイマーリセット
             }
         }

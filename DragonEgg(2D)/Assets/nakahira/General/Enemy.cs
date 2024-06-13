@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            Damage(collision.gameObject.GetComponent<PlayerBullet>().attack);
+            Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
         }
     }
 

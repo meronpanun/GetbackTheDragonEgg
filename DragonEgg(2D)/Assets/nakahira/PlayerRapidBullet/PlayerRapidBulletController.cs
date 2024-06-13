@@ -11,7 +11,7 @@ public class PlayerRapidBulletController : PlayerBullet
         base.Start();
         bulletSpeedy = 10f; // íeë¨ÅBìÆÇ≠ë¨Ç≥
         bulletSpeedx = 0;
-        attack = RAPIDFIREATTACK;
+        baseAttack = RAPIDFIREATTACK;
     }
 
     // Update is called once per frame

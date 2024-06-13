@@ -8,7 +8,9 @@ public class PlayerBullet : MonoBehaviour
     protected Camera cameraComponent;
     protected float bulletSpeedy = 2f; // 移動速度
     protected float bulletSpeedx = 0;
-    public int attack { get; protected set; }
+    protected int baseAttack;
+    // ドラゴンの攻撃力が勘定された後の攻撃力
+    public int finalAttack { get; protected set; }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -35,5 +37,10 @@ public class PlayerBullet : MonoBehaviour
                 viewPos.y > 1 ||
                 viewPos.x < 0 ||
                 viewPos.x > 1); // これ短くならないかな
+    }
+
+    public void AttackCalc(int dragonAttack)
+    {
+        finalAttack = baseAttack * dragonAttack;
     }
 }
