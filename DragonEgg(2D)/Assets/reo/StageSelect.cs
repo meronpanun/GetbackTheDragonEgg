@@ -7,7 +7,7 @@ public class StageSelect : MonoBehaviour
 {
     [SerializeField] private GameObject _stageUI;
     [SerializeField] private GameObject _selectUI;//UIをアタッチ
-    [SerializeField] private GameObject _stageButton;//ボタンをアタッチ
+    //[SerializeField] private GameObject _stageButton;//ボタンをアタッチ
 
     void Start()
     {

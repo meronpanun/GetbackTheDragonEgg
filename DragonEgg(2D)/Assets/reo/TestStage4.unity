@@ -605,20 +605,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097339452}
-        m_TargetAssemblyTypeName: ReturnSelectScene, Assembly-CSharp
-        m_MethodName: ReturnStageSelectScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7731500315452356794}
-        m_TargetAssemblyTypeName: TestFade1Manager, Assembly-CSharp
+      - m_Target: {fileID: 7556536513957013657}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
         m_MethodName: FadeOutSwitch
         m_Mode: 3
         m_Arguments:
@@ -749,7 +737,7 @@ GameObject:
   - component: {fileID: 2017462691305079379}
   - component: {fileID: 1680856134745785595}
   - component: {fileID: 7556536513957013656}
-  - component: {fileID: 7731500315452356794}
+  - component: {fileID: 7556536513957013657}
   m_Layer: 6
   m_Name: FadePanel
   m_TagString: Untagged
@@ -787,7 +775,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7731500315452356794
+--- !u!114 &7556536513957013657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -796,7 +784,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6942015984770503989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ff25acf5bcdda48842e01aba828e84, type: 3}
+  m_Script: {fileID: 11500000, guid: b8d36cb5f2907434a8941a84cc83a690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Out: 0

@@ -67,9 +67,16 @@ public class FadeManager : MonoBehaviour
 
         switch (LoadingScene.stageNum)  // ÉVÅ[ÉìêÿÇËë÷Ç¶
         {
+            //case 100:
+            //    loadScene = "TestStageSelectScene";
+            //    break;
             case 100:
-                loadScene = "TestStageSelectScene";
+                loadScene = "StageSelectScene";
                 break;
+            case 101:
+                loadScene = "HomeScene";
+                break;
+                
 
             //case 1:
             //    loadScene = "TestStage1";
