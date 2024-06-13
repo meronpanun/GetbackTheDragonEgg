@@ -557,20 +557,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1211666689}
-        m_TargetAssemblyTypeName: ReturnSelectScene, Assembly-CSharp
-        m_MethodName: ReturnStageSelectScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6186449476667615051}
-        m_TargetAssemblyTypeName: TestFade1Manager, Assembly-CSharp
+      - m_Target: {fileID: 6829602554660473541}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
         m_MethodName: FadeOutSwitch
         m_Mode: 3
         m_Arguments:
@@ -738,20 +726,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6829602554660473540}
   m_CullTransparentMesh: 1
---- !u!114 &6186449476667615051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6829602554660473540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ff25acf5bcdda48842e01aba828e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Out: 0
-  In: 0
 --- !u!114 &6219282498088220521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +767,7 @@ GameObject:
   - component: {fileID: 2697117655409679778}
   - component: {fileID: 3009240355762084618}
   - component: {fileID: 6219282498088220521}
-  - component: {fileID: 6186449476667615051}
+  - component: {fileID: 6829602554660473541}
   m_Layer: 6
   m_Name: FadePanel
   m_TagString: Untagged
@@ -801,6 +775,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6829602554660473541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6829602554660473540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d36cb5f2907434a8941a84cc83a690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Out: 0
+  In: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
