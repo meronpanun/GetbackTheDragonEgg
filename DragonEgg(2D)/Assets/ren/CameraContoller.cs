@@ -2,32 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class CameraContoller : MonoBehaviour
-{
-    private Vector3 tmp;
+{ 
     public static GameObject powerUpCanvas;
     public static GameObject icon;//あとで変更
     public static int flag = 1;
-    public GameObject camera;
-    float x, y;
+    public Vector3 pos;
+
+
+
 
     //public RectTransform childDragonIcon;//RectTransform型の変数aを宣言　作成したテキストオブジェクトをアタッチしておく
     void Start()
     {
-        tmp = GameObject.Find("Main Camera").transform.position;
         powerUpCanvas = GameObject.Find("PowerUpCanvas");
         icon = GameObject.Find("ChildDragonIcon");
-        camera = GameObject.Find("MainCamera");
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        //現在の位置を取得
+        Vector3 pos = this.gameObject.transform.position;
+        
+        //Transform myTransform = this.transform;
+        //Vector3 Pos = Transform.position;
+        //Pos.x = -80.0f; // x座標変更
+        //Pos.y = 0.0f; // y座標変更
+        //Pos.z = -10.0f; // z座標変更
+        //transform.position = Pos; // 変更後の座標を代入
         Debug.Log(flag);
-        x = tmp.x;
-        y = tmp.y;
-        Debug.Log(y);
+        //x = tmp.x;
+        //y = tmp.y;
+        //Debug.Log(y);
 
         if (flag == 0)//なぜか0になる
         {
@@ -40,7 +50,7 @@ public class CameraContoller : MonoBehaviour
         {
             powerUpCanvas.SetActive(false);
             icon.SetActive(true);
-            MonsterBox(y);
+            MonsterBox();
             CameraMove1();
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -87,25 +97,32 @@ public class CameraContoller : MonoBehaviour
     }
 
 
-    public void MonsterBox(float y)//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
+    public void MonsterBox()//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Debug.Log("up");
-            camera.transform.position += new Vector3(0.0f, 0.01f, 0.0f); //カメラを上へ移動。
-            if (y >= 0.00f)
-            {
-                camera.transform.position = new Vector3(-80.0f, 0.01f, -10.0f);
-            }
+            this.gameObject.transform.position = new Vector3(pos.x, pos.y + 0.01f, pos.z);
+            //myTransform.Translate(0.0f, 0.01f, 0.0f);
+            //transform.Translate(0.0f, 0.01f, 0.0f);
+           // camera.transform.position += new Vector3(0.0f, 0.01f, 0.0f); //カメラを上へ移動。
+            //if (y >= 0.00f)
+            //{
+            //    camera.transform.position = new Vector3(-80.0f, 0.01f, -10.0f);
+            //}
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             Debug.Log("donw");
-            camera.transform.position += new Vector3(0.0f, -0.01f, 0.0f); //カメラを下へ移動。
-            if (y <= -28.00f)
-            {
-                camera.transform.position = new Vector3(-80.0f, -28.00f, -10.0f);
-            }
+            //現在の位置からx方向に1移動する
+            this.gameObject.transform.position = new Vector3(pos.x, pos.y - 0.01f, pos.z);
+            //myTransform.Translate(0.0f, -0.01f, 0.0f);
+            //transform.Translate(0.0f, -0.01f, 0.0f);
+            //camera.transform.position += new Vector3(0.0f, -0.01f, 0.0f); //カメラを下へ移動。
+            //if (y <= -28.00f)
+            //{
+            //    camera.transform.position = new Vector3(-80.0f, -28.00f, -10.0f);
+            //}
         }
     }
 
