@@ -8,9 +8,9 @@ public class CameraContoller : MonoBehaviour
 { 
     public static GameObject powerUpCanvas;
     public static GameObject icon;//あとで変更
-    public static int flag = 1;
-    public Vector3 pos;
-
+    public Vector3 cameraPos;
+    bool boxFlag = false;
+    bool powerUpFlag = false;
 
 
 
@@ -19,111 +19,73 @@ public class CameraContoller : MonoBehaviour
     {
         powerUpCanvas = GameObject.Find("PowerUpCanvas");
         icon = GameObject.Find("ChildDragonIcon");
-       
+        CameraMoveSelectMenu();
     }
 
     // Update is called once per frame
     void Update()
     {
+       // this.transform.Translate(0f, 0.1f, 0f);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            Debug.Log("up");
+            if (transform.position.y <= 0.00f && boxFlag)
+            {
+                transform.Translate(0f, 0.1f, 0f);
+            }
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            Debug.Log("down");
+            //現在の位置からx方向に1移動する
+           
+            if (transform.position.y >= -28.00f && boxFlag)
+            {
+                transform.Translate(0f, -0.1f, 0f);
+            }
+        }
         //現在の位置を取得
         Vector3 pos = this.gameObject.transform.position;
-        
-        //Transform myTransform = this.transform;
-        //Vector3 Pos = Transform.position;
-        //Pos.x = -80.0f; // x座標変更
-        //Pos.y = 0.0f; // y座標変更
-        //Pos.z = -10.0f; // z座標変更
-        //transform.position = Pos; // 変更後の座標を代入
-        Debug.Log(flag);
-        //x = tmp.x;
-        //y = tmp.y;
-        //Debug.Log(y);
-
-        if (flag == 0)//なぜか0になる
+       
+        if (boxFlag && Input.GetKeyDown(KeyCode.Escape))
         {
-            CameraMove0();
-            powerUpCanvas.SetActive(false);
-            icon.SetActive(false);
-            
+            CameraMoveSelectMenu();
         }
-        if (flag == 1)
+        if (powerUpFlag && Input.GetKeyDown(KeyCode.Escape))
         {
-            powerUpCanvas.SetActive(false);
-            icon.SetActive(true);
-            MonsterBox();
-            CameraMove1();
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                flag = 0;
-            }
+            CameraMoveMonsterBox();
         }
-        if (flag == 2)
-        {
-            powerUpCanvas.SetActive(true);
-            icon.SetActive(false);
-            CameraMove2();
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                flag = 1;
-            }
-        }
-
-        //なぜか0になるくそ
-        //if (Input.GetKeyDown(KeyCode.Escape) && flag == 2)//強化画面からモンスターBOXへ
-        //{
-        //    CameraMove1();
-        //}
-        //if (Input.GetKeyDown(KeyCode.Escape) && flag == 1)
-        //{
-        //    CameraMove0();
-        //}
-
     }
     // Start is called before the first frame update
-    public static void CameraMove0()
+    public void CameraMoveSelectMenu()
     {
-        GameObject.Find("Main Camera").transform.position = new Vector3(-160, 0, -10);
-        flag = 0;
+        transform.position = new Vector3(-160, 0, -10);
+        powerUpCanvas.SetActive(false);
+        icon.SetActive(false);
+        boxFlag = false;
+        powerUpFlag = false;
     }
-    public static void CameraMove1()
+    public void CameraMoveMonsterBox()
     {
-        GameObject.Find("Main Camera").transform.position = new Vector3(-80, 0, -10);
-        flag = 1;
+        transform.position = new Vector3(-80, 0, -10);
+        powerUpCanvas.SetActive(false);
+        icon.SetActive(true);
+        boxFlag = true;
+        powerUpFlag = false;
     }
-    public static void CameraMove2()
+    public void CameraMovePowerUp()
     {
-        GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -10);
-        flag = 2;
+        transform.position = new Vector3(0, 0, -10);
+        powerUpCanvas.SetActive(true);
+        icon.SetActive(false);
+        boxFlag = false;
+        powerUpFlag = true;
     }
 
 
     public void MonsterBox()//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Debug.Log("up");
-            this.gameObject.transform.position = new Vector3(pos.x, pos.y + 0.01f, pos.z);
-            //myTransform.Translate(0.0f, 0.01f, 0.0f);
-            //transform.Translate(0.0f, 0.01f, 0.0f);
-           // camera.transform.position += new Vector3(0.0f, 0.01f, 0.0f); //カメラを上へ移動。
-            //if (y >= 0.00f)
-            //{
-            //    camera.transform.position = new Vector3(-80.0f, 0.01f, -10.0f);
-            //}
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Debug.Log("donw");
-            //現在の位置からx方向に1移動する
-            this.gameObject.transform.position = new Vector3(pos.x, pos.y - 0.01f, pos.z);
-            //myTransform.Translate(0.0f, -0.01f, 0.0f);
-            //transform.Translate(0.0f, -0.01f, 0.0f);
-            //camera.transform.position += new Vector3(0.0f, -0.01f, 0.0f); //カメラを下へ移動。
-            //if (y <= -28.00f)
-            //{
-            //    camera.transform.position = new Vector3(-80.0f, -28.00f, -10.0f);
-            //}
-        }
+       
     }
 
 
