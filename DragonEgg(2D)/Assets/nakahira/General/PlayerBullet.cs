@@ -8,7 +8,7 @@ public class PlayerBullet : MonoBehaviour
     protected Camera cameraComponent;
     protected float bulletSpeedy = 2f; // 移動速度
     protected float bulletSpeedx = 0;
-    protected int baseAttack;
+    protected int baseAttack = 1;
     // ドラゴンの攻撃力が勘定された後の攻撃力
     public int finalAttack { get; protected set; }
 
@@ -42,5 +42,6 @@ public class PlayerBullet : MonoBehaviour
     public void AttackCalc(int dragonAttack)
     {
         finalAttack = baseAttack * dragonAttack;
+        // Debug.Log($"base:{baseAttack},dragon:{dragonAttack},final:{finalAttack}");
     }
 }
