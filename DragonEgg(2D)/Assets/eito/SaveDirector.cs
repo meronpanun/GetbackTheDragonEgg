@@ -16,35 +16,31 @@ public class SaveDirector : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick button 0"))
         {
-            SceneManager.LoadScene("HomeScene");
+            SceneManager.LoadScene("LevelUpScene");
         }
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 5"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 6"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        Input.GetAxis("Horizontal");
-       
-        Input.GetAxis("Vertical");
-        
+        //if (Input.GetKeyDown("joystick button 1"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
+        //if (Input.GetKeyDown("joystick button 2"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
+        //if (Input.GetKeyDown("joystick button 3"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
+        //if (Input.GetKeyDown("joystick button 4"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
+        //if (Input.GetKeyDown("joystick button 5"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
+        //if (Input.GetKeyDown("joystick button 6"))
+        //{
+        //    SceneManager.LoadScene("HomeScene");
+        //}
     }
 }

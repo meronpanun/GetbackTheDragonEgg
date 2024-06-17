@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;  // UIコンポーネントの使用
 
@@ -8,80 +9,97 @@ public class TitleDirector : MonoBehaviour
 {
     void Start()
     {
-      
+        // Tabキー押下
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            // 選択中のオブジェクト取得
+            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+           
+
+            //// Selectableがある場合
+            //if (nowObj.TryGetComponent<Selectable>(out var sr))
+            //{
+            //    // Selectableを取得
+            //    Selectable mySelectable = sr;
+
+            //    // 一つ下のオブジェクトを選択
+            //    EventSystem.current.SetSelectedGameObject(mySelectable.navigation.selectOnDown.gameObject);
+            //}
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //A
+        ////A
         if (Input.GetKeyDown("joystick button 0"))
         {
             SceneManager.LoadScene("SaveScene");
             Debug.Log("ボタンが押された");
         }
-        //B
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //X
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //Y
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //LB
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //RB
-        if (Input.GetKeyDown("joystick button 5"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //BACK
-        if (Input.GetKeyDown("joystick button 6"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
+        //////B
+        //if (Input.GetKeyDown("joystick button 1"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        //////X
+        //if (Input.GetKeyDown("joystick button 2"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////Y
+        //if (Input.GetKeyDown("joystick button 3"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////LB
+        //if (Input.GetKeyDown("joystick button 4"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////RB
+        //if (Input.GetKeyDown("joystick button 5"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////BACK
+        //if (Input.GetKeyDown("joystick button 6"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
 
-        //左スティック
-        if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            //上に傾いている
-            Debug.Log("ボタンが押された 1");
-        }
-        else if (0 < Input.GetAxisRaw("Vertical"))
-        {
-            //下に傾いている
-            Debug.Log("ボタンが押された 2");
-        }
-        else
-        {
-            //上下方向には傾いていない
-            Debug.Log("ボタンが押された 3");
-        }
-        if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            //左に傾いている
-            Debug.Log("ボタンが押された 4");
-        }
-        else if (0 < Input.GetAxisRaw("Horizontal"))
-        {
-            //右に傾いている
-            Debug.Log("ボタンが押された 5");
-        }
-        else
-        {
-            //左右方向には傾いていない
-            Debug.Log("ボタンが押された 6");
-        }
+        //////左スティック
+        //if (Input.GetAxisRaw("Vertical") < 0)
+        //{
+        //    //上に傾いている
+        //    Debug.Log("ボタンが押された 1");
+        //}
+        //else if (0 < Input.GetAxisRaw("Vertical"))
+        //{
+        //    //下に傾いている
+        //    Debug.Log("ボタンが押された 2");
+        //}
+        //else
+        //{
+        //    //上下方向には傾いていない
+        //    Debug.Log("ボタンが押された 3");
+        //}
+        //if (Input.GetAxisRaw("Horizontal") < 0)
+        //{
+        //    //左に傾いている
+        //    Debug.Log("ボタンが押された 4");
+        //}
+        //else if (0 < Input.GetAxisRaw("Horizontal"))
+        //{
+        //    //右に傾いている
+        //    Debug.Log("ボタンが押された 5");
+        //}
+        //else
+        //{
+        //    //左右方向には傾いていない
+        //    Debug.Log("ボタンが押された 6");
+        //}
 
         ////右スティック
         //if (Input.GetAxisRaw("Vertical2") < 0)

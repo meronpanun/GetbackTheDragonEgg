@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/eito/LevelUpScene.unity
     guid: e8f22d992ecac0e4598ed5bc15e5b82b
-  - enabled: 1
+  - enabled: 0
     path: Assets/eito/HomeScene.unity
     guid: b00b903416a85d447aadf5daf2d51dc8
   - enabled: 1
