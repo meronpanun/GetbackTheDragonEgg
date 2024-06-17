@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlayerRapidBulletController : PlayerBullet
 {
-    private int RAPIDFIREATTACK = 3;@// ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+    private const int RAPIDFIREATTACK = 3;@// ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+
+    private void Awake()
+    {
+        baseAttack = RAPIDFIREATTACK;
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         bulletSpeedy = 10f; // ’e‘¬B“®‚­‘¬‚³
         bulletSpeedx = 0;
-        baseAttack = RAPIDFIREATTACK;
     }
 
     // Update is called once per frame

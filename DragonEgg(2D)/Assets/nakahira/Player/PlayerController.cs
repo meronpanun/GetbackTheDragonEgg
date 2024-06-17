@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         // ScriptableObjectから自分のデータを取得
         // これはあくまでもテスト
-        StaticDataManager.sParentDragonData = new TestDragonStatus("0,50,2,3,4,5,6");
+        StaticDataManager.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
         playerStatus = StaticDataManager.sParentDragonData;
         hitPoint = playerStatus.hp;
         speedx = playerStatus.speed;
@@ -77,7 +77,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // 自分の現在位置に弾のプレハブを召喚
-            Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+            // 自分の攻撃力を上乗せ
+            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
         }
         if (Input.GetKey(KeyCode.Space)) // Spaceキー長押しで
         {

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerFireController : PlayerBullet
 {
-    private int FIREATTACK = 1; // ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+    private const int FIREATTACK = 1; // ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        baseAttack = FIREATTACK;
+    }
+
     protected override void Start()
     {
         base.Start();
-        baseAttack = FIREATTACK;
         bulletSpeedx = Random.Range(-1f, 1f); // ‚Î‚ç‚Â‚©‚¹‚é
     }
 
