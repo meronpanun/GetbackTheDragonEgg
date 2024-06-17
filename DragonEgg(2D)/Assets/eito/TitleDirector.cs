@@ -16,21 +16,25 @@ public class TitleDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Tabキー押下
+        // 左スティック操作
         if (Input.GetAxisRaw("Vertical") < 0)
         {
             // 選択中のオブジェクト取得
             GameObject nowObj = EventSystem.current.currentSelectedGameObject;
-
-            // Selectableがある場合
-            if (nowObj.TryGetComponent<Selectable>(out var sr))
+            if (Input.GetKeyDown("joystick button 0"))
             {
-                // Selectableを取得
-                Selectable mySelectable = sr;
-
-                // 一つ下のオブジェクトを選択
-                //EventSystem.current.SetSelectedGameObject(mySelectable.navigation.selectOnDown.gameObject);
+                SceneManager.LoadScene("SaveScene");
             }
+
+            //// Selectableがある場合
+            //if (nowObj.TryGetComponent<Selectable>(out var sr))
+            //{
+            //    // Selectableを取得
+            //    Selectable mySelectable = sr;
+
+            //    // 一つ下のオブジェクトを選択
+            //    //EventSystem.current.SetSelectedGameObject(mySelectable.navigation.selectOnDown.gameObject);
+            //}
 
             //A
             //if (Input.GetKeyDown("joystick button 0"))
