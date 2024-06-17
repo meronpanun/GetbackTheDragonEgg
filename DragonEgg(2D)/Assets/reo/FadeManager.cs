@@ -76,7 +76,14 @@ public class FadeManager : MonoBehaviour
             case 101:
                 loadScene = "HomeScene";
                 break;
-                
+
+            //case 102:
+            //    loadScene = "reinforcementScene";  // 
+            //    break;
+            //case 103:
+            //    loadScene = "OptionScene";
+            //    break;
+
 
             //case 1:
             //    loadScene = "TestStage1";
