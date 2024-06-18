@@ -12,8 +12,6 @@ public class Enemy : MonoBehaviour
 
     protected float hitPoint = 1; // ‘Ì—ÍI
 
-    protected GameObject prefabStore;
-
     protected bool canMove = true; // “®‚¯‚é‚©
     protected bool canShoot = true;  // ’eŒ‚‚Ä‚é‚©
 
@@ -21,7 +19,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        prefabStore = GameObject.Find("PrefabStore");
         animator = GetComponent<Animator>();
         cameraComponent = Camera.main;
     }
