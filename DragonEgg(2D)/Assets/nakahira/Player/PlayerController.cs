@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
     {
         // ScriptableObjectから自分のデータを取得
         // これはあくまでもテスト
-        StaticDataManager.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
-        playerStatus = StaticDataManager.sParentDragonData;
+        DragonDataManager.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
+        playerStatus = DragonDataManager.sParentDragonData;
         hitPoint = playerStatus.hp;
         speedx = playerStatus.speed;
         attack = playerStatus.attack;
