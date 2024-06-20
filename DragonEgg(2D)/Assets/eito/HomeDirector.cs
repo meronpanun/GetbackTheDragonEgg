@@ -8,11 +8,11 @@ public class HomeDirector : MonoBehaviour
 {
     void Start()
     {
-        if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            // 選択中のオブジェクト取得
-            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
-        }
+        //if (Input.GetAxisRaw("Vertical") < 0)
+        //{
+        //    // 選択中のオブジェクト取得
+        //    GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+        //}
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class HomeDirector : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick button 0"))
         {
-            SceneManager.LoadScene("LevelUpScene");
+            SceneManager.LoadScene("TitleScene");
         }
         //    if (Input.GetKeyDown("joystick button 1"))
         //    {
