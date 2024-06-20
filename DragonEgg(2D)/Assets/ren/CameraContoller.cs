@@ -11,6 +11,7 @@ public class CameraContoller : MonoBehaviour
     public Vector3 cameraPos;
     bool boxFlag = false;
     bool powerUpFlag = false;
+    bool SelectFlag = false;
 
 
 
@@ -75,11 +76,28 @@ public class CameraContoller : MonoBehaviour
     }
     public void CameraMovePowerUp()
     {
-        transform.position = new Vector3(0, 0, -10);
-        powerUpCanvas.SetActive(true);
-        icon.SetActive(false);
-        boxFlag = false;
-        powerUpFlag = true;
+        if(SelectFlag == true)
+        {
+            Debug.Log("‘I‘ð‚µ‚½‚æ");
+        }
+        else
+        {
+            transform.position = new Vector3(0, 0, -10);
+            powerUpCanvas.SetActive(true);
+            icon.SetActive(false);
+            boxFlag = false;
+            powerUpFlag = true;
+        }
+    }
+    public void SelectMode1()
+    {
+        SelectFlag = true;
+        CameraMoveMonsterBox();
+    }
+    public void SelectMode2()
+    {
+        SelectFlag = false;
+        CameraMoveMonsterBox();
     }
 
 
