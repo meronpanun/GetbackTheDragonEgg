@@ -35,4 +35,27 @@ public class DragonDataManager
     {
         return dragonData[index];
     }
+
+    // 配列のデータを全部PlayerPrefsに保存
+    public void SaveAllData()
+    {
+        // for ぶんぶんまわす
+        for (int i = 0; i < DATANUMBER; i++)
+        {
+            SaveData(i);
+        }
+    }
+
+    // 一つのデータだけセーブ
+    // 引数の番地のデータを保存
+    public void SaveData(int index)
+    {
+        // playerprefsに捧げるstring
+        string keyString = KEYBASE + index.ToString();
+        // 取り出す
+        TestDragonStatus temp = dragonData[index];
+        // セーブ
+        PlayerPrefs.SetString(keyString, temp.dataString);
+    }
 }
+//今後セーブを追加
