@@ -9,7 +9,7 @@ public class TitleDirector : MonoBehaviour
 {
     void Start()
     {
-        if (Input.GetAxisRaw("Vertical") < 0)
+        if (0 < Input.GetAxisRaw("Vertical"))
         {
             // 選択中のオブジェクト取得
             GameObject nowObj = EventSystem.current.currentSelectedGameObject;
@@ -20,11 +20,11 @@ public class TitleDirector : MonoBehaviour
         void Update()
     {
         //A
-        if (Input.GetKeyDown("joystick button 0"))
-        {
-            SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された");
-        }
+        //if (Input.GetKeyDown("joystick button 0"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //    Debug.Log("ボタンが押された");
+        //}
         ////B
         //if (Input.GetKeyDown("joystick button 1"))
         //{
