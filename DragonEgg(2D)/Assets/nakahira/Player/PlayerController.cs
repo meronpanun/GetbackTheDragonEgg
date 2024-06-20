@@ -39,10 +39,10 @@ public class PlayerController : MonoBehaviour
 
     private void SetStatusFromData()
     {
-        // ScriptableObjectから自分のデータを取得
+        // Staticクラスから自分のデータを取得
         // これはあくまでもテスト
-        StaticDataManager.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
-        playerStatus = StaticDataManager.sParentDragonData;
+        BattleTeam.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
+        playerStatus = BattleTeam.sParentDragonData;
         hitPoint = playerStatus.hp;
         speedx = playerStatus.speed;
         attack = playerStatus.attack;
