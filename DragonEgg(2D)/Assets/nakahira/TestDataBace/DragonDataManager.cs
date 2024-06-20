@@ -16,10 +16,6 @@ public class DragonDataManager
     // 6/18　Staticクラスでなくする方針にしました
     private TestDragonStatus[] dragonData = new TestDragonStatus[DATANUMBER];
 
-    public static TestDragonStatus sParentDragonData;
-    public static TestDragonStatus sChildDragonDataRight;
-    public static TestDragonStatus sChildDragonDataLeft;
-
     // メンバ関数
     public void LoadAllDragonData() // PlayerPlefsから全データを取得
     {
