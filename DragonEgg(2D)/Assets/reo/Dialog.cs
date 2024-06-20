@@ -6,11 +6,14 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Threading;  // sleep用
+
+
 public class DialogBuild : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI DialogText;
-    [SerializeField] private GameObject _noButton;
-    [SerializeField] private GameObject _goButton;
+    [SerializeField] private GameObject NoButton;
+    [SerializeField] private GameObject GoButton;
     [TextArea(5, 5)]
     //[SerializeField] private string msgText;  // 使わなくなった
     private float msgSpeed = 0.03f;  // テキスト表示間隔
@@ -19,11 +22,13 @@ public class DialogBuild : MonoBehaviour
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
 
+    [SerializeField] private GameObject Panel;
+
     void Start()
     {
         //DialogText.text = dialogText;
-        _noButton.SetActive(false);  // ボタンを隠す
-        _goButton.SetActive(false);
+        NoButton.SetActive(false);  // ボタンを隠す
+        GoButton.SetActive(false);
         //StartCoroutine(TypeDisplay());
     }
     void Update()
@@ -47,8 +52,8 @@ public class DialogBuild : MonoBehaviour
             }
 
             //DialogText.text = msgText;  // 使わなくなった
-            _noButton.SetActive(true);  // ボタンを表示
-            _goButton.SetActive(true);
+            NoButton.SetActive(true);  // ボタンを表示
+            GoButton.SetActive(true);
         }
     }
 
@@ -58,16 +63,35 @@ public class DialogBuild : MonoBehaviour
         LoadingScene.stageNum = number;  // ボタン側からステージ数を取得
         DialogText.text = "";
         dialogText = "Stage " + LoadingScene.stageNum + "||Ready?";  // dialogText変数に文を代入
-        StartCoroutine(TypeDisplay());  // メッセージ表示を開始
+
+        NoButton.SetActive(false);  // ボタンを隠す
+        GoButton.SetActive(false);
+
+        StartCoroutine(ScaleChange());
         
-        Debug.Log("Stage " + LoadingScene.stageNum + "||Ready?");
-        Debug.Log(DialogText.text);
+        //Debug.Log("Stage " + LoadingScene.stageNum + "||Ready?");
+        //Debug.Log(DialogText.text);
+    }
+
+    IEnumerator ScaleChange()  // サイズを徐々に大きくする
+    {
+        // 徐々に大きくする
+        for (int i = 0; i < 10; i++)
+        {
+            Panel.transform.localScale = new Vector3(i / 10f, i / 10f, 1);
+            yield return new WaitForSeconds(0.06f);
+        }
+        // scaleを1にする(保険)
+        Panel.transform.localScale = new Vector3(1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+
+        StartCoroutine(TypeDisplay());  // メッセージ表示を開始
     }
 
     IEnumerator TypeDisplay()  // メッセージを表示させる機構？ IEnumeratorは非同期処理を行うために用いるデータ型の一種
     {
-        _noButton.SetActive(false);  // ボタンを隠す
-        _goButton.SetActive(false);
+        NoButton.SetActive(false);  // ボタンを隠す
+        GoButton.SetActive(false);
 
         foreach (char item in dialogText)
         {
@@ -85,7 +109,7 @@ public class DialogBuild : MonoBehaviour
             
             yield return new WaitForSeconds(msgSpeed);  // メッセージをmsgSpeed毎に表示？
         }
-        _noButton.SetActive(true);  // ボタンを表示
-        _goButton.SetActive(true);
+        NoButton.SetActive(true);  // ボタンを表示
+        GoButton.SetActive(true);
     }
 }
