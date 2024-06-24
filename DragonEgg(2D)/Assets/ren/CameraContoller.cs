@@ -11,6 +11,7 @@ public class CameraContoller : MonoBehaviour
     public Vector3 cameraPos;
     bool boxFlag = false;
     bool powerUpFlag = false;
+    bool teamFlag = false;
     bool SelectFlag = false;
 
 
@@ -54,7 +55,11 @@ public class CameraContoller : MonoBehaviour
         }
         if (powerUpFlag && Input.GetKeyDown(KeyCode.Escape))
         {
-            CameraMoveMonsterBox();
+            CameraMoveMonsterBoxPowerUp();
+        }
+        if (teamFlag && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CameraMoveMonsterBoxTeam();
         }
     }
     // Start is called before the first frame update
@@ -66,7 +71,15 @@ public class CameraContoller : MonoBehaviour
         boxFlag = false;
         powerUpFlag = false;
     }
-    public void CameraMoveMonsterBox()
+    public void CameraMoveMonsterBoxTeam()
+    {
+        transform.position = new Vector3(-240, 0, -10);
+        powerUpCanvas.SetActive(false);
+        icon.SetActive(true);
+        boxFlag = true;
+        teamFlag = false;
+    } 
+    public void CameraMoveMonsterBoxPowerUp()
     {
         transform.position = new Vector3(-80, 0, -10);
         powerUpCanvas.SetActive(false);
@@ -92,12 +105,12 @@ public class CameraContoller : MonoBehaviour
     public void SelectMode1()
     {
         SelectFlag = true;
-        CameraMoveMonsterBox();
+        CameraMoveMonsterBoxTeam();
     }
     public void SelectMode2()
     {
         SelectFlag = false;
-        CameraMoveMonsterBox();
+        CameraMoveMonsterBoxPowerUp();
     }
 
 

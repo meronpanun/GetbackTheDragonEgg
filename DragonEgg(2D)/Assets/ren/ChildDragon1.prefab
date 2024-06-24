@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 758267008848632143}
   - component: {fileID: 1910167110898000263}
   - component: {fileID: 5704785835096316086}
-  - component: {fileID: 7828556145208505308}
   m_Layer: 5
   m_Name: ChildDragon1
   m_TagString: Untagged
@@ -120,29 +119,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1910167110898000263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7828556145208505308}
-        m_TargetAssemblyTypeName: CameraContoller, Assembly-CSharp
-        m_MethodName: CameraMove2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7828556145208505308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262984988579344725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327a353ead0bd3469ce46c909c0606f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+      m_Calls: []

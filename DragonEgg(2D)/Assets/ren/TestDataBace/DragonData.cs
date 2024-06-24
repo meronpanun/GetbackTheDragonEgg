@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ドラゴンBoxの処理の中で呼び出してね
-public class DragonDataManager
+public class DragonData
 {
     // 記録できるデータの数
     private const int DATANUMBER = 10;

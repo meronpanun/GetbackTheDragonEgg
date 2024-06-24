@@ -13,13 +13,21 @@ public class TestDragonStatus
 
     public TestDragonStatus(string data)
     {
-        // 要素数(区切り文字の数)をチェック
-        CheckElements(data);
-        // それぞれの変数に値を代入
-        AssignmentStatus(data);
-        // これらは一つにまとめられるかも
-        // 確認
-        Debug.Log($"{raceNum}, {hp}, {attack}, {speed}, {level}, {nowExp}, {name}");
+        //データ調べる
+        if(data == "")
+        {
+            raceNum = (int)races.none;
+        }
+        else
+        {
+            // 要素数(区切り文字の数)をチェック
+            CheckElements(data);
+            // それぞれの変数に値を代入
+            AssignmentStatus(data);
+            // これらは一つにまとめられるかも
+            // 確認
+            Debug.Log($"{raceNum}, {hp}, {attack}, {speed}, {level}, {nowExp}, {name}");
+        }
     }
 
     // メンバ変数
