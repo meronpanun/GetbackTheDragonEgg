@@ -31,15 +31,24 @@ public class BeldumController : Enemy
         // プレイヤーとの相対位置を確認して(自作関数)
         Vector2 relativeVec = UnitVector(PlayerController.player);
         // 角度を度数で導出
-        // float angle = Vector3.SignedAngle(relativeVec, );
-        // 自分が向いている方向と近い方向に回転
+        float angle = Vector3.SignedAngle(relativeVec, AngleToVector(), Vector3.up);
+        //自分が向いている方向と近い方向に回転
+        //transform.Rotate(new Vector3())
         //// とりあえずプレイヤーの方向に即座に回転→OK
         //transform.eulerAngles = new Vector3(0f, 0f, generalDec);
-        // 角速度*一フレームの時間だけ回る
-        //transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
-        //transform.Translate(0f,0.1f,0f);
+        //角速度* 一フレームの時間だけ回る
+        transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
+        transform.Translate(0f, 0.1f, 0f);
     }
 
     // 角度を取得してそれの一般角の方向のVector2を生成
-    // private Vector2 AngleToVector
+    private Vector2 AngleToVector()
+    {
+        Quaternion eulerZ = Quaternion.Euler(0f, 0f, transform.eulerAngles.z);
+        Vector2 vec = Vector2.right;
+
+        vec = eulerZ * vec;
+        Debug.Log($"vec = {vec}");
+        return vec;
+    }
 }
