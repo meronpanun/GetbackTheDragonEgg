@@ -20,7 +20,7 @@ public class ORBBulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate((speed.x + CameraController.cameraSpeed.x) * Time.deltaTime, (speed.y + CameraController.cameraSpeed.y) * Time.deltaTime, 0f);
+        transform.Translate((speed.x + BattleCameraController.cameraSpeed.x) * Time.deltaTime, (speed.y + BattleCameraController.cameraSpeed.y) * Time.deltaTime, 0f);
 
         // âÊñ äOÇ…èoÇΩÇÁè¡Ç∑
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
