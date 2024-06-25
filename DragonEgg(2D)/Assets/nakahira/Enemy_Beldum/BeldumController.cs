@@ -7,8 +7,10 @@ public class BeldumController : Enemy
 {
     private const int BELDUMHP = 2;
     private const int BELDUMATTACK = 2;
-    // 角速度。一フレームに何度回転できるか
-    private int rotaSpeed = 1;
+    // 角速度。1秒に何度回転できるか
+    private int rotaSpeed = 60;
+    // 速さ
+    private float speed = 1;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -30,25 +32,37 @@ public class BeldumController : Enemy
         // ホーミング機能つける
         // プレイヤーとの相対位置を確認して(自作関数)
         Vector2 relativeVec = UnitVector(PlayerController.player);
-        // 角度を度数で導出
-        float angle = Vector3.SignedAngle(relativeVec, AngleToVector(), Vector3.up);
-        //自分が向いている方向と近い方向に回転
-        //transform.Rotate(new Vector3())
-        //// とりあえずプレイヤーの方向に即座に回転→OK
-        //transform.eulerAngles = new Vector3(0f, 0f, generalDec);
-        //角速度* 一フレームの時間だけ回る
-        transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
-        transform.Translate(0f, 0.1f, 0f);
+        // 自分がどこ向いてるかもベクトルにして
+        Vector2 myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z);
+        // 自分の向きとの角度を度数で導出
+        float angle = Vector2.SignedAngle(myAngleVector, relativeVec);
+        // Debug.Log($"ダンバルとプレイヤーの角度：{angle}");
+        // 自分が向いている方向と近い方向に回転
+        if (angle < 0)
+        {
+            // 時計回りの方が近いとき
+            transform.Rotate(0f, 0f, -rotaSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // 反時計回りの方が近いとき
+            transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
+        }
+        // あとは自分の向きに合わせて進む
+        Vector2 temp = (myAngleVector + offsetSpeed) * speed * Time.deltaTime;
+        //Debug.Log($"最終的な速さ：{temp}");
+        transform.Translate(temp);
     }
 
-    // 角度を取得してそれの一般角の方向のVector2を生成
-    private Vector2 AngleToVector()
+    // その名の通り0～360を単位ベクトルにします
+    private Vector2 GeneralAngleToVector2(float angle)
     {
-        Quaternion eulerZ = Quaternion.Euler(0f, 0f, transform.eulerAngles.z);
-        Vector2 vec = Vector2.right;
+        Vector2 result = Vector2.one;
 
-        vec = eulerZ * vec;
-        Debug.Log($"vec = {vec}");
-        return vec;
+        result.x = Mathf.Cos(angle * Mathf.Deg2Rad);
+        result.y = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        Debug.Log($"関数で出てる結果:{result}");
+        return result;
     }
 }

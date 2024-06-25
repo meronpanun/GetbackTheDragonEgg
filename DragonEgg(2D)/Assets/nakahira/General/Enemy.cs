@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     protected float speedx = 0;
     protected float speedy = 0;
 
+    protected Vector2 offsetSpeed = BattleCameraController.cameraSpeed;
+
     protected Animator animator;
     protected Camera cameraComponent;
 

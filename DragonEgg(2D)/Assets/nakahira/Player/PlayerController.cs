@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     private TestDragonStatus playerStatus;
 
-    private float speedx = 1f;
-    private float speedy = 1f;
+    private float speed = 1f;
+    private Vector2 speedVec = Vector2.zero;
     private float hitPoint = 10;
     private int attack = 1;
 
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         BattleTeam.sParentDragonData = new TestDragonStatus("0,2,100,3,4,5,6");
         playerStatus = BattleTeam.sParentDragonData;
         hitPoint = playerStatus.hp;
-        speedx = playerStatus.speed;
+        speed = playerStatus.speed;
         attack = playerStatus.attack;
     }
 
@@ -54,22 +54,43 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(blinking);
 
         // 移動！
-        if (Input.GetKey(KeyCode.W))
+        // キーを押すとその方向の内部的なベクトルが加算
+        // それをもとに最後に移動
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            Move(0f, speedy * Time.deltaTime);
+            speedVec += Vector2.up;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            Move(-speedx * Time.deltaTime, 0f);
+            speedVec += Vector2.left;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            Move(0f, -speedy * Time.deltaTime);
+            speedVec += Vector2.down;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            Move(speedx * Time.deltaTime, 0f);
+            speedVec += Vector2.right;
         }
+        // 長いけど許して
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            speedVec -= Vector2.up;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            speedVec -= Vector2.left;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            speedVec -= Vector2.down;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            speedVec -= Vector2.right;
+        }
+        //Debug.Log($"{speedVec}, {speed}");
+        Move(speedVec, speed);
 
         // スペースキーで弾を発射
         // 初回は強くて速いビームが出る
@@ -99,19 +120,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move(float x, float y) // 移動可能判定とかを詰め込んだ
+    private void Move(Vector2 speedVec, float speed) // 移動可能判定とかを詰め込んだ
     {
+        // まず単位ベクトル化
+        Vector2 generalVec = speedVec.normalized;
+        // 関数でよく使う形を変数として宣言
+        float speedX = generalVec.x * speed * Time.deltaTime;
+        float speedY = generalVec.y * speed * Time.deltaTime;
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
         // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
         // 壁際でも沿う方向になら進める
-        if (viewPos.x + x < 1.0f && viewPos.x + x > 0f)
+        if (viewPos.x + speedX * speed < 1.0f && viewPos.x + speedX > 0f)
         {
-            transform.Translate(x, 0f, 0f);
+            transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + y < 1.0f && viewPos.y + y > 0f)
+        if (viewPos.y + speedY < 1.0f && viewPos.y + speedY > 0f)
         {
-            transform.Translate(0f, y, 0f);
+            transform.Translate(0f, speedY, 0f);
         }
     }
 
