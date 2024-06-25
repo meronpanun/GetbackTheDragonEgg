@@ -9,6 +9,7 @@ public class CameraContoller : MonoBehaviour
     public static GameObject powerUpCanvas;
     public static GameObject iconUI;//あとで変更
     public static GameObject teamCastam;//あとで変更
+    public static GameObject selectUI;//あとで変更
     public Vector3 cameraPos;//カメラの位置
     bool boxFlag = false;//ボックス
     bool powerUpFlag = false;//強化モードを選んだかどうか
@@ -25,6 +26,8 @@ public class CameraContoller : MonoBehaviour
         iconUI = GameObject.Find("ChildDragonIcon_Test");
         //編成でのUI
         teamCastam = GameObject.Find("TeamCastam");
+        //セレクト画面のUI
+        selectUI = GameObject.Find("SelectUI");
         //セレクト画面を最初の画面にする
         CameraMoveSelectMenu();
     }
@@ -56,6 +59,7 @@ public class CameraContoller : MonoBehaviour
     public void CameraMoveSelectMenu()
     {
         transform.position = new Vector3(-160, 0, -10);
+        selectUI.SetActive(true);
         powerUpCanvas.SetActive(false);
         iconUI.SetActive(false);
         teamCastam.SetActive(false);
@@ -66,6 +70,7 @@ public class CameraContoller : MonoBehaviour
     public void CameraMoveMonsterBoxTeam()
     {
         transform.position = new Vector3(-240, 0, -10);
+        selectUI.SetActive(false);
         powerUpCanvas.SetActive(false);
         iconUI.SetActive(true);
         teamCastam.SetActive(true);
@@ -76,6 +81,7 @@ public class CameraContoller : MonoBehaviour
     public void CameraMoveMonsterBoxPowerUp()
     {
         transform.position = new Vector3(-80, 0, -10);
+        selectUI.SetActive(false);
         powerUpCanvas.SetActive(false);
         iconUI.SetActive(true);
         teamCastam.SetActive(false);
@@ -86,6 +92,7 @@ public class CameraContoller : MonoBehaviour
     public void CameraMovePowerUp()
     {
         transform.position = new Vector3(0, 0, -10);
+        selectUI.SetActive(false);
         powerUpCanvas.SetActive(true);
         iconUI.SetActive(false);
         teamCastam.SetActive(false);

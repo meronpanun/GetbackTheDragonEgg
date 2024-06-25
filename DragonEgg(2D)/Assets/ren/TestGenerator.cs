@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestGenerator : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class TestGenerator : MonoBehaviour
     [SerializeField] GameObject childDragonIcon;
     [SerializeField] GameObject canvas;
 
-    private const int SIFTRIGHT = 3;//ずらす距離
-    private const int SIFTDOWN = 2;//ずらす距離
-    int x = -246;
-    int y = -1;
+    private const int SIFTRIGHT = 200;//ずらす距離
+    private const int SIFTDOWN = 200;//ずらす距離
+    int inputX = 100;
+    int inputY = 200;
+    RectTransform iconRectTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,13 +37,15 @@ public class TestGenerator : MonoBehaviour
             for (int j = 0; j < ROW; j++) 
             {
                 GameObject childDragonIcon = Instantiate(ChildDoragonIconPrefab);//インスタンス化
-                childDragonIcon.transform.parent = canvas.transform;
-                childDragonIcon.transform.localScale = new Vector3(0.02f, 0.02f, 1);
-                childDragonIcon.transform.position = new Vector3(x, y, 0);
-                x += SIFTRIGHT;
+                iconRectTransform = childDragonIcon.GetComponent<RectTransform>();
+                Vector2 pos = iconRectTransform.position;
+                pos.x = inputX;
+                pos.y = inputY;
+                iconRectTransform.position = pos;
+                inputX += SIFTRIGHT;
             }
-            x = -246;
-            y -= SIFTDOWN;
+            inputX = 100;
+            inputY -= SIFTDOWN;
         }
     }
 }
