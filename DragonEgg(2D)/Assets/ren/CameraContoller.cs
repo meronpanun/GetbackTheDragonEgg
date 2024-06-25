@@ -7,7 +7,8 @@ using static UnityEditor.PlayerSettings;
 public class CameraContoller : MonoBehaviour
 { 
     public static GameObject powerUpCanvas;
-    public static GameObject icon;//あとで変更
+    public static GameObject iconUI;//あとで変更
+    public static GameObject teamCastam;//あとで変更
     public Vector3 cameraPos;//カメラの位置
     bool boxFlag = false;//ボックス
     bool powerUpFlag = false;//強化モードを選んだかどうか
@@ -19,9 +20,11 @@ public class CameraContoller : MonoBehaviour
     void Start()
     {
         //強化画面でのUI
-        powerUpCanvas = GameObject.Find("PowerUpCanvas");
+        powerUpCanvas = GameObject.Find("PowerUpUI");
         //モンスターBOXでのUI
-        icon = GameObject.Find("ChildDragonIcon");
+        iconUI = GameObject.Find("ChildDragonIcon_Test");
+        //編成でのUI
+        teamCastam = GameObject.Find("TeamCastam");
         //セレクト画面を最初の画面にする
         CameraMoveSelectMenu();
     }
@@ -54,7 +57,8 @@ public class CameraContoller : MonoBehaviour
     {
         transform.position = new Vector3(-160, 0, -10);
         powerUpCanvas.SetActive(false);
-        icon.SetActive(false);
+        iconUI.SetActive(false);
+        teamCastam.SetActive(false);
         boxFlag = false;
         powerUpFlag = false;
     }
@@ -63,7 +67,8 @@ public class CameraContoller : MonoBehaviour
     {
         transform.position = new Vector3(-240, 0, -10);
         powerUpCanvas.SetActive(false);
-        icon.SetActive(true);
+        iconUI.SetActive(true);
+        teamCastam.SetActive(true);
         boxFlag = true;
         teamFlag = false;
     }
@@ -72,7 +77,8 @@ public class CameraContoller : MonoBehaviour
     {
         transform.position = new Vector3(-80, 0, -10);
         powerUpCanvas.SetActive(false);
-        icon.SetActive(true);
+        iconUI.SetActive(true);
+        teamCastam.SetActive(false);
         boxFlag = true;
         powerUpFlag = false;
     }
@@ -81,7 +87,8 @@ public class CameraContoller : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, -10);
         powerUpCanvas.SetActive(true);
-        icon.SetActive(false);
+        iconUI.SetActive(false);
+        teamCastam.SetActive(false);
         boxFlag = false;
         powerUpFlag = true;
     }
