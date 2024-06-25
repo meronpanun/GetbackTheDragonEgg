@@ -56,5 +56,6 @@ public class ORBController : Enemy
     {
         base.OnDeath();
         canShoot = false;
+        GetComponent<CircleCollider2D>().enabled = false; // 各オブジェクトのコライダーを各自で切ること。
     }
 }

@@ -36,15 +36,23 @@ public class Enemy : MonoBehaviour
         {
             Shoot();
         }
+
+        // 画面外に出たら
+        if (OffScreenJudgment(0.2f))
+        {
+            // 消す
+            Destroy(gameObject);
+        }
     }
 
-    protected bool OffScreenJudgment() // 画面内ならtrue、外ならfalse
+    protected bool OffScreenJudgment(float offset) // 画面内ならtrue、外ならfalse
     {
+        // offsetは外側方向に広げるように働く
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        return (viewPos.y < 0 ||
-                   viewPos.y > 1 ||
-                   viewPos.x < 0 ||
-                   viewPos.x > 1); // これ短くならないかな
+        return (viewPos.y + offset < 0 ||
+                   viewPos.y - offset > 1 ||
+                   viewPos.x + offset < 0 ||
+                   viewPos.x - offset > 1); // これ短くならないかな
     }
 
     protected void DestroyThisGameobject() // アニメーションイベントに献上するやつ
@@ -73,8 +81,6 @@ public class Enemy : MonoBehaviour
         if (hitPoint <= 0)
         {
             OnDeath();
-            GetComponent<CircleCollider2D>().enabled = false; // 当たり判定を消す
-            animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
         }
     }
 
@@ -89,6 +95,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnDeath() // 自作のOnメソッドです。Hpが0になったときに実行されます。
     {
-
+        animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
     }
 }

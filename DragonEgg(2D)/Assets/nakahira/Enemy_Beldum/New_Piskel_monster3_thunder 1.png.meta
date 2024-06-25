@@ -106,19 +106,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -137,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0db2ef0a203544ba91a8396f973c84
-      internalID: 773079660
+      spriteID: 38ea13bb0ea1d5741aac2c1704316f3a
+      internalID: 1587506610
       vertices: []
       indices: 
       edges: []
@@ -158,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e91f103c5254614f8b56ecb5f4d540e
-      internalID: 446498456
+      spriteID: eb569380edb11ea4c9fda6679e0cfddb
+      internalID: -1614220963
       vertices: []
       indices: 
       edges: []
@@ -179,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cfb5a2fe02e5f948a4d15b4f799e446
-      internalID: -935614828
+      spriteID: d80f2cc0711a9a549845218d5100f2b4
+      internalID: 2089604598
       vertices: []
       indices: 
       edges: []
@@ -200,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a9ecb8d15da08848be410dc03aef4b7
-      internalID: -1293297310
+      spriteID: e358987b62b6b8e4fbf9f6bdd3aaa50e
+      internalID: 1431784206
       vertices: []
       indices: 
       edges: []
@@ -221,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6b42d7a29e7b294b8ffe8709364b7b0
-      internalID: 1647935303
+      spriteID: 2ead39204bcb44340929af2f14a3bb24
+      internalID: 1556046831
       vertices: []
       indices: 
       edges: []
@@ -242,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c6613b0d8bab1d458ec8ed317f2683b
-      internalID: -2047208495
+      spriteID: 71482192704f8ef48b7fe93fa172dfa5
+      internalID: 343233326
       vertices: []
       indices: 
       edges: []
@@ -259,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      New_Piskel_monster3_thunder 1_0: 773079660
-      New_Piskel_monster3_thunder 1_1: 446498456
-      New_Piskel_monster3_thunder 1_2: -935614828
-      New_Piskel_monster3_thunder 1_3: -1293297310
-      New_Piskel_monster3_thunder 1_4: 1647935303
-      New_Piskel_monster3_thunder 1_5: -2047208495
+      New_Piskel_monster3_thunder 1_0: 1587506610
+      New_Piskel_monster3_thunder 1_1: -1614220963
+      New_Piskel_monster3_thunder 1_2: 2089604598
+      New_Piskel_monster3_thunder 1_3: 1431784206
+      New_Piskel_monster3_thunder 1_4: 1556046831
+      New_Piskel_monster3_thunder 1_5: 343233326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,9 +8,9 @@ public class BeldumController : Enemy
     private const int BELDUMHP = 2;
     private const int BELDUMATTACK = 2;
     // 角速度。1秒に何度回転できるか
-    private int rotaSpeed = 60;
+    private int rotaSpeed = 120;
     // 速さ
-    private float speed = 0.5f;
+    private float speed = 1f;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -48,11 +48,8 @@ public class BeldumController : Enemy
             // 反時計回りの方が近いとき
             transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
         }
-        // あとは自分の向き + 270度に合わせて進む
-        Vector2 temp = relativeVec * speed * Time.deltaTime;
-        //Debug.Log($"こいつの進んでる向き:x = {(relativeVec.x > 0 ? "右" : "左")}, y = {(relativeVec.y > 0 ? "上" : "下")}");
-        //Debug.Log($"最終的な速さ：{temp}");
-        transform.Translate(temp);
+        // あとはプレイヤーに向かって進む
+        transform.position = Vector2.MoveTowards(transform.position, PlayerController.player.transform.position, speed * Time.deltaTime);
     }
 
     // その名の通り0～360を単位ベクトルにします
@@ -65,5 +62,13 @@ public class BeldumController : Enemy
 
         // Debug.Log($"関数で出てる結果:{result}");
         return result;
+    }
+
+    protected override void OnDeath()
+    {
+        // 当たり判定を消す
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        canMove = false;
+        base.OnDeath();
     }
 }
