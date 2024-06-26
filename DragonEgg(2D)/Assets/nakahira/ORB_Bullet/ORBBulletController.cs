@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ORBBulletController : MonoBehaviour
 {
-    public Vector2 speed = Vector2.zero;
+    private float speed = 1f;
     public const int ATTACK = 1;
     private Camera cameraComponent;
-
+    // インスタンス側で代入してもらう
+    public Vector2 angle;
     public int attack { get; private set; }
 
     // Start is called before the first frame update
@@ -20,7 +21,8 @@ public class ORBBulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate((speed.x + BattleCameraController.cameraSpeed.x) * Time.deltaTime, (speed.y + BattleCameraController.cameraSpeed.y) * Time.deltaTime, 0f);
+        //　カメラの移動速度含めて移動
+        transform.Translate((angle * speed + BattleCameraController.cameraSpeed) * Time.deltaTime);
 
         // 画面外に出たら消す
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);

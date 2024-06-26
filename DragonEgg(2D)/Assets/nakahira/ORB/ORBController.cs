@@ -48,7 +48,7 @@ public class ORBController : Enemy
             shootTimer = 0;
             // プレイヤーに向けて球を撃つ処理
             GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-            bulletInstance.GetComponent<ORBBulletController>().speed = UnitVector(PlayerController.player); // Vector2にVector3ぶち込んで大丈夫かなあ
+            bulletInstance.GetComponent<ORBBulletController>().angle = UnitVector(PlayerController.player); // Vector2にVector3ぶち込んで大丈夫かなあ
         }
     }
 
