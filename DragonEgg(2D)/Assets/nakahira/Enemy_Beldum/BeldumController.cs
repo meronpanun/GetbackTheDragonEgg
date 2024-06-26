@@ -8,9 +8,16 @@ public class BeldumController : Enemy
     private const int BELDUMHP = 2;
     private const int BELDUMATTACK = 2;
     // 角速度。1秒に何度回転できるか
-    private int rotaSpeed = 120;
+    private int rotaSpeed = 90;
     // 速さ
     private float speed = 1f;
+    // 起動してnフレーム後にまっすぐ飛ぶようにする
+    private int lifeSpan = 300;
+    // 自分がどこ向いているか
+    Vector2 myAngleVector;
+
+    // 回転してもいいか
+    private bool canRotate = true;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -29,27 +36,54 @@ public class BeldumController : Enemy
     protected override void Move()
     {
         base.Move();
-        // ホーミング機能つける
-        // プレイヤーとの相対位置を確認して(自作関数)
-        Vector2 relativeVec = UnitVector(PlayerController.player);
-        Debug.Log(relativeVec);
-        // 自分がどこ向いてるかもベクトルにして
-        Vector2 myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z);
-        // 自分の向きとの角度を度数で導出
-        float angle = Vector2.SignedAngle(myAngleVector, relativeVec);
-        // 自分が向いている方向と近い方向に回転
-        if (angle < 0)
+        lifeSpan--;
+        if (lifeSpan > 0)
         {
-            // 時計回りの方が近いとき
-            transform.Rotate(0f, 0f, -rotaSpeed * Time.deltaTime);
+            // ホーミング機能つける
+            // プレイヤーとの相対位置を確認して(自作関数)
+            Vector2 relativeVec = UnitVector(PlayerController.player);
+            Debug.Log(relativeVec);
+            // 自分がどこ向いてるかもベクトルにして
+            myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z);
+            // 自分の向きとの角度を度数で導出
+            float angle = Vector2.SignedAngle(myAngleVector, relativeVec);
+            // 自分が向いている方向と近い方向に回転
+
+            // あとは自分の向いてる向きに向かって進む
+            MoveByMyAngle();
+
+            if (!canRotate) return; // 回転しちゃダメならここで終了
+
+            if (angle < 0)
+            {
+                // 時計回りの方が近いとき
+                transform.eulerAngles -= new Vector3(0f, 0f, rotaSpeed * Time.deltaTime);
+            }
+            else
+            {
+                // 反時計回りの方が近いとき
+                transform.eulerAngles += new Vector3(0f, 0f, rotaSpeed * Time.deltaTime);
+            }
         }
         else
         {
-            // 反時計回りの方が近いとき
-            transform.Rotate(0f, 0f, rotaSpeed * Time.deltaTime);
+            // まっすぐ飛ぶ
+            MoveByMyAngle();
         }
-        // あとはプレイヤーに向かって進む
-        transform.position = Vector2.MoveTowards(transform.position, PlayerController.player.transform.position, speed * Time.deltaTime);
+    }
+
+    private void MoveByMyAngle()
+    {
+        transform.position += (Vector3)((myAngleVector * speed + offsetSpeed) * Time.deltaTime);
+    }
+
+    private float TrimAngle(float angle)
+    {
+        if (angle < 0)
+        {
+            angle += 360;
+        }
+        return angle;
     }
 
     // その名の通り0～360を単位ベクトルにします
@@ -68,7 +102,7 @@ public class BeldumController : Enemy
     {
         // 当たり判定を消す
         GetComponent<CapsuleCollider2D>().enabled = false;
-        canMove = false;
+        canRotate = false;
         base.OnDeath();
     }
 }
