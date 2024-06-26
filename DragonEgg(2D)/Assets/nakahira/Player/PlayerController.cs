@@ -133,11 +133,12 @@ public class PlayerController : MonoBehaviour
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
         // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
         // 壁際でも沿う方向になら進める
-        if (viewPos.x + viewOffsetX < 1.0f && viewPos.x - viewOffsetX > 0f)
+        // でも正直なんでこれで動くのかよくわからない
+        if (viewPos.x + viewOffsetX + (speedVec.x * 0.01f) < 1.0f && viewPos.x - viewOffsetX + (speedVec.x * 0.01f) > 0f)
         {
             transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + viewOffsetY < 1.0f && viewPos.y - viewOffsetY > 0f)
+        if (viewPos.y + viewOffsetY + (speedVec.y * 0.01f) < 1.0f && viewPos.y - viewOffsetY + (speedVec.y * 0.01f) > 0f)
         {
             transform.Translate(0f, speedY, 0f);
         }
