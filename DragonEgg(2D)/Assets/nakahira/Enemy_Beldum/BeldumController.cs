@@ -44,7 +44,7 @@ public class BeldumController : Enemy
             Vector2 relativeVec = UnitVector(PlayerController.player);
             Debug.Log(relativeVec);
             // 自分がどこ向いてるかもベクトルにして
-            myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z);
+            myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z - 90f);
             // 自分の向きとの角度を度数で導出
             float angle = Vector2.SignedAngle(myAngleVector, relativeVec);
             // 自分が向いている方向と近い方向に回転
@@ -75,15 +75,6 @@ public class BeldumController : Enemy
     private void MoveByMyAngle()
     {
         transform.position += (Vector3)((myAngleVector * speed + offsetSpeed) * Time.deltaTime);
-    }
-
-    private float TrimAngle(float angle)
-    {
-        if (angle < 0)
-        {
-            angle += 360;
-        }
-        return angle;
     }
 
     // その名の通り0～360を単位ベクトルにします

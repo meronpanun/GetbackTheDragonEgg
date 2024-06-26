@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
 
     private Camera cameraComponent;
 
-
+    // ビューポートの補正を定義
+    private float viewOffsetX = 0.3f;
+    private float viewOffsetY = 0.1f;
 
     private const float fireInterval = 0.2f; // 発射するまでの長押し時間
     private const float srowFireRate = 0.1f; // 発射間隔
@@ -124,18 +126,18 @@ public class PlayerController : MonoBehaviour
     {
         // まず単位ベクトル化
         Vector2 generalVec = speedVec.normalized;
-        // 関数でよく使う形を変数として宣言
+        // 関数で複数回使う形を変数として宣言
         float speedX = generalVec.x * speed * Time.deltaTime;
         float speedY = generalVec.y * speed * Time.deltaTime;
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
         // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
         // 壁際でも沿う方向になら進める
-        if (viewPos.x + speedX * speed < 1.0f && viewPos.x + speedX > 0f)
+        if (viewPos.x + viewOffsetX < 1.0f && viewPos.x - viewOffsetX > 0f)
         {
             transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + speedY < 1.0f && viewPos.y + speedY > 0f)
+        if (viewPos.y + viewOffsetY < 1.0f && viewPos.y - viewOffsetY > 0f)
         {
             transform.Translate(0f, speedY, 0f);
         }
