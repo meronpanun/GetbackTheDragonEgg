@@ -72,7 +72,7 @@ public class CameraContoller : MonoBehaviour
         transform.position = new Vector3(-240, 0, -10);
         selectUI.SetActive(false);
         powerUpCanvas.SetActive(false);
-        iconUI.SetActive(true);
+        iconUI.SetActive(false);
         teamCastam.SetActive(true);
         boxFlag = true;
         teamFlag = false;

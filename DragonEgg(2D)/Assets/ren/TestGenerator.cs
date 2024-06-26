@@ -38,6 +38,7 @@ public class TestGenerator : MonoBehaviour
             {
                 GameObject childDragonIcon = Instantiate(ChildDoragonIconPrefab);//インスタンス化
                 iconRectTransform = childDragonIcon.GetComponent<RectTransform>();
+                childDragonIcon.transform.SetParent(canvas.transform, false);//canvasに格納
                 Vector2 pos = iconRectTransform.position;
                 pos.x = inputX;
                 pos.y = inputY;
