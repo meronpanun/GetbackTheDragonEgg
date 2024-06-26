@@ -7,7 +7,8 @@ using static UnityEditor.PlayerSettings;
 public class CameraContoller : MonoBehaviour
 { 
     public static GameObject powerUpCanvas;
-    public static GameObject iconUI;//あとで変更
+    public static GameObject DragonBoxUITeam;//あとで変更
+    public static GameObject DragonBoxUIPowerUp;//あとで変更
     public static GameObject teamCastam;//あとで変更
     public static GameObject selectUI;//あとで変更
     public Vector3 cameraPos;//カメラの位置
@@ -22,8 +23,10 @@ public class CameraContoller : MonoBehaviour
     {
         //強化画面でのUI
         powerUpCanvas = GameObject.Find("PowerUpUI");
-        //モンスターBOXでのUI
-        iconUI = GameObject.Find("ChildDragonIcon_Test");
+        //モンスターBOX(PowerUp)でのUI
+        DragonBoxUITeam = GameObject.Find("TeamDragonIcon");
+        //モンスターBOX(PowerUp)でのUI
+        DragonBoxUIPowerUp = GameObject.Find("ChildDragonIcon_Test");
         //編成でのUI
         teamCastam = GameObject.Find("TeamCastam");
         //セレクト画面のUI
@@ -36,7 +39,7 @@ public class CameraContoller : MonoBehaviour
     void Update()
     {
         //モンスターボックスでのカメラの移動
-        MonsterBox();
+        //MonsterBox();
 
         //現在の位置を取得
         Vector3 pos = this.gameObject.transform.position;
@@ -61,7 +64,8 @@ public class CameraContoller : MonoBehaviour
         transform.position = new Vector3(-160, 0, -10);
         selectUI.SetActive(true);
         powerUpCanvas.SetActive(false);
-        iconUI.SetActive(false);
+        DragonBoxUITeam.SetActive(false);
+        DragonBoxUIPowerUp.SetActive(false);
         teamCastam.SetActive(false);
         boxFlag = false;
         powerUpFlag = false;
@@ -72,7 +76,8 @@ public class CameraContoller : MonoBehaviour
         transform.position = new Vector3(-240, 0, -10);
         selectUI.SetActive(false);
         powerUpCanvas.SetActive(false);
-        iconUI.SetActive(false);
+        DragonBoxUITeam.SetActive(true);
+        DragonBoxUIPowerUp.SetActive(false);
         teamCastam.SetActive(true);
         boxFlag = true;
         teamFlag = false;
@@ -83,7 +88,8 @@ public class CameraContoller : MonoBehaviour
         transform.position = new Vector3(-80, 0, -10);
         selectUI.SetActive(false);
         powerUpCanvas.SetActive(false);
-        iconUI.SetActive(true);
+        DragonBoxUITeam.SetActive(false);
+        DragonBoxUIPowerUp.SetActive(true);
         teamCastam.SetActive(false);
         boxFlag = true;
         powerUpFlag = false;
@@ -94,34 +100,35 @@ public class CameraContoller : MonoBehaviour
         transform.position = new Vector3(0, 0, -10);
         selectUI.SetActive(false);
         powerUpCanvas.SetActive(true);
-        iconUI.SetActive(false);
+        DragonBoxUITeam.SetActive(false);
+        DragonBoxUIPowerUp.SetActive(false);
         teamCastam.SetActive(false);
         boxFlag = false;
         powerUpFlag = true;
     }
     
     //モンスターBOXでのカメラ制御
-    public void MonsterBox()//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Debug.Log("up");
-            if (transform.position.y <= 0.00f && boxFlag)
-            {
-                transform.Translate(0f, 0.1f, 0f);
-            }
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Debug.Log("down");
-            //現在の位置からx方向に1移動する
+    //public void MonsterBox()//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
+    //{
+    //    if (Input.GetKey(KeyCode.UpArrow))
+    //    {
+            
+    //        if (transform.position.y <= 0.00f && boxFlag)
+    //        {
+    //            transform.Translate(0f, 0.1f, 0f);
+    //        }
+    //    }
+    //    else if (Input.GetKey(KeyCode.DownArrow))
+    //    {
+            
+    //        //現在の位置からx方向に1移動する
 
-            if (transform.position.y >= -28.00f && boxFlag)
-            {
-                transform.Translate(0f, -0.1f, 0f);
-            }
-        }
-    }
+    //        if (transform.position.y >= -28.00f && boxFlag)
+    //        {
+    //            transform.Translate(0f, -0.1f, 0f);
+    //        }
+    //    }
+    //}
 
 
 }

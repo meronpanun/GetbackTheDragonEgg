@@ -14,7 +14,7 @@ public class DragonData
     // データの0番目は親ドラゴンにしよう
     // でもこれゲーム中ずっと存在するのは無駄があるなあ。べつにいいかあ。
     // 6/18　Staticクラスでなくする方針にしました
-    private TestDragonStatus[] dragonData = new TestDragonStatus[DATANUMBER];
+    public TestDragonStatus[] dragonData = new TestDragonStatus[DATANUMBER];
 
     // メンバ関数
     public void LoadAllDragonData() // PlayerPlefsから全データを取得
