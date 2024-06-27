@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 451092207}
   m_Layer: 0
   m_Name: ChildDragonLeft
-  m_TagString: Player
+  m_TagString: ChildDragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 639833489}
   m_Layer: 0
   m_Name: ChildDragonRight
-  m_TagString: Player
+  m_TagString: ChildDragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

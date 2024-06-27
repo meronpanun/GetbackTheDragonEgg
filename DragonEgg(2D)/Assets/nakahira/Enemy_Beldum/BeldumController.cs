@@ -25,6 +25,7 @@ public class BeldumController : Enemy
         // 攻撃力とHPを設定
         hitPoint = BELDUMHP;
         attack = BELDUMATTACK;
+        canShoot = false; // 一応使わない機能はオフにしておく
     }
 
     // Update is called once per frame

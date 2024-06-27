@@ -66,11 +66,19 @@ public class Enemy : MonoBehaviour
         return relativeDistance.normalized;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision) // colisionとtrigger併用できないの本特措
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
+            return;
+        }
+        // もしプレイヤーに衝突したら
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 死
+            OnDeath();
+            return;
         }
     }
 
