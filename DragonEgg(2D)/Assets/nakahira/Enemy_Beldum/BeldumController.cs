@@ -75,7 +75,7 @@ public class BeldumController : Enemy
 
     private void MoveByMyAngle()
     {
-        transform.position += (Vector3)((myAngleVector * speed + offsetSpeed) * Time.deltaTime);
+        transform.position += (Vector3)((myAngleVector * speed) * Time.deltaTime);
     }
 
     // その名の通り0～360を単位ベクトルにします

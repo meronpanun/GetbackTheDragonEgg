@@ -17,7 +17,7 @@ public class BattleCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(cameraSpeed.x * Time.deltaTime, cameraSpeed.y * Time.deltaTime, 0f);
+        transform.Translate(cameraSpeed * Time.deltaTime);
         if (transform.position.y > BOSSPOINT) // É{ÉXêÌÇ≈é~Ç‹ÇÈ
         {
             cameraSpeed = Vector2.zero;

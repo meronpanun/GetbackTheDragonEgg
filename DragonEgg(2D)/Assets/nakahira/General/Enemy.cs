@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
     protected float speedx = 0;
     protected float speedy = 0;
 
-    protected Vector2 offsetSpeed = BattleCameraController.cameraSpeed;
-
     protected Animator animator;
     protected Camera cameraComponent;
 
@@ -94,7 +92,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Move() // 移動関連の処理はここに書きましょう
     {
-        
+        // カメラの移動にあわせて動いておく
+        // これで派生クラスはカメラの移動を意識せずに実装できる
+        transform.Translate(BattleCameraController.cameraSpeed * Time.deltaTime, Space.World);
     }
     protected virtual void Shoot() // 弾撃つ関連の処理はここに書きましょう
     {
