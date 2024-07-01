@@ -9,8 +9,8 @@ public class BeldumController : Enemy
     private const int BELDUMATTACK = 2;
     // 角速度。1秒に何度回転できるか
     private int rotaSpeed = 90;
-    // 速さ
-    private float speed = 1f;
+    // 速さ(これが角度で分解される)
+    private float moveSpeed = 1f;
     // 起動してnフレーム後にまっすぐ飛ぶようにする
     private int lifeSpan = 300;
     // 自分がどこ向いているか
@@ -75,7 +75,7 @@ public class BeldumController : Enemy
 
     private void MoveByMyAngle()
     {
-        transform.position += (Vector3)((myAngleVector * speed) * Time.deltaTime);
+        transform.position += (Vector3)(myAngleVector * moveSpeed * Time.deltaTime);
     }
 
     // その名の通り0～360を単位ベクトルにします

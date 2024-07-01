@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected float speedx = 0;
-    protected float speedy = 0;
+    protected Vector2 speed = Vector2.zero;
 
     protected Animator animator;
     protected Camera cameraComponent;
@@ -16,6 +15,9 @@ public class Enemy : MonoBehaviour
     protected bool canShoot = true;  // íeåÇÇƒÇÈÇ©
 
     public int attack { get; protected set; }
+
+    protected float shootSpan = 0; // âΩïbÇ®Ç´Ç…ãÖÇåÇÇ¬Ç©(canShootÇ™falseÇÃéûÇÕä÷åWÇ»Ç¢)
+    protected float shootTimer = 0; // åvë™Ç∑ÇÈïœêî
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -32,7 +34,12 @@ public class Enemy : MonoBehaviour
         }
         if (canShoot)
         {
-            Shoot();
+            shootTimer += Time.deltaTime;
+            if (shootTimer > shootSpan)
+            {
+                shootTimer = 0;
+                Shoot();
+            }
         }
 
         // âÊñ äOÇ…èoÇΩÇÁ
