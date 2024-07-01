@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected float speedx = 0;
-    protected float speedy = 0;
-
-    protected Vector2 offsetSpeed = BattleCameraController.cameraSpeed;
+    protected Vector2 speed = Vector2.zero;
 
     protected Animator animator;
     protected Camera cameraComponent;
@@ -18,6 +15,9 @@ public class Enemy : MonoBehaviour
     protected bool canShoot = true;  // 弾撃てるか
 
     public int attack { get; protected set; }
+
+    protected float shootSpan = 0; // 何秒おきに球を撃つか(canShootがfalseの時は関係ない)
+    protected float shootTimer = 0; // 計測する変数
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -34,7 +34,12 @@ public class Enemy : MonoBehaviour
         }
         if (canShoot)
         {
-            Shoot();
+            shootTimer += Time.deltaTime;
+            if (shootTimer > shootSpan)
+            {
+                shootTimer = 0;
+                Shoot();
+            }
         }
 
         // 画面外に出たら
@@ -66,11 +71,19 @@ public class Enemy : MonoBehaviour
         return relativeDistance.normalized;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision) // colisionとtrigger併用できないの本特措
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
+            return;
+        }
+        // もしプレイヤーに衝突したら
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 死
+            OnDeath();
+            return;
         }
     }
 
@@ -86,7 +99,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Move() // 移動関連の処理はここに書きましょう
     {
-        
+        // カメラの移動にあわせて動いておく
+        // これで派生クラスはカメラの移動を意識せずに実装できる
+        transform.Translate(BattleCameraController.cameraSpeed * Time.deltaTime, Space.World);
     }
     protected virtual void Shoot() // 弾撃つ関連の処理はここに書きましょう
     {

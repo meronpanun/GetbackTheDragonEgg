@@ -20,12 +20,6 @@ public class Boss_ORBController : ORBController // 継承
         SceneManager.LoadScene("ClearScene"); // OnDestroyではコルーチン使えないんかい
     }
 
-    IEnumerator Clear(float interval)
-    {
-        yield return new WaitForSeconds(interval);
-        SceneManager.LoadScene("ClearScene");
-    }
-
     protected override void OnDeath()
     {
         base.OnDeath();
