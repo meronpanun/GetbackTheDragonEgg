@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6295646156204387390}
   - component: {fileID: 182493404108724353}
   - component: {fileID: -3283842020989068012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ORB_Bullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec953b0520032ed4a892ab6c81957be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
+  angle: {x: 0, y: 0}
 --- !u!58 &182493404108724353
 CircleCollider2D:
   m_ObjectHideFlags: 0
