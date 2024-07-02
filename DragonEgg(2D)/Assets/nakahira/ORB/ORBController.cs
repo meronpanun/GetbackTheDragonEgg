@@ -45,7 +45,7 @@ public class ORBController : Enemy
         base.Shoot();
         // プレイヤーに向けて球を撃つ処理
         GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-        bulletInstance.GetComponent<ORBBulletController>().angle = UnitVector(PlayerController.player); // Vector2にVector3ぶち込んで大丈夫かなあ
+        bulletInstance.GetComponent<ORBBulletController>().SetAngle(UnitVector(PlayerController.player)); // Vector2にVector3ぶち込んで大丈夫かなあ
     }
 
     protected override void OnDeath()

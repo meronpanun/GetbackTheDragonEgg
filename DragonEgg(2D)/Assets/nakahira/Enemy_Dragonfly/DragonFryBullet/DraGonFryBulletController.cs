@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ORBBulletController : EnemyBullet
+public class DragonFryBulletController : EnemyBullet
 {
-    private const int ORBBULLETATTACK = 1;
-    private const float SPEED = 1;
+    private const int BULLETATTACK = 2;
+    private const float SPEED = 2f;
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
-        attack = ORBBULLETATTACK;
+        attack = BULLETATTACK;
         speed = SPEED;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        
     }
 }

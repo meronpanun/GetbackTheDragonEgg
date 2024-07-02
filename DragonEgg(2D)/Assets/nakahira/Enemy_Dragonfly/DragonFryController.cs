@@ -5,14 +5,18 @@ using UnityEngine;
 public class DragonFryController : Enemy
 {
     private const int DRAGONFRYATTACK = 1;
+    private const float SHOOTSPAN = 1;
     private Rigidbody2D myRigid;
     // よける際の速さ
-    private float DodgeForce = 200;
+    private float DodgeForce = 250;
+    // エディタで
+    public GameObject bulletPrefab;
     protected override void Start()
     {
         base.Start();
         attack = DRAGONFRYATTACK;
         myRigid = GetComponent<Rigidbody2D>();
+        shootSpan = SHOOTSPAN;
     }
 
     protected override void Update()
@@ -36,5 +40,15 @@ public class DragonFryController : Enemy
         Vector2 dodgeDir = new Vector2(Mathf.Cos(direction) * DodgeForce * LeftOrRight, Mathf.Sin(direction) * DodgeForce);
         // 実行
         myRigid.AddForce(dodgeDir);
+    }
+
+    protected override void Shoot()
+    {
+        base.Shoot();
+        // いつものようにプレイヤーの位置に球を
+        Vector2 playerVec = UnitVector(PlayerController.player);
+        // 生成して
+        GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bulletInstance.GetComponent<DragonFryBulletController>().SetAngle(playerVec);
     }
 }
