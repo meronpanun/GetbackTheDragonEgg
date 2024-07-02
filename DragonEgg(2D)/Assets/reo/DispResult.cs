@@ -14,10 +14,15 @@ public class DispResult : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ResultText;
     [SerializeField] private GameObject GoHomeButton;
     [SerializeField] private GameObject GoStageButton;
+    [SerializeField] private GameObject EggImage;
+    [SerializeField] private GameObject DragonImage;
     [TextArea(5, 5)]
     //[SerializeField] private string msgText;  // 使わなくなった
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgSpeedEnter = 0.08f;  // 改行時待機時間
+    private float summonDragonSpeed = 0.07f;  // ドラゴンを表示するまでの待機時間
+    private float summonDragonFirstSpeed = 0.8f;  // ドラゴンを表示するまでの待機時間
+    private int eggAnimNum = 4;  // 入れ替える回数
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
@@ -31,9 +36,11 @@ public class DispResult : MonoBehaviour
         //DialogText.text = dialogText;
         GoHomeButton.SetActive(false);  // ボタンを隠す
         GoStageButton.SetActive(false);
+        EggImage.SetActive(false);
+        DragonImage.SetActive(false);
         //StartCoroutine(TypeDisplay());
 
-        
+
     }
     void Update()
     {
@@ -69,10 +76,12 @@ public class DispResult : MonoBehaviour
         //ResultText.text = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|" + "(dragon.png)";
         //dialogText = "";  // dialogText変数に文を代入
         ResultText.text = "";
-        dialogText = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|" + "(dragon.png)";  // dialogText変数に文を代入
+        dialogText = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|";  //  + "(dragon.png)" dialogText変数に文を代入
 
         GoHomeButton.SetActive(false);  // ボタンを隠す
         GoStageButton.SetActive(false);
+        EggImage.SetActive(false);
+        DragonImage.SetActive(false);
 
         //StartCoroutine(ScaleChange());
         StartCoroutine(TypeDisplay());  // メッセージ表示を開始
@@ -101,6 +110,8 @@ public class DispResult : MonoBehaviour
     {
         GoHomeButton.SetActive(false);  // ボタンを隠す
         GoStageButton.SetActive(false);
+        EggImage.SetActive(false);
+        DragonImage.SetActive(false);
 
         foreach (char item in dialogText)
         {
@@ -123,7 +134,33 @@ public class DispResult : MonoBehaviour
 
             yield return new WaitForSeconds(msgSpeed);  // メッセージをmsgSpeed毎に表示？
         }
+        
+
+        StartCoroutine(EggAnim());  // 卵表示を開始
+    }
+
+    IEnumerator EggAnim()  // 卵からドラゴンへ変える
+    {
+        EggImage.SetActive(true);
+        yield return new WaitForSeconds(summonDragonFirstSpeed);
+
+        for (int i = 0; i < eggAnimNum; i++)
+        {
+            DragonImage.SetActive(false);
+            EggImage.SetActive(true);  // 卵を表示
+
+            yield return new WaitForSeconds(summonDragonSpeed);
+
+            EggImage.SetActive(false);  // 卵を隠す
+            DragonImage.SetActive(true);  // ドラゴンを表示
+
+            yield return new WaitForSeconds(summonDragonSpeed);
+        }
+
+        
         GoHomeButton.SetActive(true);  // ボタンを表示
         GoStageButton.SetActive(true);
+
+        yield return 0;
     }
 }
