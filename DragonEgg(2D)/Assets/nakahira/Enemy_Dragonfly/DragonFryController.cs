@@ -47,6 +47,7 @@ public class DragonFryController : Enemy
         base.Shoot();
         // いつものようにプレイヤーの位置に球を
         Vector2 playerVec = UnitVector(PlayerController.player);
+
         // 生成して
         GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bulletInstance.GetComponent<DragonFryBulletController>().SetAngle(playerVec);

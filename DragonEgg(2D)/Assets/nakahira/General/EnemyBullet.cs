@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    protected Camera cameraComponent;
+    protected static Camera cameraComponent;
     // インスタンス側で代入してもらう
     protected Vector2 angle;
     protected float speed;

@@ -12,10 +12,4 @@ public class DragonFryBulletController : EnemyBullet
         attack = BULLETATTACK;
         speed = SPEED;
     }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        
-    }
 }
