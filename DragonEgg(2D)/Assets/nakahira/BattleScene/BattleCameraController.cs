@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BattleCameraController : MonoBehaviour
 {
-    public const int BOSSPOINT = 15;
+    // ボスのｙ座標でーす
+    public const int BOSSPOINT = 30;
 
     public static Vector2 cameraSpeed = new Vector2(0, 0.5f);// カメラの移動スピード
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class BattleCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(cameraSpeed.x * Time.deltaTime, cameraSpeed.y * Time.deltaTime, 0f);
+        transform.Translate(cameraSpeed * Time.deltaTime);
         if (transform.position.y > BOSSPOINT) // ボス戦で止まる
         {
             cameraSpeed = Vector2.zero;
