@@ -43,7 +43,7 @@ public class BeldumController : Enemy
             // ホーミング機能つける
             // プレイヤーとの相対位置を確認して(自作関数)
             Vector2 relativeVec = UnitVector(PlayerController.player);
-            Debug.Log(relativeVec);
+            //Debug.Log(relativeVec);
             // 自分がどこ向いてるかもベクトルにして
             myAngleVector = GeneralAngleToVector2(transform.localEulerAngles.z - 90f);
             // 自分の向きとの角度を度数で導出
@@ -94,7 +94,7 @@ public class BeldumController : Enemy
     {
         // 当たり判定を消す
         GetComponent<CapsuleCollider2D>().enabled = false;
-        canRotate = false;
+        lifeSpan = 0;
         base.OnDeath();
     }
 }

@@ -7,7 +7,7 @@ public class DragonFryController : Enemy
     private const int DRAGONFRYATTACK = 1;
     private Rigidbody2D myRigid;
     // よける際の速さ
-    private float DodgeForce;
+    private float DodgeForce = 200;
     protected override void Start()
     {
         base.Start();
@@ -23,14 +23,15 @@ public class DragonFryController : Enemy
     public void Dodge()
     {
         // 左右のどちらによけるか。0が左、1が右
-        int LeftOrRight = Random.Range(0, 1);
-        if (LeftOrRight == 0)
+        int LeftOrRight = 1;
+        // ワールド座標より右にいたら
+        if (transform.position.x > 0)
         {
-            // 0の場合ちょっと-1に矯正させてもらいますね
+            // -1に矯正させてもらいますね
             LeftOrRight = -1;
         }
-        // 上下の角度
-        float direction = Random.Range(-30.0f, 30.0f);
+        // 上下の角度(ラジアン化)
+        float direction = Random.Range(-10f, 10f) * Mathf.Deg2Rad;
         // 移動するベクトルを作成
         Vector2 dodgeDir = new Vector2(Mathf.Cos(direction) * DodgeForce * LeftOrRight, Mathf.Sin(direction) * DodgeForce);
         // 実行
