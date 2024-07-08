@@ -42,6 +42,6 @@ public class LevelUpDirector : MonoBehaviour
         //{
         //    SceneManager.LoadScene("HomeScene");
         //}
-       
+
     }
 }

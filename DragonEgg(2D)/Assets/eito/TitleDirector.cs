@@ -16,51 +16,44 @@ public class TitleDirector : MonoBehaviour
         }
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         //A
-        if (Input.GetKeyDown("joystick button 0"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押され1");
-        }
-        //B
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された2");
-        }
-        //X
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された3");
-        }
-        //Y
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された4");
-        }
-        //LB
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された5");
-        }
-        //RB
-        if (Input.GetKeyDown("joystick button 5"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された6");
-        }
-        //BACK
-        if (Input.GetKeyDown("joystick button 6"))
-        {
-            //SceneManager.LoadScene("SaveScene");
-            Debug.Log("ボタンが押された7");
-        }
+        //if (Input.GetKeyDown("joystick button 0"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////B
+        //if (Input.GetKeyDown("joystick button 1"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////X
+        //if (Input.GetKeyDown("joystick button 2"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////Y
+        //if (Input.GetKeyDown("joystick button 3"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////LB
+        //if (Input.GetKeyDown("joystick button 4"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////RB
+        //if (Input.GetKeyDown("joystick button 5"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
+        ////BACK
+        //if (Input.GetKeyDown("joystick button 6"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
+        //}
 
         ////左スティック
         //if (Input.GetAxisRaw("Vertical") < 0)
