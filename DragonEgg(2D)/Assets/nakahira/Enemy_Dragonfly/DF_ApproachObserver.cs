@@ -11,9 +11,9 @@ public class DF_ApproachObserver : MonoBehaviour
     // 親のオブジェクト
     private GameObject dragonFry;
     // 一度回避したら何秒のクールタイムに入るか
-    private const float coolTime = 2;
+    private const float coolTime = 1f;
     // 記録用タイマー
-    private float timer = 0;
+    private float timer = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,7 @@ public class DF_ApproachObserver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("呼ばれてます");
         // クールタイム中なら無効
         if (timer < coolTime) return;
 
@@ -38,7 +39,9 @@ public class DF_ApproachObserver : MonoBehaviour
         if (g.CompareTag("Player") || g.CompareTag("PlayerBullet"))
         {
             // よけろ！！
+            Debug.Log("よけろ！");
             dragonFry.GetComponent<DragonFryController>().Dodge();
+            timer = 0;
         }
     }
 }
