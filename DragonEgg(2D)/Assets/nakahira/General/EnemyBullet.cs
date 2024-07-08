@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
     protected static Camera cameraComponent;
     // インスタンス側で代入してもらう
     protected Vector2 angle;
-    protected float speed;
+    protected Vector2 speed;
 
     public int attack { get; protected set; }
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class EnemyBullet : MonoBehaviour
     protected virtual void Update()
     {
         //　カメラの移動速度含めて移動
-        transform.Translate((angle * speed + BattleCameraController.cameraSpeed) * Time.deltaTime);
+        transform.Translate((speed + BattleCameraController.cameraSpeed) * Time.deltaTime);
 
         // 画面外に出たら消す
         if (CheckViewPosOver())

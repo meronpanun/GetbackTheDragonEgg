@@ -10,6 +10,6 @@ public class DragonFryBulletController : EnemyBullet
     protected override void Start()
     {
         attack = BULLETATTACK;
-        speed = SPEED;
+        speed.y = SPEED;
     }
 }

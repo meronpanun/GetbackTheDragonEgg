@@ -11,7 +11,7 @@ public class ORBBulletController : EnemyBullet
     {
         base.Start();
         attack = ORBBULLETATTACK;
-        speed = SPEED;
+        speed.y = SPEED;
     }
 
     // Update is called once per frame

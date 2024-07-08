@@ -47,9 +47,10 @@ public class DragonFryController : Enemy
         base.Shoot();
         // いつものようにプレイヤーの位置に球を
         Vector2 playerVec = UnitVector(PlayerController.player);
+        // 背後にいたら打てない
+        if (playerVec.y > 0) return;
 
-        // 生成して
-        GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        bulletInstance.GetComponent<DragonFryBulletController>().SetAngle(playerVec);
+        // 生成
+        Instantiate(bulletPrefab, transform.position, Quaternion.FromToRotation(Vector3.up, playerVec));
     }
 }

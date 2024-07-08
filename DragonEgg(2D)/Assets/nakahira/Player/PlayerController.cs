@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            Damage(collision.GetComponent<ORBBulletController>().attack);
+            Damage(collision.GetComponent<EnemyBullet>().attack);
         }
     }
 
