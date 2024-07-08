@@ -20,9 +20,9 @@ public class DispResult : MonoBehaviour
     //[SerializeField] private string msgText;  // 使わなくなった
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgSpeedEnter = 0.08f;  // 改行時待機時間
-    private float summonDragonSpeed = 0.07f;  // ドラゴンを表示するまでの待機時間
-    private float summonDragonFirstSpeed = 0.8f;  // ドラゴンを表示するまでの待機時間
-    private int eggAnimNum = 4;  // 入れ替える回数
+    private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
+    private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
+    private int eggAnimNum = 8;  // 入れ替える回数
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
@@ -40,33 +40,33 @@ public class DispResult : MonoBehaviour
         DragonImage.SetActive(false);
         //StartCoroutine(TypeDisplay());
 
-
+        DispResultFunc();
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && test == 0) // スペースキーが押されたら
+        if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
         {
-            DispResultFunc();
-            test++;
-            //StopAllCoroutines();
-            ////DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
-            //ResultText.text = "";
-            //foreach (char item in dialogText)
-            //{
-            //    if (item == '|')
-            //    {
-            //        // <br>をDialogText.textに代入する
-            //        ResultText.text += "<br>";
-            //    }
-            //    else
-            //    {
-            //        ResultText.text += item;  // 
-            //    }
-            //}
+            StopAllCoroutines();
+            //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
+            ResultText.text = "";
+            foreach (char item in dialogText)
+            {
+                if (item == '|')
+                {
+                    // <br>をDialogText.textに代入する
+                    ResultText.text += "<br>";
+                }
+                else
+                {
+                    ResultText.text += item;  // 
+                }
+            }
 
-            ////DialogText.text = msgText;  // 使わなくなった
-            //GoHomeButton.SetActive(true);  // ボタンを表示
-            //GoStageButton.SetActive(true);
+            //DialogText.text = msgText;  // 使わなくなった
+            GoHomeButton.SetActive(true);  // ボタンを表示
+            GoStageButton.SetActive(true);
+
+            DragonImage.SetActive(true);  // ドラゴンを表示
         }
     }
 
@@ -155,6 +155,8 @@ public class DispResult : MonoBehaviour
             DragonImage.SetActive(true);  // ドラゴンを表示
 
             yield return new WaitForSeconds(summonDragonSpeed);
+
+            summonDragonSpeed *= 0.85f;
         }
 
         
