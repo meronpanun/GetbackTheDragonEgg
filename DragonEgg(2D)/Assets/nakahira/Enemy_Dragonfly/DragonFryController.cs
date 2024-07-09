@@ -32,6 +32,11 @@ public class DragonFryController : Enemy
         // 退場するためにAddForceしている
     }
 
+    //private void Exit()
+    //{
+    //    myRigid.AddForce()
+    //}
+
     public void Dodge()
     {
         // 左右のどちらによけるか。0が左、1が右
