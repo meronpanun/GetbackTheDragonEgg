@@ -13,8 +13,10 @@ public class ChildDragonController : MonoBehaviour
     [SerializeField]
     private static Sprite thunder;
 
-    //private void Start()
-    //{
-    //    DragonData.
-    //}
+    private TestDragonStatus myStatus;
+
+    private void Start()
+    {
+        myStatus = BattleTeam.sChildDragonDataLeft;
+    }
 }
