@@ -24,9 +24,9 @@ public class test1 : MonoBehaviour
     {
         SceneManager.LoadScene("LevelUpScene");
     }
-    public void SceneChange3()
-    {
-        SceneManager.LoadScene("SaveScene");
-    }
+    //public void SceneChange3()
+    //{
+    //    SceneManager.LoadScene("SaveScene");
+    //}
 }
 
