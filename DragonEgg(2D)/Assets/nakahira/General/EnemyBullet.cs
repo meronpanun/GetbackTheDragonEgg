@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
     protected static Camera cameraComponent;
     // インスタンス側で代入してもらう
     protected Vector2 angle;
-    protected Vector2 speed;
+    protected float speed;
 
     public int attack { get; protected set; }
     // Start is called before the first frame update
@@ -19,8 +19,9 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //　カメラの移動速度含めて移動
-        transform.Translate((speed + BattleCameraController.cameraSpeed) * Time.deltaTime);
+        // 自身の回転している向きによって移動方向も変わる仕組みはやめます。
+        //　カメラの移動速度含めて移動。また、正の数のスピードで画面下に移動させる。(マイナスにする)
+        transform.Translate((angle * speed + BattleCameraController.cameraSpeed) * Time.deltaTime, 0);
 
         // 画面外に出たら消す
         if (CheckViewPosOver())
@@ -38,8 +39,9 @@ public class EnemyBullet : MonoBehaviour
                 viewPos.x > 1); // これ何とか短くならないかな
     }
 
+    // angle代入するだけ
     public void SetAngle(Vector2 _angle)
-    { 
-        angle = _angle; 
+    {
+        angle = _angle;
     }
 }

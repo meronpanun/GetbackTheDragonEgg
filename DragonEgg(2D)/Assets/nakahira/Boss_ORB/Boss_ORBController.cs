@@ -11,6 +11,7 @@ public class Boss_ORBController : ORBController // Œp³
         base.Start();
         hitPoint = 100;
         shootSpan = 0.3f;
+        attack = 5;
     }
 
     // “®‚­ŠÖ˜A‚Ìˆ—‚ÍORB‚Æ“¯‚¶

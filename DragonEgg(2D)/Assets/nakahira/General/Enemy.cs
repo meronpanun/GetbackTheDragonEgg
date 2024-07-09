@@ -78,6 +78,10 @@ public class Enemy : MonoBehaviour
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
             return;
         }
+
+        // ボスならこの先は実行しない
+        if (gameObject.CompareTag("Boss")) return;
+
         // もしプレイヤーに衝突したら
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -101,6 +105,10 @@ public class Enemy : MonoBehaviour
     {
         // カメラの移動にあわせて動いておく
         // これで派生クラスはカメラの移動を意識せずに実装できる
+
+        // ちょっと条件分岐をかませて
+        // tagがbossだったら移動しない
+        if (gameObject.CompareTag("Boss")) return;
         transform.Translate(BattleCameraController.cameraSpeed * Time.deltaTime, Space.World);
     }
     protected virtual void Shoot() // 弾撃つ関連の処理はここに書きましょう
@@ -111,5 +119,16 @@ public class Enemy : MonoBehaviour
     protected virtual void OnDeath() // 自作のOnメソッドです。Hpが0になったときに実行されます。
     {
         animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
+    }
+
+    // その名の通り引数の向きに球を打つ処理のセットです。
+    // 使用機会が多かったので関数化
+    // angleは単位ベクトルにしないと速さが変わっちゃうよ
+    protected void InstantiateBulletToAngle(GameObject bullet, Vector2 angle)
+    {
+        // 生成。向きはangleの向き。
+        GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.FromToRotation(Vector3.down, angle));
+        // 移動方向は別で設定する。
+        bulletInstance.GetComponent<EnemyBullet>().SetAngle(angle);
     }
 }

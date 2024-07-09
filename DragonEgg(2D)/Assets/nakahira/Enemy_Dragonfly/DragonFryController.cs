@@ -11,6 +11,9 @@ public class DragonFryController : Enemy
     private float DodgeForce = 250;
     // エディタで
     public GameObject bulletPrefab;
+    // 何秒で退場するか
+    private const float LIFESPAN = 5f;
+    private float timer = 0;
     protected override void Start()
     {
         base.Start();
@@ -22,6 +25,11 @@ public class DragonFryController : Enemy
     protected override void Update()
     {
         base.Update();
+        // タイマー加算
+        timer += Time.deltaTime;
+        // 寿命を超えていなければこの先の処理は実行されない
+        if (timer > LIFESPAN) return;
+        // 退場するためにAddForceしている
     }
 
     public void Dodge()
@@ -45,12 +53,17 @@ public class DragonFryController : Enemy
     protected override void Shoot()
     {
         base.Shoot();
-        // いつものようにプレイヤーの位置に球を
+        // いつものようにプレイヤーの位置を調べ
         Vector2 playerVec = UnitVector(PlayerController.player);
         // 背後にいたら打てない
         if (playerVec.y > 0) return;
+        // 発射
+        InstantiateBulletToAngle(bulletPrefab, playerVec);
+    }
 
-        // 生成
-        Instantiate(bulletPrefab, transform.position, Quaternion.FromToRotation(Vector3.up, playerVec));
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        gameObject.GetComponent<CircleCollider2D>().enabled = false; // 各オブジェクトのコライダーを各自で切ること。
     }
 }

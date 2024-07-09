@@ -146,11 +146,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) // “G‚É“–‚½‚Á‚½‚ç
+        GameObject temp = collision.gameObject;
+        if (temp.CompareTag("Enemy") || temp.CompareTag("Boss")) // “G‚É“–‚½‚Á‚½‚ç
         {
             Damage(collision.GetComponent<Enemy>().attack);
         }
-        else if (collision.gameObject.CompareTag("EnemyBullet"))
+        else if (temp.CompareTag("EnemyBullet"))
         {
             Damage(collision.GetComponent<EnemyBullet>().attack);
         }

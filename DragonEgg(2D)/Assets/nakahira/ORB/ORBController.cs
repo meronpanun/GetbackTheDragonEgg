@@ -14,7 +14,7 @@ public class ORBController : Enemy
     protected float angle; // 角度の計算に使うタイマー
 
      //プレハブなのでエディタからよろしく
-    public GameObject bullet;
+    public GameObject bulletPrefab;
     
     // Start is called before the first frame update
     protected override void Start()
@@ -37,15 +37,21 @@ public class ORBController : Enemy
         base.Move();
         angle += Time.deltaTime;
         speed.x = (float)Math.Cos(angle * cycleSpeed) * moveSpeedX;
-        transform.Translate(speed.x * Time.deltaTime, speed.y * Time.deltaTime, 0f);
+
+        transform.Translate(speed.x * Time.deltaTime, 0f, 0f);
+
+        // なまじ継承してるからこんな条件分岐がいる…
+        if (gameObject.CompareTag("Boss")) return;
+
+        transform.Translate(0f, speed.y * Time.deltaTime, 0f);
     }
 
     protected override void Shoot()
     {
         base.Shoot();
         // プレイヤーに向けて球を撃つ処理
-        GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-        bulletInstance.GetComponent<ORBBulletController>().SetAngle(UnitVector(PlayerController.player)); // Vector2にVector3ぶち込んで大丈夫かなあ
+        // 発射
+        InstantiateBulletToAngle(bulletPrefab, UnitVector(PlayerController.player));
     }
 
     protected override void OnDeath()

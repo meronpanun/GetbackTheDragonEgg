@@ -8,6 +8,13 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject prefab;
     Camera mainCamera;
 
+    // エディタでいろいろできるようにします。
+
+    [SerializeField]
+    private float offsetX = 0.1f;
+    [SerializeField]
+    private float offsetY = 0.1f;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -28,13 +35,12 @@ public class EnemyGenerator : MonoBehaviour
 
     private bool CheckInCamera()
     {
-        float offset = 0.1f;
         // 現在位置を割り出してカメラに入ったかを返す
         Vector2 viewPort = mainCamera.WorldToViewportPoint(transform.position);
-        bool result = ((viewPort.x + offset) > 0 &&
-                       (viewPort.x - offset) < 1 &&
-                       (viewPort.y + offset) > 0 &&
-                       (viewPort.y - offset) < 1);
+        bool result = (viewPort.x + offsetX) > 0 &&
+                      (viewPort.x - offsetX) < 1 &&
+                      (viewPort.y + offsetY) > 0 &&
+                      (viewPort.y - offsetY) < 1;
         return result;
     }
 }
