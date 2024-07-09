@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;  // scene切り替えを行うため
 
 public class FadeManager : MonoBehaviour
 {
-    float speed = 0.001f;        //フェードするスピード、多いと早くフェードする
+    float speed = 0.5f;        //フェードするスピード、多いと早くフェードする
     float red, green, blue, alfa;
     string loadScene = "TestErrorScene";  // ロードするシーンの名前
 
@@ -122,7 +122,8 @@ public class FadeManager : MonoBehaviour
     void FadeIn()    // フェードイン処理
     {
         // 不透明度をspeedずつ減らす
-        alfa -= speed;
+        //alfa -= speed;
+        alfa -= speed * Time.deltaTime;
         Alpha();
         if (alfa <= 0)
         {
@@ -135,7 +136,8 @@ public class FadeManager : MonoBehaviour
     {
         fadeImage.enabled = true;
         // 不透明度をspeedずつ増やす
-        alfa += speed;
+        //alfa += speed;
+        alfa += speed * Time.deltaTime;
         Alpha();
 
         // 完全に不透明になったらシーン移行
