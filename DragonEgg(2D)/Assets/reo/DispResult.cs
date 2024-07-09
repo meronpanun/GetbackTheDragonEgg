@@ -23,6 +23,7 @@ public class DispResult : MonoBehaviour
     private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
     private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
     private int eggAnimNum = 8;  // 入れ替える回数
+    private int tempExp = 1234567;  // exp(仮)
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
@@ -76,7 +77,7 @@ public class DispResult : MonoBehaviour
         //ResultText.text = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|" + "(dragon.png)";
         //dialogText = "";  // dialogText変数に文を代入
         ResultText.text = "";
-        dialogText = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|";  //  + "(dragon.png)" dialogText変数に文を代入
+        dialogText = "Get EXP ... " + tempExp + "||" + "Rescue Dragon|";  //  + "(dragon.png)" dialogText変数に文を代入
 
         GoHomeButton.SetActive(false);  // ボタンを隠す
         GoStageButton.SetActive(false);
