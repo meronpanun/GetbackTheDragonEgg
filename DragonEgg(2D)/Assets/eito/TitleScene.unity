@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 425654921}
-  - component: {fileID: 425654920}
+  - component: {fileID: 425654922}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -297,18 +297,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &425654920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425654919}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e4bb60500db9f42ae595740326f347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &425654921
 Transform:
   m_ObjectHideFlags: 0
@@ -324,6 +312,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 438652981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &425654922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425654919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e4bb60500db9f42ae595740326f347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &438652977
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 425654920}
+      - m_Target: {fileID: 425654922}
         m_TargetAssemblyTypeName: test1, Assembly-CSharp
         m_MethodName: SceneChange1
         m_Mode: 1
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 425654920}
+      - m_Target: {fileID: 425654922}
         m_TargetAssemblyTypeName: test1, Assembly-CSharp
         m_MethodName: SceneChange2
         m_Mode: 1
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 425654920}
+      - m_Target: {fileID: 425654922}
         m_TargetAssemblyTypeName: test1, Assembly-CSharp
         m_MethodName: SceneChange3
         m_Mode: 1
