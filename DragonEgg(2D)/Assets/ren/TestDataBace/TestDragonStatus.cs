@@ -91,16 +91,15 @@ public class TestDragonStatus
             value.Append(INDEXWORD);
             value.Append(speed.ToString());
             value.Append(INDEXWORD);
-            value.Append(name.ToString()); // name‚Ístring‚Å‚·‚ª
-            value.Append(INDEXWORD);
             value.Append(level.ToString());
             value.Append(INDEXWORD);
             value.Append(nowExp.ToString());
+            value.Append(INDEXWORD);
+            value.Append(name); // name‚Ístring‚Å‚·‚ª
             return value.ToString(); // ˆµ‚¤Œ^‚ğ‚»‚à‚»‚àStringBuilder‚É‚µ‚½‚Ù‚¤‚ª‚¢‚¢‚©‚È‚ 
                                      // ‚Æ‚àv‚Á‚½‚¯‚ÇPlayerPlefs‚ªstring‚µ‚©ó‚¯•t‚¯‚È‚¢‚í
         }
     }
-
 
     // ƒƒ“ƒoŠÖ”
 

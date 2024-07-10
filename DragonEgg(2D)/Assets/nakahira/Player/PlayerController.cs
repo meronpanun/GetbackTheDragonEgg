@@ -43,8 +43,9 @@ public class PlayerController : MonoBehaviour
     {
         // Staticクラスから自分のデータを取得
         // これはあくまでもテスト
-        BattleTeam.sParentDragonData = new TestDragonStatus("0,10,1,3,4,5,6");
+        BattleTeam.sParentDragonData = new TestDragonStatus("0,10,1,3,4,5,0");
         playerStatus = BattleTeam.sParentDragonData;
+        Debug.Log($"Datastring:{playerStatus.dataString}");
         hitPoint = playerStatus.hp;
         speed = playerStatus.speed;
         attack = playerStatus.attack;
