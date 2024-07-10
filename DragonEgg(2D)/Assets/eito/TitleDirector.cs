@@ -19,37 +19,37 @@ public class TitleDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //A
+        //Aボタン
         //if (Input.GetKeyDown("joystick button 0"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////B
+        //Bボタン
         //if (Input.GetKeyDown("joystick button 1"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////X
+        //Xボタン
         //if (Input.GetKeyDown("joystick button 2"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////Y
+        //Yボタン
         //if (Input.GetKeyDown("joystick button 3"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////LB
+        //LBボタン
         //if (Input.GetKeyDown("joystick button 4"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////RB
+        //RBボタン
         //if (Input.GetKeyDown("joystick button 5"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-        ////BACK
+        //BACKボタン
         //if (Input.GetKeyDown("joystick button 6"))
         //{
         //    SceneManager.LoadScene("SaveScene");
