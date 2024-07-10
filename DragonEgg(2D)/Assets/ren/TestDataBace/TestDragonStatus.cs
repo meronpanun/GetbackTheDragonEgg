@@ -11,12 +11,17 @@ public class TestDragonStatus
     // 区切りに使用される文字
     private const char INDEXWORD = ',';
 
+    public TestDragonStatus()
+    {
+
+    }
     public TestDragonStatus(string data)
     {
         //データ調べる
         if(data == "")
         {
             raceNum = (int)races.none;
+            Debug.Log($"NULL{raceNum}");
         }
         else
         {
