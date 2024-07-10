@@ -17,7 +17,7 @@ public class DragonDataManager
     public TestDragonStatus[] dragonData = new TestDragonStatus[DATANUMBER];
 
     // メンバ関数
-    public void LoadAllDragonData() // PlayerPlefsから全データを取得
+    public DragonDataManager() // PlayerPlefsから全データを取得
     {
         for (int i = 0; i < DATANUMBER; i++)
         {
@@ -26,8 +26,11 @@ public class DragonDataManager
 
             // TestDragonStatus型に格納
             TestDragonStatus data = new TestDragonStatus(PlayerPrefs.GetString(key));
+
+            //Debug.Log($"keyは{key},dataは{PlayerPrefs.GetString(key)}");
             // 配列に保存
             dragonData[i] = data;
+            Debug.Log(dragonData[i]);
         }
     }
 
@@ -62,9 +65,9 @@ public class DragonDataManager
     {
         for (int i = 0; i < DATANUMBER; i++)
         {
-            TestDragonStatus tempData = dragonData[i];
+            TestDragonStatus tempData = GetDragonData(i);
             //データ調べる
-            if (tempData.raceNum != 6)//Null エラー
+            if (tempData.raceNum != 5)//Null エラー
             {
                 continue;
             }

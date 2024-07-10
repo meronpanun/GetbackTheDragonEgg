@@ -26,8 +26,7 @@ public class TestGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dragonDataClass = new DragonDataManager();
-        dragonDataClass.LoadAllDragonData();
+        dragonDataClass = DragonDataManagerGenerater.dragonData;
         //PrepareDragonButtun();
     }
 

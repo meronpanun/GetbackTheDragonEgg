@@ -21,6 +21,7 @@ public class TestDragonStatus
         if(data == "")
         {
             raceNum = (int)races.none;
+            Debug.Log($"NULL{raceNum}");
         }
         else
         {
