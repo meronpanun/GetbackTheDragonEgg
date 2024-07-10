@@ -30,7 +30,7 @@ public class DispResult : MonoBehaviour
 
     [SerializeField] private GameObject Panel;
 
-    int test = 0;
+    //int test = 0;
 
     void Start()
     {
