@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;  // scene切り替えを行うため
+using UnityEngine.EventSystems;
 
 // フェードイン、フェードアウト管理スクリプト
 
@@ -60,6 +61,13 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
     {
+        // コントローラー対応
+        if (0 < Input.GetAxisRaw("Vertical"))
+        {
+            // 選択中のオブジェクト取得
+            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+        }
+
         if (number != 0)
         {
             LoadingScene.stageNum = number;
