@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 1265469446}
   - component: {fileID: 1265469445}
   m_Layer: 0
-  m_Name: "\u30BB\u30FC\u30D6\u30B9\u30ED\u30C3\u30C8\u753B\u9762"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
