@@ -486,8 +486,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1144,10 +1144,10 @@ RectTransform:
   - {fileID: 404453135}
   m_Father: {fileID: 1336317555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 78, y: -58}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -535, y: 255}
+  m_SizeDelta: {x: -1130, y: -570}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726474191
 MonoBehaviour:
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 2131729160}
   - component: {fileID: 2131729159}
   m_Layer: 0
-  m_Name: "\u30AA\u30D7\u30B7\u30E7\u30F3\u753B\u9762"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

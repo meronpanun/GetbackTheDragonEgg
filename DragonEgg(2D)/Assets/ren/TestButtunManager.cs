@@ -19,7 +19,7 @@ public class TestButtunManager : MonoBehaviour
 
     public void EggButtun()
     {
-        DragonDataManagerGenerater.dragonData.EggCreate();
+        DragonDataStore.dragonData.EggCreate();
         generator.PrepareDragonButtun();
     }
 }

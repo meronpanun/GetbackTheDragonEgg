@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 public class FadeManager : MonoBehaviour
 {
-    float speed = 0.5f;        //フェードするスピード、多いと早くフェードする
+    float speed = 0.8f;        //フェードするスピード、多いと早くフェードする
     float red, green, blue, alfa;
     string loadScene = "TestErrorScene";  // ロードするシーンの名前
 
