@@ -7,6 +7,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Threading;  // sleep—p
+using UnityEngine.EventSystems;
 
 
 public class DialogBuild : MonoBehaviour
