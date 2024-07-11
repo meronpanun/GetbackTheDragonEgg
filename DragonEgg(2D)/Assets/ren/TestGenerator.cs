@@ -12,8 +12,6 @@ public class TestGenerator : MonoBehaviour
     private DragonDataManager dragonDataClass;
 
     public GameObject ChildDoragonIconPrefab;
-    [SerializeField] GameObject childDragonIcon;
-    [SerializeField] GameObject canvas;
     [SerializeField] GameObject parent;
 
     private const int SIFTRIGHT = 200;//ずらす距離
@@ -26,8 +24,10 @@ public class TestGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dragonDataClass = DragonDataStore.dragonData;
-        //PrepareDragonButtun();
+        // DragonDataStore.のチェーンを短い名前にしてるだけ
+        dragonDataClass = DragonDataStore.dragonDataManager;
+        Debug.Log($"dragondataclass{dragonDataClass.dragonData}");
+        PrepareDragonButtun();
     }
 
     // Update is called once per frame
@@ -37,6 +37,7 @@ public class TestGenerator : MonoBehaviour
         {
             for (int j = 0; j < ROW; j++) 
             {
+                //Debug.Log();
                 GameObject childDragonIcon = Instantiate(ChildDoragonIconPrefab, parent.transform);//インスタンス化
                 childDragonIcon.GetComponent<DragonIconData>().dragonStatus = dragonDataClass.dragonData[count];
                 iconRectTransform = childDragonIcon.GetComponent<RectTransform>();

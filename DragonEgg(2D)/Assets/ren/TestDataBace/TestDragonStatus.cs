@@ -13,7 +13,7 @@ public class TestDragonStatus
 
     public TestDragonStatus()
     {
-
+        // 引数なしは何もしない
     }
     public TestDragonStatus(string data)
     {
@@ -71,14 +71,14 @@ public class TestDragonStatus
     // 移動スピード
     public float speed;
 
-    // 名前。できたら
-    public string name;
-
     // 現在レベル
     public int level;
 
     // 現在の経験値
     public int nowExp;
+
+    // 名前。できたら
+    public string name;
 
     // 現在のデータをstring一行で返す処理をプロパティで実装
     public string dataString
@@ -103,6 +103,22 @@ public class TestDragonStatus
             value.Append(name); // nameはstringですが
             return value.ToString(); // 扱う型をそもそもStringBuilderにしたほうがいいかなあ
                                      // とも思ったけどPlayerPlefsがstringしか受け付けないわ
+        }
+    }
+
+    // レベルから現在必要経験値を割り出すプロパティ
+    public int nextExp
+    {
+        get
+        {
+            // リテラル。あとで何とかしよう
+            float result = 10f;
+            // level分繰り返す
+            for (int i = 0; i < level; i++)
+            {
+                result *= 1.07f;
+            }
+            return (int)result;
         }
     }
 

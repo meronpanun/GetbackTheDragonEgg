@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TestButtunManager : MonoBehaviour
 {
-    private TestGenerator generator;
     // Start is called before the first frame update
     void Start()
     {
-        generator = new TestGenerator();
+
     }
 
     // Update is called once per frame
@@ -19,7 +18,6 @@ public class TestButtunManager : MonoBehaviour
 
     public void EggButtun()
     {
-        DragonDataStore.dragonData.EggCreate();
-        generator.PrepareDragonButtun();
+        DragonDataStore.dragonDataManager.EggCreate();
     }
 }

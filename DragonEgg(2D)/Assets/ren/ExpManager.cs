@@ -10,9 +10,11 @@ public class ExpManager : MonoBehaviour
 {
     //ドラゴンのデータを取得するための変数(今後変更する可能性大)
     GameObject childDragon;
-    public ChildDragonData childDragonData;
+    public TestDragonStatus childDragonData;
     //プレイヤーが使うEXP
     int useExp;
+    // 経験値必要量の基礎地
+    const int EXPBASE = 10;
     //強化画面で変化するUI(値とか)
     public Slider slider;
     public GameObject textExp;
@@ -38,19 +40,19 @@ public class ExpManager : MonoBehaviour
     void Update()
     {
         //UIの数字を変更　(予定)関数で作って変更するときだけ呼び出される形にしたい
-        textExp.GetComponent<TextMeshProUGUI>().text = "EXP  " + childDragonData.exp.ToString() + '/' + childDragonData.nextNeedExp.ToString();//テキスト
+        textExp.GetComponent<TextMeshProUGUI>().text = "EXP  " + childDragonData.nowExp.ToString() + '/' + childDragonData.nextExp.ToString();//テキスト
         addExpPoint.GetComponent<TextMeshProUGUI>().text = "ADD EXP? " + '+' + useExp.ToString();
         hpPointText.GetComponent<TextMeshProUGUI>().text = childDragonData.hp.ToString();
         atkPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.attack.ToString();
-        levelPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.Level.ToString();
+        levelPointText .GetComponent<TextMeshProUGUI>().text = childDragonData.level.ToString();
         
         //使うEXPの量を決める　(予定)今のままだとレベルを一気に上げたいときに不便なので改良したい
-        if (Input.GetKey(KeyCode.RightArrow) && childDragonData.Level != 100)
+        if (Input.GetKey(KeyCode.RightArrow) && childDragonData.level != 100)
         {
             useExp = useExp + 10;
             Debug.Log(useExp);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && childDragonData.Level != 100)
+        else if (Input.GetKey(KeyCode.LeftArrow) && childDragonData.level != 100)
         {
             useExp = useExp - 10;
             Debug.Log(useExp);
@@ -60,48 +62,47 @@ public class ExpManager : MonoBehaviour
             }
         }
         //使うEXPの量を確定する
-        if (Input.GetKeyDown(KeyCode.Space) && childDragonData.Level != 100)
+        if (Input.GetKeyDown(KeyCode.Space) && childDragonData.level != 100)
         {
             expManager(useExp);
             useExp = 0;
         }
         //slinderのmaxValueとvalueの値を変更してEXPバーの表記を変更
-        slider.maxValue = childDragonData.nextNeedExp;//maxExp;
-        slider.value = childDragonData.exp;
-        if(childDragonData.Level >= 100)
+        slider.maxValue = childDragonData.nextExp;//maxExp;
+        slider.value = childDragonData.nowExp;
+        if(childDragonData.level >= 100)
         {
-            slider.maxValue = childDragonData.nextNeedExp;//maxExp;
-            slider.value = childDragonData.nextNeedExp;
+            slider.maxValue = childDragonData.nextExp;//maxExp;
+            slider.value = childDragonData.nextExp;
         }
     }
     //使うEXPを自分のEXPに加えてレベルが上がる場合はそれに応じた処理をする
     (int, int) expManager(int getExp) //タプル
     {
         //自分のEXPに使うEXPを加える
-        childDragonData.exp += getExp;
+        childDragonData.nowExp += getExp;
         //もしもレベルが上がるなら
-        while(childDragonData.exp > childDragonData.nextNeedExp)
+        while(childDragonData.nowExp > childDragonData.nextExp)
         {
             //次のレベルアップに必要なEXPを超えた時の処理
-            if (childDragonData.nextNeedExp <= childDragonData.exp && childDragonData.Level != 100)
+            if (childDragonData.nextExp <= childDragonData.nowExp && childDragonData.level != 100)
             {
-                childDragonData.exp -= childDragonData.nextNeedExp;
-                childDragonData.nextNeedExp = (int)(childDragonData.nextNeedExp * 1.1f);
-                childDragonData.Level++;
+                childDragonData.nowExp -= childDragonData.nextExp;
+                // for分でlevel乗の計算をする
+                childDragonData.level++;
                 childDragonData.attack = Attack();
                 childDragonData.hp = Hp();
             }
             //レベルが100になったらこれ以上ステータスが上がらないようにする
-            else if (childDragonData.Level >= 100)
+            else if (childDragonData.level >= 100)
             {
-                childDragonData.nextNeedExp = (int)(childDragonData.nextNeedExp * 1.1f);
-                childDragonData.exp = childDragonData.nextNeedExp;
-                childDragonData.Level = 100;
+                childDragonData.nowExp = childDragonData.nextExp;
+                childDragonData.level = 100;
                 childDragonData.attack = Attack();
                 childDragonData.hp = Hp();
             }
         }
-        return (childDragonData.exp, childDragonData.nextNeedExp);
+        return (childDragonData.nowExp, childDragonData.nextExp);
     }
     //レベルが上がった時の攻撃力の上昇値
     int Attack()

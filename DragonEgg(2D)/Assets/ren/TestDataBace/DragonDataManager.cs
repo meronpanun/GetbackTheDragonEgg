@@ -85,14 +85,14 @@ public class DragonDataManager
             // 移動スピード
             temp.speed = 1.0f;
 
-            // 名前。できたら
-            temp.name = "aaa";
-
             // 現在レベル
             temp.level = 1;
 
             // 現在の経験値
             temp.nowExp = 100;
+
+            // 名前。できたら
+            temp.name = "aaa";
 
             dragonData[i] = temp;
 
