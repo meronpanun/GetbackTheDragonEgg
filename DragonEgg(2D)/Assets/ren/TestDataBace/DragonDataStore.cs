@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonDataManagerGenerater : MonoBehaviour
+public class DragonDataStore : MonoBehaviour
 {
     public static DragonDataManager dragonData;
     // Start is called before the first frame update
