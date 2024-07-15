@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 
 public class CameraContoller : MonoBehaviour
-{ 
+{
     public static GameObject powerUpCanvas;
     public static GameObject DragonBoxUITeam;//あとで変更
     public static GameObject DragonBoxUIPowerUp;//あとで変更
@@ -38,12 +38,8 @@ public class CameraContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //モンスターボックスでのカメラの移動
-        //MonsterBox();
 
-        //現在の位置を取得
-        Vector3 pos = this.gameObject.transform.position;
-       //Escapeキーを押すとひとつ前の画面に戻る
+        //Escapeキーを押すとひとつ前の画面に戻る
         if (boxFlag && Input.GetKeyDown(KeyCode.Escape))
         {
             CameraMoveSelectMenu();
@@ -106,13 +102,13 @@ public class CameraContoller : MonoBehaviour
         boxFlag = false;
         powerUpFlag = true;
     }
-    
+
     //モンスターBOXでのカメラ制御
     //public void MonsterBox()//カメラがきれいにy=0で止まらない　動作的には問題ないけど気になるから今後修正
     //{
     //    if (Input.GetKey(KeyCode.UpArrow))
     //    {
-            
+
     //        if (transform.position.y <= 0.00f && boxFlag)
     //        {
     //            transform.Translate(0f, 0.1f, 0f);
@@ -120,7 +116,7 @@ public class CameraContoller : MonoBehaviour
     //    }
     //    else if (Input.GetKey(KeyCode.DownArrow))
     //    {
-            
+
     //        //現在の位置からx方向に1移動する
 
     //        if (transform.position.y >= -28.00f && boxFlag)

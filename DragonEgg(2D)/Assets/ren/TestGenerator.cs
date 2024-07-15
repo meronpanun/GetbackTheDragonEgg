@@ -26,7 +26,7 @@ public class TestGenerator : MonoBehaviour
     {
         // DragonDataStore.のチェーンを短い名前にしてるだけ
         dragonDataClass = DragonDataStore.dragonDataManager;
-        Debug.Log($"dragondataclass{dragonDataClass.dragonData}");
+        //Debug.Log($"dragondataclass{dragonDataClass.dragonData}");
         PrepareDragonButtun();
     }
 
