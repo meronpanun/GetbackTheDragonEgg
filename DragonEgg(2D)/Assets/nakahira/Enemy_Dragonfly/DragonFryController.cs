@@ -8,11 +8,14 @@ public class DragonFryController : Enemy
     private const float SHOOTSPAN = 1;
     private Rigidbody2D myRigid;
     // よける際の速さ
-    private float DodgeForce = 250;
+    private float dodgeForce = 250;
+    // 帰るときのスピード
+    private float exitForceX = 50f;
+    private float exitForceY = -1f;
     // エディタで
     public GameObject bulletPrefab;
     // 何秒で退場するか
-    private const float LIFESPAN = 5f;
+    private const float LIFESPAN = 1f;
     private float timer = 0;
     protected override void Start()
     {
@@ -28,29 +31,39 @@ public class DragonFryController : Enemy
         // タイマー加算
         timer += Time.deltaTime;
         // 寿命を超えていなければこの先の処理は実行されない
-        if (timer > LIFESPAN) return;
+        if (timer < LIFESPAN) return;
         // 退場するためにAddForceしている
+        Exit();
     }
 
-    //private void Exit()
-    //{
-    //    myRigid.AddForce()
-    //}
+    private void Exit()
+    {
+        // 左右のどちらによけるか。0が左、1が右
+        int leftOrRight = Random.Range(-1, 1);
+        if (leftOrRight == 0)
+        {
+            leftOrRight = 1;
+        }
+        // 移動
+        myRigid.AddForce(new Vector2(exitForceX * leftOrRight, 0f));
+        // X方向は加速、Y方向は等速
+        transform.Translate(0f, exitForceY * Time.deltaTime, 0f);
+    }
 
     public void Dodge()
     {
         // 左右のどちらによけるか。0が左、1が右
-        int LeftOrRight = 1;
+        int leftOrRight = 1;
         // ワールド座標より右にいたら
         if (transform.position.x > 0)
         {
             // -1に矯正させてもらいますね
-            LeftOrRight = -1;
+            leftOrRight = -1;
         }
         // 上下の角度(ラジアン化)
         float direction = Random.Range(-10f, 10f) * Mathf.Deg2Rad;
         // 移動するベクトルを作成
-        Vector2 dodgeDir = new Vector2(Mathf.Cos(direction) * DodgeForce * LeftOrRight, Mathf.Sin(direction) * DodgeForce);
+        Vector2 dodgeDir = new Vector2(Mathf.Cos(direction) * dodgeForce * leftOrRight, Mathf.Sin(direction) * dodgeForce);
         // 実行
         myRigid.AddForce(dodgeDir);
     }
