@@ -129,6 +129,7 @@ public class FadeManager : MonoBehaviour
 
     void FadeIn()    // フェードイン処理
     {
+        
         // 不透明度をspeedずつ減らす
         //alfa -= speed;
         alfa -= speed * Time.deltaTime;
@@ -138,6 +139,7 @@ public class FadeManager : MonoBehaviour
             In = false;
             fadeImage.enabled = false;
         }
+       
     }
 
     void FadeOut()    // フェードアウト処理

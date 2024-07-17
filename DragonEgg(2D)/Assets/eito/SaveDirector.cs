@@ -14,10 +14,10 @@ public class SaveDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("joystick button 0"))
-        {
-            SceneManager.LoadScene("TitleScene");
-        }
+        //if (Input.GetKeyDown("joystick button 0"))
+        //{
+        //    SceneManager.LoadScene("TitleScene");
+        //}
         //if (Input.GetKeyDown("joystick button 1"))
         //{
         //    SceneManager.LoadScene("HomeScene");
