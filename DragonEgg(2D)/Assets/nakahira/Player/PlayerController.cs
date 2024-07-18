@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private TestDragonStatus playerStatus;
 
     private float speed = 1f;
-    private Vector2 speedVec = Vector2.zero;
+    //private Vector2 speedVec = Vector2.zero;
     private float hitPoint = 10;
     private int attack = 1;
 
@@ -58,39 +58,46 @@ public class PlayerController : MonoBehaviour
         // 移動！
         // キーを押すとその方向の内部的なベクトルが加算
         // それをもとに最後に移動
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            speedVec += Vector2.up;
-        }
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            speedVec += Vector2.left;
-        }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            speedVec += Vector2.down;
-        }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            speedVec += Vector2.right;
-        }
-        // 長いけど許して
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            speedVec -= Vector2.up;
-        }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            speedVec -= Vector2.left;
-        }
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            speedVec -= Vector2.down;
-        }
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            speedVec -= Vector2.right;
-        }
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    speedVec += Vector2.up;
+        //}
+        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    speedVec += Vector2.left;
+        //}
+        //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    speedVec += Vector2.down;
+        //}
+        //if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    speedVec += Vector2.right;
+        //}
+        //// 長いけど許して
+        //if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        //{
+        //    speedVec -= Vector2.up;
+        //}
+        //if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        //{
+        //    speedVec -= Vector2.left;
+        //}
+        //if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        //{
+        //    speedVec -= Vector2.down;
+        //}
+        //if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        //{
+        //    speedVec -= Vector2.right;
+        //}
+
+        //左スティック
+        Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+ 
+        Debug.Log("H" + Input.GetAxis("Horizontal"));
+        Debug.Log("V" + Input.GetAxis("Vertical"));
+
         //Debug.Log($"{speedVec}, {speed}");
         Move(speedVec, speed);
 
@@ -131,16 +138,26 @@ public class PlayerController : MonoBehaviour
         float speedY = generalVec.y * speed * Time.deltaTime;
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
-        // 壁際でも沿う方向になら進める
-        // でも正直なんでこれで動くのかよくわからない
-        if (viewPos.x + viewOffsetX + (speedVec.x * 0.01f) < 1.0f && viewPos.x - viewOffsetX + (speedVec.x * 0.01f) > 0f)
+
+        transform.Translate(speedX, speedY, 0f);
+
+        // 越えたら戻す
+        if (viewPos.x + viewOffsetX > 1.0f)
         {
-            transform.Translate(speedX, 0f, 0f);
+            transform.position = new Vector3(transform.position .x, transform.position.y, 0f);
         }
-        if (viewPos.y + viewOffsetY + (speedVec.y * 0.01f) < 1.0f && viewPos.y - viewOffsetY + (speedVec.y * 0.01f) > 0f)
+        if (viewPos.x - viewOffsetX < 0f)
         {
-            transform.Translate(0f, speedY, 0f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        }
+        if (viewPos.y + viewOffsetY > 1.0f)
+        {
+            transform.position = new Vector3(0f, transform.position.y, 0f);
+
+        }
+        if (viewPos.y - viewOffsetY < 0f)
+        {
+            transform.position = new Vector3(0f, transform.position.y, 0f);
         }
     }
 
