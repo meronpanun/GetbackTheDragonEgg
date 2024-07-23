@@ -1,55 +1,60 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using Unity.VisualScripting;
-//using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using DragonRace;
 
-//public class ChildDragonController : MonoBehaviour
-//{
-//    [SerializeField]
-//    private Animation parent;
-//    [SerializeField]
-//    private Animation fire;
-//    [SerializeField]
-//    private Animation ice;
-//    [SerializeField]
-//    private Animation wind;
-//    [SerializeField]
-//    private Animation thunder;
-//    [SerializeField]
-//    private Animation empty;
+public class ChildDragonController : MonoBehaviour
+{
+    // アニメーションを切り替える→スプライトを切り替える
+    [SerializeField]
+    private Animation parent;
+    [SerializeField]
+    private Animation fire;
+    [SerializeField]
+    private Animation ice;
+    [SerializeField]
+    private Animation wind;
+    [SerializeField]
+    private Animation thunder;
+    [SerializeField]
+    private Animation empty;
 
-//    private TestDragonStatus myStatus;
-//    private Animator myAnimator;
+    private TestDragonStatus myStatus;
+    private Animator myAnimator;
 
-//    private void Start()
-//    {
-//        myAnimator = GetComponent<Animator>();
-//        myAnimator.
-//        // 編成から情報を受け取る
-//        myStatus = BattleTeam.sChildDragonDataLeft;
+    private void Start()
+    {
+        myAnimator = GetComponent<Animator>();
+        // 編成から情報を受け取る
+        myStatus = BattleTeam.sChildDragonDataLeft;
 
-//        switch(myStatus.raceNum)
-//        {
-//            case 0:
-//                myRenderer.sprite = parent;
-//                break;
-//            case 1:
-//                myRenderer.sprite = fire;
-//                break;
-//            case 2:
-//                myRenderer.sprite = ice;
-//                break;
-//            case 3:
-//                myRenderer.sprite = wind;
-//                break;
-//            case 4:
-//                myRenderer.sprite = thunder;
-//                break;
-//            default:
-//                myRenderer.sprite = empty;
-//                break;
-//        }
-//    }
+        switch (myStatus.raceNum)
+        {
+            case races.player:
+                myAnimator.SetTrigger("Player");
+                break;
+            case races.fire:
+                myAnimator.SetTrigger("Fire");
+                break;
+            case races.ice:
+                myAnimator.SetTrigger("Ice");
+                break;
+            case races.wind:
+                myAnimator.SetTrigger("Wind");
+                break;
+            case races.thunder:
+                myAnimator.SetTrigger("Thunder");
+                break;
+            case races.none:
+                myAnimator.SetTrigger("Empty");
+                break;
+            default:
+                myAnimator.SetTrigger("Error");
+                Debug.Log("Error!!");
+                break;
+        }
+    }
 
 
-//}
+}
