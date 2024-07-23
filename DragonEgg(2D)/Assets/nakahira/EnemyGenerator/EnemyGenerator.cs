@@ -8,11 +8,9 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject prefab;
     Camera mainCamera;
 
-    // エディタでいろいろできるようにします。
+    // エディタでいろいろできるようにしたかった。
 
-    [SerializeField]
     private float offsetX = 0.1f;
-    [SerializeField]
     private float offsetY = 0.1f;
 
     private void Start()
