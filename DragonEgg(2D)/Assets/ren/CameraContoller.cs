@@ -38,7 +38,6 @@ public class CameraContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //EscapeƒL[‚ğ‰Ÿ‚·‚Æ‚Ğ‚Æ‚Â‘O‚Ì‰æ–Ê‚É–ß‚é
         if (boxFlag && Input.GetKeyDown(KeyCode.Escape))
         {
