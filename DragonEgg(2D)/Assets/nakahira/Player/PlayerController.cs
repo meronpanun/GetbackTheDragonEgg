@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private TestDragonStatus playerStatus;
 
     private float speed = 1f;
-    private Vector2 speedVec = Vector2.zero;
+    //private Vector2 speedVec = Vector2.zero;
     private float hitPoint = 10;
     private int attack = 1;
 
@@ -43,9 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         // Staticクラスから自分のデータを取得
         // これはあくまでもテスト
-        BattleTeam.sParentDragonData = new TestDragonStatus("0,10,1,3,4,5,0");
+        BattleTeam.sParentDragonData = new TestDragonStatus("0,10,1,3,4,5,6");
         playerStatus = BattleTeam.sParentDragonData;
-        Debug.Log($"Datastring:{playerStatus.dataString}");
         hitPoint = playerStatus.hp;
         speed = playerStatus.speed;
         attack = playerStatus.attack;
@@ -54,44 +53,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(blinking);
+        //左スティック
+        Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+ 
+        Debug.Log("H" + Input.GetAxis("Horizontal"));
+        Debug.Log("V" + Input.GetAxis("Vertical"));
 
-        // 移動！
-        // キーを押すとその方向の内部的なベクトルが加算
-        // それをもとに最後に移動
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            speedVec += Vector2.up;
-        }
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            speedVec += Vector2.left;
-        }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            speedVec += Vector2.down;
-        }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            speedVec += Vector2.right;
-        }
-        // 長いけど許して
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            speedVec -= Vector2.up;
-        }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            speedVec -= Vector2.left;
-        }
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            speedVec -= Vector2.down;
-        }
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            speedVec -= Vector2.right;
-        }
         //Debug.Log($"{speedVec}, {speed}");
         Move(speedVec, speed);
 
@@ -121,6 +88,31 @@ public class PlayerController : MonoBehaviour
         {
             fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
         }
+
+        // コントローラー
+        if (Input.GetKeyDown("joystick button 0")) // A(仮)ボタンでビーム
+        {
+            // 自分の現在位置に弾のプレハブを召喚
+            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+            // 自分の攻撃力を上乗せ
+            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+        }
+        if (Input.GetKey("joystick button 0")) // A(仮)ボタン長押しで
+        {
+            fireTimer += Time.deltaTime;
+            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
+            {
+                GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                // 自分の攻撃力を上乗せ
+                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+                fireTimer = 0; // タイマーリセット
+            }
+        }
+
+        if (Input.GetKeyUp("joystick button 0")) // ボタンを離したら
+        {
+            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+        }
     }
 
     private void Move(Vector2 speedVec, float speed) // 移動可能判定とかを詰め込んだ
@@ -132,16 +124,26 @@ public class PlayerController : MonoBehaviour
         float speedY = generalVec.y * speed * Time.deltaTime;
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
-        // 移動後のx,yがビューポートの0～1におさまってたら動いてよい
-        // 壁際でも沿う方向になら進める
-        // でも正直なんでこれで動くのかよくわからない
-        if (viewPos.x + viewOffsetX + (speedVec.x * 0.01f) < 1.0f && viewPos.x - viewOffsetX + (speedVec.x * 0.01f) > 0f)
+
+        transform.Translate(speedX, speedY, 0f);
+
+        // 越えたら戻す
+        if (viewPos.x + viewOffsetX > 1.0f)
         {
-            transform.Translate(speedX, 0f, 0f);
+            transform.position = new Vector3(transform.position .x, transform.position.y, 0f);
         }
-        if (viewPos.y + viewOffsetY + (speedVec.y * 0.01f) < 1.0f && viewPos.y - viewOffsetY + (speedVec.y * 0.01f) > 0f)
+        if (viewPos.x - viewOffsetX < 0f)
         {
-            transform.Translate(0f, speedY, 0f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        }
+        if (viewPos.y + viewOffsetY > 1.0f)
+        {
+            transform.position = new Vector3(0f, transform.position.y, 0f);
+
+        }
+        if (viewPos.y - viewOffsetY < 0f)
+        {
+            transform.position = new Vector3(0f, transform.position.y, 0f);
         }
     }
 

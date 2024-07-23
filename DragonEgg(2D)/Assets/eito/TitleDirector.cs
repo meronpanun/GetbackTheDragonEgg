@@ -53,6 +53,11 @@ public class TitleDirector : MonoBehaviour
         //if (Input.GetKeyDown("joystick button 6"))
         //{
         //    SceneManager.LoadScene("SaveScene");
+        //} 
+        //STARTボタン
+        //if (Input.GetKeyDown("joystick button 7"))
+        //{
+        //    SceneManager.LoadScene("SaveScene");
         //}
 
         ////左スティック
