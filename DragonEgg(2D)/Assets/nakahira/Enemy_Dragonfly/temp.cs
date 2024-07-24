@@ -79,7 +79,7 @@
 //            temp.attack = 10;
 
 //            // 移動スピード
-//            temp.speed = 1.0f;
+//            temp.fadeSpeed = 1.0f;
 
 //            // 名前。できたら
 //            temp.name = "aaa";

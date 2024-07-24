@@ -9,8 +9,9 @@ using UnityEngine.EventSystems;
 
 public class FadeManager : MonoBehaviour
 {
-    float speed = 0.8f;        //フェードするスピード、多いと早くフェードする
-    float red, green, blue, alfa;
+    float time = 0.0f;
+    float fadeSpeed = 1.0f;        //フェードする速度 秒
+    float red, green, blue, alpha;  //alfaくらいしか使わない
     string loadScene = "TestErrorScene";  // ロードするシーンの名前
 
     // フェードイン、フェードアウトを管理するスイッチ
@@ -31,7 +32,7 @@ public class FadeManager : MonoBehaviour
         red = fadeImage.color.r;
         green = fadeImage.color.g;
         blue = fadeImage.color.b;
-        alfa = fadeImage.color.a;
+        alpha = fadeImage.color.a;
 
         // シーンが読み込まれたときにフェードイン処理
         FadeInSwitch();
@@ -123,33 +124,37 @@ public class FadeManager : MonoBehaviour
         }
 
         // 不透明度を0(透明)にし、フェードアウト処理開始
-        alfa = 0;
+        alpha = 0;
         Out = true;
     }
 
-    void FadeIn()    // フェードイン処理
+    private void FadeIn()    // フェードイン処理
     {
-        // 不透明度をspeedずつ減らす
-        //alfa -= speed;
-        alfa -= speed * Time.deltaTime;
-        Alpha();
-        if (alfa <= 0)
+        // 不透明度をfadeSpeedずつ減らす
+        //alpha -= fadeSpeed;
+        time += Time.deltaTime;
+        alpha = 1.0f - time / fadeSpeed;
+        //alpha -= fadeSpeed * Time.deltaTime;
+        ChangeColor();
+        if (alpha <= 0)
         {
             In = false;
             fadeImage.enabled = false;
         }
     }
 
-    void FadeOut()    // フェードアウト処理
+    private void FadeOut()    // フェードアウト処理
     {
         fadeImage.enabled = true;
-        // 不透明度をspeedずつ増やす
-        //alfa += speed;
-        alfa += speed * Time.deltaTime;
-        Alpha();
+        // 不透明度をfadeSpeedずつ増やす
+        //alpha += fadeSpeed;
+        time += Time.deltaTime;
+        alpha = 1.0f - time / fadeSpeed;
+        //alpha += fadeSpeed * Time.deltaTime;
+        ChangeColor();
 
         // 完全に不透明になったらシーン移行
-        if (alfa >= 1)
+        if (alpha >= 1)
         {
             Out = false;
             SceneManager.LoadSceneAsync(loadScene);
@@ -157,8 +162,8 @@ public class FadeManager : MonoBehaviour
     }
 
     // 増減処理を反映
-    void Alpha()
+    private void ChangeColor()
     {
-        fadeImage.color = new Color(red, green, blue, alfa);
+        fadeImage.color = new Color(red, green, blue, alpha);
     }
 }
