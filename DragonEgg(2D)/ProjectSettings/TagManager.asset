@@ -16,21 +16,21 @@ TagManager:
   - 
   - Water
   - UI
-  - FadeUI
   - 
   - 
   - 
   - 
+  - Player
+  - Enemy
+  - 
+  - 
+  - 
+  - Bullet
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Barrier
   - 
   - 
   - 

@@ -119,18 +119,18 @@ public class PlayerController : MonoBehaviour
     {
         // まず単位ベクトル化
         Vector2 generalVec = speedVec.normalized;
-        // 関数で複数回使う形を変数として宣言
+        //関数で複数回使う形を変数として宣言
         float speedX = generalVec.x * speed * Time.deltaTime;
         float speedY = generalVec.y * speed * Time.deltaTime;
-        // 自分の座標がカメラから出ないように制限
+        //自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
 
         transform.Translate(speedX, speedY, 0f);
 
-        // 越えたら戻す
+        //越えたら戻す
         if (viewPos.x + viewOffsetX > 1.0f)
         {
-            transform.position = new Vector3(transform.position .x, transform.position.y, 0f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         }
         if (viewPos.x - viewOffsetX < 0f)
         {
@@ -144,7 +144,9 @@ public class PlayerController : MonoBehaviour
         if (viewPos.y - viewOffsetY < 0f)
         {
             transform.position = new Vector3(0f, transform.position.y, 0f);
+
         }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
