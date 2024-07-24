@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         //左スティック
         Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
  
-        Debug.Log("H" + Input.GetAxis("Horizontal"));
-        Debug.Log("V" + Input.GetAxis("Vertical"));
+        //Debug.Log("H" + Input.GetAxis("Horizontal"));
+        //Debug.Log("V" + Input.GetAxis("Vertical"));
 
         //Debug.Log($"{speedVec}, {speed}");
         Move(speedVec, speed);
@@ -125,25 +125,22 @@ public class PlayerController : MonoBehaviour
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
 
-        transform.Translate(speedX, speedY, 0f);
-
         // 越えたら戻す
-        if (viewPos.x + viewOffsetX > 1.0f)
+        if (viewPos.x + viewOffsetX < 1.0f && speedX > 0)
         {
-            transform.position = new Vector3(transform.position .x, transform.position.y, 0f);
+            transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.x - viewOffsetX < 0f)
+        if (viewPos.x - viewOffsetX > 0f && speedX < 0)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+            transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + viewOffsetY > 1.0f)
+        if (viewPos.y + viewOffsetY < 1.0f && speedY > 0)
         {
-            transform.position = new Vector3(0f, transform.position.y, 0f);
-
+            transform.Translate(0f, speedY, 0f);
         }
-        if (viewPos.y - viewOffsetY < 0f)
+        if (viewPos.y - viewOffsetY > 0f && speedY < 0)
         {
-            transform.position = new Vector3(0f, transform.position.y, 0f);
+            transform.Translate(0f, speedY, 0f);
         }
     }
 
