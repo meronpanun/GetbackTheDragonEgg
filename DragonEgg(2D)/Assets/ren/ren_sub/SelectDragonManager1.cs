@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DragonRace;
 
-public class SelectDragonManager : MonoBehaviour
+public class SelectDragonManager1 : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject fireDragon;
     public GameObject iceDragon;
     public GameObject windDragon;
     public GameObject thunderDragon;
-    public static int selectDragonNum;
+    public static races selectDragonNum1;
     //public static int selectDragonNum;
     void Start()
     {
-        selectDragonNum = 0;//最初は何も表示したくないので、割り当てをしていない番号を代入します
+        selectDragonNum1 = races.fire;//最初は何も表示したくないので、割り当てをしていない番号を代入します
     }
 
-    public static int DragonNumber()
+    public static races DragonNumber()
     {
-        return selectDragonNum;
+        return selectDragonNum1;
     }
 
     public void FireDragon()
     {
-        selectDragonNum = 0;
+        selectDragonNum1 = races.fire;
         fireDragon.SetActive(true);
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
@@ -32,7 +33,7 @@ public class SelectDragonManager : MonoBehaviour
 
     public void IceDragon()
     {
-        selectDragonNum = 1;
+        selectDragonNum1 = races.ice;
         iceDragon.SetActive(true);
         fireDragon.SetActive(false);
         windDragon.SetActive(false);
@@ -41,7 +42,7 @@ public class SelectDragonManager : MonoBehaviour
 
     public void WindDragon()
     {
-        selectDragonNum = 2;
+        selectDragonNum1 = races.wind;
         windDragon.SetActive(true);
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
@@ -49,7 +50,7 @@ public class SelectDragonManager : MonoBehaviour
     }
     public void ThunderDragon()
     {
-        selectDragonNum = 3;
+        selectDragonNum1 = races.thunder;
         thunderDragon.SetActive(true);
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
@@ -61,18 +62,18 @@ public class SelectDragonManager : MonoBehaviour
     {
         
 
-        switch (selectDragonNum)
+        switch (selectDragonNum1)
         {
-            case 0:
+            case races.fire:
                 FireDragon();
                 break;
-            case 1:
+            case races.ice:
                 IceDragon();
                 break;
-            case 2:
+            case races.wind:
                 WindDragon();
                 break;
-            case 3:
+            case races.thunder:
                 ThunderDragon();
                 break;
             default:
