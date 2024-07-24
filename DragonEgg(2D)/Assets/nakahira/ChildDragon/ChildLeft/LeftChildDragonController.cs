@@ -4,21 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using DragonRace;
 
-public class ChildDragonController : MonoBehaviour
+public class LeftChildDragonController : MonoBehaviour
 {
-    // アニメーションを切り替える→スプライトを切り替える
-    [SerializeField]
-    private Animation parent;
-    [SerializeField]
-    private Animation fire;
-    [SerializeField]
-    private Animation ice;
-    [SerializeField]
-    private Animation wind;
-    [SerializeField]
-    private Animation thunder;
-    [SerializeField]
-    private Animation empty;
+    // アニメーションを切り替える
 
     private TestDragonStatus myStatus;
     private Animator myAnimator;
@@ -28,7 +16,7 @@ public class ChildDragonController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         // 編成から情報を受け取る
         myStatus = BattleTeam.sChildDragonDataLeft;
-
+        Debug.Log(myStatus);
         switch (myStatus.raceNum)
         {
             case races.player:
