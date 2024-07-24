@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DragonRace;
 
 // ドラゴンBoxの処理の中で呼び出してね
 public class DragonDataManager
@@ -67,14 +68,14 @@ public class DragonDataManager
         {
             TestDragonStatus tempData = GetDragonData(i);
             //データ調べる
-            if (tempData.raceNum != 5)//Null エラー
+            if (tempData.raceNum != races.none)//Null エラー
             {
                 continue;
             }
 
             TestDragonStatus temp = new TestDragonStatus();
             // こいつがどの種類のドラゴンなのか
-            temp.raceNum = 2;       //とりあえず数字を代入
+            temp.raceNum = races.ice;       //とりあえず数字を代入
 
             // 体力。プレイヤーに加算する予定
             temp.hp = 18;
