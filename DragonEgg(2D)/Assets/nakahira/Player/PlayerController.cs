@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("H" + Input.GetAxis("Horizontal"));
         Debug.Log("V" + Input.GetAxis("Vertical"));
 
-        //Debug.Log($"{speedVec}, {speed}");
+        //Debug.Log($"{speedVec}, {fadeSpeed}");
         Move(speedVec, speed);
 
         // スペースキーで弾を発射
