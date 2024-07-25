@@ -15,29 +15,6 @@ public class LevelUpDirector : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("joystick button 0"))
-<<<<<<< Updated upstream
-=======
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            SceneManager.LoadScene("HomeScene");
-        }
-        if (Input.GetKeyDown("joystick button 5"))
->>>>>>> Stashed changes
         {
             SceneManager.LoadScene("TitleScene");
         }

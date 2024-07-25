@@ -19,7 +19,6 @@ public class TitleDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
         //Aボタン
         //if (Input.GetKeyDown("joystick button 0"))
         //{
@@ -56,47 +55,10 @@ public class TitleDirector : MonoBehaviour
         //    SceneManager.LoadScene("SaveScene");
         //} 
         //STARTボタン
-=======
-        // A
-        if (Input.GetKeyDown("joystick button 0"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        // B
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        // X
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        // Y
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        // LB
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        // RB
-        if (Input.GetKeyDown("joystick button 5"))
-        {
-            SceneManager.LoadScene("SaveScene");
-        }
-        //if (Input.GetKeyDown("joystick button 6"))
-        //{
-        //    SceneManager.LoadScene("SaveScene");
-        //}
->>>>>>> Stashed changes
         //if (Input.GetKeyDown("joystick button 7"))
         //{
         //    SceneManager.LoadScene("SaveScene");
         //}
-<<<<<<< Updated upstream
 
         ////左スティック
         //if (Input.GetAxisRaw("Vertical") < 0)
@@ -162,15 +124,5 @@ public class TitleDirector : MonoBehaviour
         //    Debug.Log("ボタンが押された");
         //}
 
-=======
-        //if (Input.GetKeyDown("joystick button 8"))
-        //{
-        //    SceneManager.LoadScene("SaveScene");
-        //}
-        //if (Input.GetKeyDown("joystick button 9"))
-        //{
-        //    SceneManager.LoadScene("SaveScene");
-        //}
->>>>>>> Stashed changes
     }
 }
