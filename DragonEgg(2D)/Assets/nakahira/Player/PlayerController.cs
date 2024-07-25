@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
             transform.Translate(0f, speedY, 0f);
         }
-       
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
