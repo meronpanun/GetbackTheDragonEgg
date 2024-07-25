@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DragonRace;
 
 public class DragonIconData : MonoBehaviour
 {
@@ -23,22 +24,22 @@ public class DragonIconData : MonoBehaviour
         icon.sprite = ice;
         switch (dragonStatus.raceNum)
         {
-            case 0:
+            case races.player:
                 icon.sprite = oya;
                 break;
-            case 1:
+            case races.fire:
                 icon.sprite = fire;
                 break;
-            case 2:
+            case races.ice:
                 icon.sprite = ice;
                 break;
-            case 3:
+            case races.wind:
                 icon.sprite = wind;
                 break;
-            case 4:
+            case races.thunder:
                 icon.sprite = thunder;
                 break; 
-            case 5:
+            case races.none:
                 icon.sprite = none;
                 break;
         }

@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Text;
+using DragonRace;
+
+namespace DragonRace
+{
+    // 列挙しとく
+    public enum races
+    {
+        player,
+        fire,
+        ice,
+        wind,
+        thunder,
+        none
+    }
+}
 
 public class TestDragonStatus
 {
@@ -20,7 +35,7 @@ public class TestDragonStatus
         //データ調べる
         if(data == "")
         {
-            raceNum = (int)races.none;
+            raceNum = races.none;
             Debug.Log($"NULL{raceNum}");
         }
         else
@@ -37,16 +52,7 @@ public class TestDragonStatus
 
     // メンバ変数
 
-    // 列挙しとく
-    enum races
-    {
-        player,
-        fire,
-        ice,
-        wind,
-        thunder,
-        none
-    }
+
 
     enum status
     {
@@ -60,7 +66,7 @@ public class TestDragonStatus
     }
 
     // こいつがどの種類のドラゴンなのか
-    public int raceNum;
+    public races raceNum;
 
     // 体力。プレイヤーに加算する予定
     public int hp;
@@ -179,7 +185,8 @@ public class TestDragonStatus
                 {
                     // キャストバグったら勝手にエラー吐くでしょう
                     case status.raceNum:
-                        raceNum = int.Parse(value);
+                        // 列挙型に型変換
+                        raceNum = (races)int.Parse(value);
                         break;
                     case status.hp:
                         hp = int.Parse(value);

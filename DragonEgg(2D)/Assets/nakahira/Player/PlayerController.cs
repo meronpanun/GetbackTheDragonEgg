@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
         //左スティック
         Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
  
-        Debug.Log("H" + Input.GetAxis("Horizontal"));
-        Debug.Log("V" + Input.GetAxis("Vertical"));
+        //Debug.Log("H" + Input.GetAxis("Horizontal"));
+        //Debug.Log("V" + Input.GetAxis("Vertical"));
 
-        //Debug.Log($"{speedVec}, {speed}");
+        //Debug.Log($"{speedVec}, {fadeSpeed}");
         Move(speedVec, speed);
 
         // スペースキーで弾を発射
@@ -132,19 +132,19 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         }
-        if (viewPos.x - viewOffsetX < 0f)
+        if (viewPos.x - viewOffsetX > 0f && speedX < 0)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+            transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + viewOffsetY > 1.0f)
+        if (viewPos.y + viewOffsetY < 1.0f && speedY > 0)
+        {
+            transform.Translate(0f, speedY, 0f);
+        }
+        if (viewPos.y - viewOffsetY > 0f && speedY < 0)
         {
             transform.position = new Vector3(0f, transform.position.y, 0f);
 
-        }
-        if (viewPos.y - viewOffsetY < 0f)
-        {
-            transform.position = new Vector3(0f, transform.position.y, 0f);
-
+            transform.Translate(0f, speedY, 0f);
         }
        
     }

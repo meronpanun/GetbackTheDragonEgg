@@ -10,19 +10,29 @@ public class DragonFryController : Enemy
     // よける際の速さ
     private float dodgeForce = 250;
     // 帰るときのスピード
-    private float exitForceX = 50f;
+    private float exitForceX = 10f;
     private float exitForceY = -1f;
     // エディタで
     public GameObject bulletPrefab;
     // 何秒で退場するか
-    private const float LIFESPAN = 1f;
+    private const float LIFESPAN = 10f;
     private float timer = 0;
+    // Start時に左にはけるか右にはけるか決めておく
+    private int leftOrRight = 0;
     protected override void Start()
     {
         base.Start();
         attack = DRAGONFRYATTACK;
         myRigid = GetComponent<Rigidbody2D>();
         shootSpan = SHOOTSPAN;
+        // 左右のどちらによけるか。-1が左、1が右
+        leftOrRight = Random.Range(0, 1);
+        if (leftOrRight == 0)
+        {
+            leftOrRight = -1;
+        }
+        // 最初だけちょっと前に出る
+        myRigid.AddForce(Vector2.down * 200);
     }
 
     protected override void Update()
@@ -38,12 +48,6 @@ public class DragonFryController : Enemy
 
     private void Exit()
     {
-        // 左右のどちらによけるか。0が左、1が右
-        int leftOrRight = Random.Range(-1, 1);
-        if (leftOrRight == 0)
-        {
-            leftOrRight = 1;
-        }
         // 移動
         myRigid.AddForce(new Vector2(exitForceX * leftOrRight, 0f));
         // X方向は加速、Y方向は等速
