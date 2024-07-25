@@ -62,18 +62,18 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
     {
-        // コントローラー対応
-        if (0 < Input.GetAxisRaw("Vertical"))
-        {
-            // 選択中のオブジェクト取得
-            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
-        }
 
         if (number != 0)
         {
             LoadingScene.stageNum = number;
         }
 
+        // コントローラー対応
+        if (0 < Input.GetAxisRaw("Vertical"))
+        {
+            // 選択中のオブジェクト取得
+            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+        }
         switch (LoadingScene.stageNum)  // シーン切り替え
         {
             //case 100:
