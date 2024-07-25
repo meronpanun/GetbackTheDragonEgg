@@ -28,7 +28,7 @@ public class FadeManager : MonoBehaviour
     void Start()
     {
         // パネルの色、不透明度情報
-        fadeImage = GetComponent<Image>();
+        fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
         red = fadeImage.color.r;
         green = fadeImage.color.g;
         blue = fadeImage.color.b;
@@ -62,12 +62,12 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
     {
-        // コントローラー対応
-        if (0 < Input.GetAxisRaw("Vertical"))
-        {
-            // 選択中のオブジェクト取得
-            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
-        }
+        //// コントローラー対応
+        //if (0 < Input.GetAxisRaw("Vertical"))
+        //{
+        //    // 選択中のオブジェクト取得
+        //    GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+        //}
 
         if (number != 0)
         {
@@ -91,6 +91,9 @@ public class FadeManager : MonoBehaviour
                 break;
             case 103:
                 loadScene = "OptionScene";
+                break;
+            case 104:
+                loadScene = "TestPartyScene";
                 break;
 
 
@@ -140,6 +143,7 @@ public class FadeManager : MonoBehaviour
         {
             In = false;
             fadeImage.enabled = false;
+            time = 0;
         }
     }
 
@@ -149,7 +153,7 @@ public class FadeManager : MonoBehaviour
         // 不透明度をfadeSpeedずつ増やす
         //alpha += fadeSpeed;
         time += Time.deltaTime;
-        alpha = 1.0f - time / fadeSpeed;
+        alpha = time / fadeSpeed;
         //alpha += fadeSpeed * Time.deltaTime;
         ChangeColor();
 
@@ -158,6 +162,7 @@ public class FadeManager : MonoBehaviour
         {
             Out = false;
             SceneManager.LoadSceneAsync(loadScene);
+            time = 0;
         }
     }
 

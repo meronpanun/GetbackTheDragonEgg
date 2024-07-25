@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/reo/Test/TestFade2.unity
     guid: 1e053830081087c4eae20271b0f473ca
   - enabled: 1
+    path: Assets/reo/Test/TestPartyScene.unity
+    guid: c3a16cf1a999e784da3d14656884f3ed
+  - enabled: 1
     path: Assets/reo/Test/TestErrorScene.unity
     guid: 4582cedad0341524289e9c95fd1f5680
   m_configObjects: {}
