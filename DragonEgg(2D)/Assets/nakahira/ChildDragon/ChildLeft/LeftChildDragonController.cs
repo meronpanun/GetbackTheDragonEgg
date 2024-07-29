@@ -10,6 +10,9 @@ public class LeftChildDragonController : MonoBehaviour
 
     private races myRace;
     private Animator myAnimator;
+    // IDragonBulletのインターフェース型の変数を宣言して
+    // それに各属性の弾をStart時に入れる
+    private IDragonBullet dragonBullet;
 
     private void Start()
     {

@@ -45,4 +45,13 @@ public class RightChildDragonController : MonoBehaviour
                 break;
         }
     }
+
+    private void Update()
+    {
+        // ’eŒ‚‚Âˆ—
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
+    }
 }
