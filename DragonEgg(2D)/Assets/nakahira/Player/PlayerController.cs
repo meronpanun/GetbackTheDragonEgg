@@ -8,26 +8,17 @@ public class PlayerController : MonoBehaviour
 
     private TestDragonStatus playerStatus;
 
+    private IDragonBullet dragonBullet;
+
     private float speed = 1f;
-    //private Vector2 speedVec = Vector2.zero;
     private float hitPoint = 10;
     private int attack = 1;
-
-    // エディタでアタッチ
-    [SerializeField] private GameObject playerRapidBullet;
-    [SerializeField] private GameObject playerFireBullet;
 
     private Camera cameraComponent;
 
     // ビューポートの補正を定義
     private float viewOffsetX = 0.3f;
     private float viewOffsetY = 0.1f;
-
-    private const float fireInterval = 0.2f; // 発射するまでの長押し時間
-    private const float srowFireRate = 0.1f; // 発射間隔
-    private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
-
-    private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // 口元から発射するための補正です。
 
     private Animator animator; // 自分のアニメーターコンポーネント
     // Start is called before the first frame update
@@ -37,6 +28,9 @@ public class PlayerController : MonoBehaviour
         cameraComponent = Camera.main; // カメラコンポーネント取得
         animator = GetComponent<Animator>();
         SetStatusFromData();
+        // 自分の種族に応じて出る弾を設定する
+        // 今はテストで炎
+        dragonBullet = gameObject.AddComponent<FireBulletBehaviour>();
     }
 
     private void SetStatusFromData()
@@ -63,55 +57,20 @@ public class PlayerController : MonoBehaviour
         Move(speedVec, speed);
 
         // スペースキーで弾を発射
-        // 初回は強くて速いビームが出る
-        // 長押ししていると広範囲に広がる炎が出る
-        if (Input.GetKeyDown(KeyCode.Space))
+        // その時の処理は別スクリプトにゆだねて付け替え可能にしてます。　
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
-            // 自分の現在位置に弾のプレハブを召喚
-            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
-            // 自分の攻撃力を上乗せ
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-        }
-        if (Input.GetKey(KeyCode.Space)) // Spaceキー長押しで
-        {
-            fireTimer += Time.deltaTime;
-            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
-            {
-                GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
-                // 自分の攻撃力を上乗せ
-                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-                fireTimer = 0; // タイマーリセット
-            }
+            dragonBullet.GetKeyDownBehaviour(attack);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) // キーを離したら
+        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
         {
-            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+            dragonBullet.GetKeyBehaviour(attack);
         }
 
-        // コントローラー
-        if (Input.GetKeyDown("joystick button 0")) // A(仮)ボタンでビーム
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
-            // 自分の現在位置に弾のプレハブを召喚
-            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
-            // 自分の攻撃力を上乗せ
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-        }
-        if (Input.GetKey("joystick button 0")) // A(仮)ボタン長押しで
-        {
-            fireTimer += Time.deltaTime;
-            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
-            {
-                GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
-                // 自分の攻撃力を上乗せ
-                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-                fireTimer = 0; // タイマーリセット
-            }
-        }
-
-        if (Input.GetKeyUp("joystick button 0")) // ボタンを離したら
-        {
-            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+            dragonBullet.GetKeyUpBehaviour(attack);
         }
     }
 

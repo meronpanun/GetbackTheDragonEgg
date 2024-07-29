@@ -51,21 +51,16 @@ public class PlayerSelectManager : MonoBehaviour
                 isBeforeSelect2 = true;
                 isNowSelect = true;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 Debug.Log("メンバー決定！！！");
                 isMemberSelect = true;
 
-                //BattleTeam.sChildDragonDataLeft = SelectDragonManager1.selectDragonNum1;
-                //BattleTeam.sChildDragonDataRight = SelectDragonManager2.selectDragonNum2;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Debug.Log("やっぱ選びなおすわ");
-                isMemberSelect = false;
+                BattleTeam.sChildDragonDataLeft = SelectDragonManager1.selectDragonNum1;
+                BattleTeam.sChildDragonDataRight = SelectDragonManager2.selectDragonNum2;
+
+                Debug.Log(BattleTeam.sChildDragonDataLeft);
+                Debug.Log(BattleTeam.sChildDragonDataRight);
             }
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DragonRace;
+using TMPro;
 
 public class SelectDragonManager1 : MonoBehaviour
 {
@@ -11,10 +12,17 @@ public class SelectDragonManager1 : MonoBehaviour
     public GameObject windDragon;
     public GameObject thunderDragon;
     public static races selectDragonNum1;
-    //public static int selectDragonNum;
+    private GameObject objMemberText;
+    private TextMeshProUGUI memberText;
+
+
+
     void Start()
     {
-        selectDragonNum1 = races.fire;//最初は何も表示したくないので、割り当てをしていない番号を代入します
+        selectDragonNum1 = races.fire;
+        objMemberText = GameObject.Find("Canvas/member1/member1text");
+        memberText = objMemberText.GetComponent<TextMeshProUGUI>();
+
     }
 
     public static races DragonNumber()
@@ -29,6 +37,8 @@ public class SelectDragonManager1 : MonoBehaviour
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        memberText.text = "Fire";
+        memberText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
     }
 
     public void IceDragon()
@@ -38,6 +48,8 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        memberText.text = "Ice";
+        memberText.color = new Color(0.0f, 0.5f, 1.0f, 1.0f);
     }
 
     public void WindDragon()
@@ -47,6 +59,8 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        memberText.text = "Wind";
+        memberText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
     }
     public void ThunderDragon()
     {
@@ -55,6 +69,8 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
+        memberText.text = "Thunder";
+        memberText.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -77,7 +93,6 @@ public class SelectDragonManager1 : MonoBehaviour
                 ThunderDragon();
                 break;
             default:
-                Debug.Log("バグってる");
                 break;
 
         }
