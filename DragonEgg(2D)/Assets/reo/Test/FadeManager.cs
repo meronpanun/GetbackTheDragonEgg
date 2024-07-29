@@ -18,6 +18,9 @@ public class FadeManager : MonoBehaviour
     public bool Out = false;
     public bool In = false;
 
+    // フェード中か否か
+    public bool isFade = false;
+
     Image fadeImage;    //パネル
 
     // このスクリプトを使う際は
@@ -56,8 +59,10 @@ public class FadeManager : MonoBehaviour
 
     public void FadeInSwitch()
     {
+        time = 0;
         fadeImage.enabled = true;
         In = true;
+        isFade = true;
     }
 
     public void FadeOutSwitch(int number)  // ボタンから受け取った数字を照らし合わせる
@@ -66,14 +71,17 @@ public class FadeManager : MonoBehaviour
         if (number != 0)
         {
             LoadingScene.stageNum = number;
+
+            Debug.Log($"Fade:{number}");
         }
 
-        // コントローラー対応
-        if (0 < Input.GetAxisRaw("Vertical"))
-        {
-            // 選択中のオブジェクト取得
-            GameObject nowObj = EventSystem.current.currentSelectedGameObject;
-        }
+        //// コントローラー対応
+        //if (0 < Input.GetAxisRaw("Vertical"))
+        //{
+        //    // 選択中のオブジェクト取得
+        //    GameObject nowObj = EventSystem.current.currentSelectedGameObject;
+        //}
+
         switch (LoadingScene.stageNum)  // シーン切り替え
         {
             //case 100:
@@ -125,7 +133,9 @@ public class FadeManager : MonoBehaviour
 
         // 不透明度を0(透明)にし、フェードアウト処理開始
         alpha = 0;
+        time = 0;
         Out = true;
+        isFade = true;
     }
 
     private void FadeIn()    // フェードイン処理
@@ -140,6 +150,7 @@ public class FadeManager : MonoBehaviour
         {
             In = false;
             fadeImage.enabled = false;
+            isFade = false;
         }
     }
 
@@ -149,7 +160,7 @@ public class FadeManager : MonoBehaviour
         // 不透明度をfadeSpeedずつ増やす
         //alpha += fadeSpeed;
         time += Time.deltaTime;
-        alpha = 1.0f - time / fadeSpeed;
+        alpha = time / fadeSpeed;
         //alpha += fadeSpeed * Time.deltaTime;
         ChangeColor();
 
@@ -157,6 +168,7 @@ public class FadeManager : MonoBehaviour
         if (alpha >= 1)
         {
             Out = false;
+            isFade = false;
             SceneManager.LoadSceneAsync(loadScene);
         }
     }
