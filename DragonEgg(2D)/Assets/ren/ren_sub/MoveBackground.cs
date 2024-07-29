@@ -17,21 +17,21 @@ public class MoveBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(background.position.y < -800)
+        if(background.position.y < -270)
         {
             background.position = temp;
         }
-        if (background2.position.y < -800)
+        if (background2.position.y < -270)
         {
             background2.position = temp;
         }
-        if (background3.position.y < -800)
+        if (background3.position.y < -270)
         {
             background3.position = temp;
         }
 
-        background.position -= new Vector3(0, 0.5f, 0);
-        background2.position -= new Vector3(0, 0.5f, 0);
-        background3.position -= new Vector3(0, 0.5f, 0);
+        background.position -= new Vector3(0, 0.1f, 0);
+        background2.position -= new Vector3(0, 0.1f, 0);
+        background3.position -= new Vector3(0, 0.1f, 0);
     }
 }
