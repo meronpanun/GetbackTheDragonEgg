@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         SetStatusFromData();
         // 自分の種族に応じて出る弾を設定する
         // 今はテストで炎
-        dragonBullet = gameObject.AddComponent<FireBullet>();
+        dragonBullet = gameObject.AddComponent<FireBulletBehaviour>();
     }
 
     private void SetStatusFromData()
