@@ -11784,6 +11784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Out: 0
   In: 0
+  isFade: 0
 --- !u!114 &981445239
 MonoBehaviour:
   m_ObjectHideFlags: 0
