@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using DragonRace;
 
-public class LeftChildDragonController : MonoBehaviour
+public class RightChildDragonController : MonoBehaviour
 {
     // アニメーションを切り替える
 
@@ -16,8 +16,8 @@ public class LeftChildDragonController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         // 編成から情報を受け取る
         // 仮でバトルチームに適当なデータを入れる
-        BattleTeam.sChildDragonDataLeft = DragonRace.races.thunder;
-        myRace = BattleTeam.sChildDragonDataLeft;
+        BattleTeam.sChildDragonDataRight = DragonRace.races.fire;
+        myRace = BattleTeam.sChildDragonDataRight;
         Debug.Log($"種族{myRace}");
         switch (myRace)
         {
