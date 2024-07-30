@@ -8,11 +8,8 @@ public class PlayerController : MonoBehaviour
 
     private TestDragonStatus playerStatus;
 
-    private IDragonBullet dragonBullet;
-
     private float speed = 1f;
     private float hitPoint = 10;
-    private int attack = 1;
 
     private Camera cameraComponent;
 
@@ -30,7 +27,7 @@ public class PlayerController : MonoBehaviour
         SetStatusFromData();
         // 自分の種族に応じて出る弾を設定する
         // 今はテストで炎
-        dragonBullet = gameObject.AddComponent<FireBulletBehaviour>();
+        gameObject.AddComponent<FireBulletBehaviour>();
     }
 
     private void SetStatusFromData()
@@ -41,7 +38,6 @@ public class PlayerController : MonoBehaviour
         playerStatus = new TestDragonStatus("2,2,2,2,2,2,2");
         hitPoint = playerStatus.hp;
         speed = playerStatus.speed;
-        attack = playerStatus.attack;
     }
 
     // Update is called once per frame
@@ -55,23 +51,6 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log($"{speedVec}, {fadeSpeed}");
         Move(speedVec, speed);
-
-        // スペースキーで弾を発射
-        // その時の処理は別スクリプトにゆだねて付け替え可能にしてます。　
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
-        {
-            dragonBullet.GetKeyDownBehaviour(attack);
-        }
-
-        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
-        {
-            dragonBullet.GetKeyBehaviour(attack);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
-        {
-            dragonBullet.GetKeyUpBehaviour(attack);
-        }
     }
 
     private void Move(Vector2 speedVec, float speed) // 移動可能判定とかを詰め込んだ

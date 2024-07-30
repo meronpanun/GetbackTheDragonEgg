@@ -12015,8 +12015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95e1252fae4bc4697ffb0f069d337b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRapidBullet: {fileID: 4522569728849120872, guid: ae454b34242c13f4e88a48b16d91c577, type: 3}
-  playerFireBullet: {fileID: 4188075682072775462, guid: cab398cc15df7e34aa832dd5b96c412f, type: 3}
 --- !u!212 &1250275993
 SpriteRenderer:
   m_ObjectHideFlags: 0
