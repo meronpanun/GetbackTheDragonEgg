@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public abstract class EnemyBullet : MonoBehaviour
 {
     protected static Camera cameraComponent;
     // インスタンス側で代入してもらう
@@ -43,5 +43,14 @@ public class EnemyBullet : MonoBehaviour
     public void SetAngle(Vector2 _angle)
     {
         angle = _angle;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // プレイヤーに当たったら消える
+            Destroy(gameObject);
+        }
     }
 }
