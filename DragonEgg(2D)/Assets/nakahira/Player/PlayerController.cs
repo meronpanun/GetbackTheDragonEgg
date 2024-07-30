@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 1f;
     private float hitPoint = 10;
-    private int attack = 1;
 
     private Camera cameraComponent;
 
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
         playerStatus = new TestDragonStatus("2,2,2,2,2,2,2");
         hitPoint = playerStatus.hp;
         speed = playerStatus.speed;
-        attack = playerStatus.attack;
     }
 
     // Update is called once per frame

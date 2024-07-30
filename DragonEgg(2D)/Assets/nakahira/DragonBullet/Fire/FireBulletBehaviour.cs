@@ -10,11 +10,14 @@ public class FireBulletBehaviour : MonoBehaviour
 
     private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // 口元から発射するための補正です。
 
-    private const float fireInterval = 0.2f; // 発射するまでの長押し時間
+    private const float rapidFireInterVal = 0.3f; // 発射するまでの長押し時間
+    private const float fireInterval = 0.4f; // 発射するまでの長押し時間
     private const float srowFireRate = 0.1f; // 発射間隔
     private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
 
     private int attack = 0;
+
+    private Coroutine coroutine = null;
 
     private void Start()
     {
@@ -37,17 +40,14 @@ public class FireBulletBehaviour : MonoBehaviour
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
-            // 初回は強くて速いビームが出る
-            // 長押ししていると広範囲に広がる炎が出る
-            // 自分の現在位置に弾のプレハブを召喚
-            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
-            // 自分の攻撃力を上乗せ
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+            // 初回にも短いタメを設ける
+            coroutine = StartCoroutine(RapidFireCharge());
         }
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
         {
             fireTimer += Time.deltaTime;
+
             if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
             {
                 GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
@@ -59,7 +59,21 @@ public class FireBulletBehaviour : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
+            // コルーチン中断
+            //Debug.Log("中断");
+            StopCoroutine(coroutine);
             fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
         }
+    }
+
+    IEnumerator RapidFireCharge()
+    {
+        // 指定秒数待ってからインスタンス
+        yield return new WaitForSeconds(rapidFireInterVal);
+
+        // 自分の現在位置に弾のプレハブを召喚
+        GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+        // 自分の攻撃力を上乗せ
+        bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
     }
 }
