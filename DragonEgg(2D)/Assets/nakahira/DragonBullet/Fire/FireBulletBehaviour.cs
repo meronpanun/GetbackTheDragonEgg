@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBulletBehaviour : MonoBehaviour, IDragonBullet
-{ 
-    // リソースファイルでアタッチ
+public class FireBulletBehaviour : MonoBehaviour
+{
+    // リソースファイルからロード
     private GameObject playerRapidBullet;
     private GameObject playerFireBullet;
 
@@ -14,36 +14,52 @@ public class FireBulletBehaviour : MonoBehaviour, IDragonBullet
     private const float srowFireRate = 0.1f; // 発射間隔
     private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
 
+    private int attack = 0;
+
     private void Start()
     {
         playerFireBullet = (GameObject)Resources.Load("PlayerFire");
         playerRapidBullet = (GameObject)Resources.Load("PlayerRapidBullet");
-    }
 
-    public void GetKeyDownBehaviour(int attack)
-    {
-        // 初回は強くて速いビームが出る
-        // 長押ししていると広範囲に広がる炎が出る
-        // 自分の現在位置に弾のプレハブを召喚
-        GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
-        // 自分の攻撃力を上乗せ
-        bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-    }
-
-    public void GetKeyBehaviour(int attack)
-    {
-        fireTimer += Time.deltaTime;
-        if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
+        // Start時にPlayerPrefsから攻撃力を参照
+        // もしデータが見つからなかったら初期値として1をセーブ　
+        attack = PlayerPrefs.GetInt("Attack", 0);
+        if (attack == 0)
         {
-            GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
-            // 自分の攻撃力を上乗せ
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-            fireTimer = 0; // タイマーリセット
+            attack = 1;
+            PlayerPrefs.SetInt("Attack", 1);
+            PlayerPrefs.Save();
         }
     }
 
-    public void GetKeyUpBehaviour(int attack)
+    private void Update()
     {
-        fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+        // スペースキーで弾を発射。
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+        {
+            // 初回は強くて速いビームが出る
+            // 長押ししていると広範囲に広がる炎が出る
+            // 自分の現在位置に弾のプレハブを召喚
+            GameObject bullet = Instantiate(playerRapidBullet, transform.position + instanceOffset, Quaternion.identity);
+            // 自分の攻撃力を上乗せ
+            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+        }
+
+        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
+        {
+            fireTimer += Time.deltaTime;
+            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
+            {
+                GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
+                // 自分の攻撃力を上乗せ
+                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+                fireTimer = 0; // タイマーリセット
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
+        {
+            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+        }
     }
 }
