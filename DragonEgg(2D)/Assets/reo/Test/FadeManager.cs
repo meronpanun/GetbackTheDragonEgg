@@ -13,6 +13,7 @@ public class FadeManager : MonoBehaviour
     float fadeSpeed = 1.0f;        //フェードする速度 秒
     float red, green, blue, alpha;  //alfaくらいしか使わない
     string loadScene = "TestErrorScene";  // ロードするシーンの名前
+    
 
     // フェードイン、フェードアウトを管理するスイッチ
     public bool Out = false;
@@ -30,6 +31,7 @@ public class FadeManager : MonoBehaviour
 
     void Start()
     {
+       
         // パネルの色、不透明度情報
         fadeImage = GetComponent<Image>();
         red = fadeImage.color.r;
@@ -43,7 +45,7 @@ public class FadeManager : MonoBehaviour
 
     void Update()
     {
-
+        Debug.Log(StageLoadSceneData.stageLoadScene);
         // スイッチがオンになっているならそれぞれの処理
         if (In)
         {
@@ -105,16 +107,20 @@ public class FadeManager : MonoBehaviour
             //case 1:
             //    loadScene = "TestStage1";
             case 1:
-                loadScene = "Battle";
+                loadScene = "PartySelectScene";
+                StageLoadSceneData.stageLoadScene = "Battle";
                 break;
             case 2:
-                loadScene = "TestStage2";
+                loadScene = "PartySelectScene";
+                StageLoadSceneData.stageLoadScene = "TestStage2";
                 break;
             case 3:
-                loadScene = "TestStage3";
+                loadScene = "PartySelectScene";
+                StageLoadSceneData.stageLoadScene = "TestStage3";
                 break;
             case 4:
-                loadScene = "TestStage4";
+                loadScene = "PartySelectScene";
+                StageLoadSceneData.stageLoadScene = "TestStage4";
                 break;
 
             case 11:
@@ -177,5 +183,10 @@ public class FadeManager : MonoBehaviour
     private void ChangeColor()
     {
         fadeImage.color = new Color(red, green, blue, alpha);
+    }
+
+    public string GetStageLoadScene()
+    {
+        return StageLoadSceneData.stageLoadScene;
     }
 }
