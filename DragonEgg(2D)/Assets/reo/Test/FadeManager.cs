@@ -108,11 +108,13 @@ public class FadeManager : MonoBehaviour
             //    loadScene = "TestStage1";
             case 1:
                 loadScene = "PartySelectScene";
-                StageLoadSceneData.stageLoadScene = "Battle";
+                //StageLoadSceneData.stageLoadScene = "Battle";
+                StageLoadSceneData.stageLoadScene = "Battle1";
                 break;
             case 2:
                 loadScene = "PartySelectScene";
-                StageLoadSceneData.stageLoadScene = "TestStage2";
+                //StageLoadSceneData.stageLoadScene = "TestStage2";
+                StageLoadSceneData.stageLoadScene = "Battle2";
                 break;
             case 3:
                 loadScene = "PartySelectScene";

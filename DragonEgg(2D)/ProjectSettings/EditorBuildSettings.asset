@@ -27,8 +27,11 @@ EditorBuildSettings:
     path: Assets/yusei_BGM,SE/optionScene.unity
     guid: d220ce0bb5eec7a4ab00a9a33b9a4014
   - enabled: 1
-    path: Assets/nakahira/BattleScene/Battle.unity
-    guid: 9dabcf4c2fa29d34f9a772e59bfea32c
+    path: Assets/nakahira/BattleScene/Battle1.unity
+    guid: e038f9428971f254689d900c19e0ed3d
+  - enabled: 1
+    path: Assets/nakahira/BattleScene/Battle2.unity
+    guid: 984eae0880a9c174d8c315997e64dd5e
   - enabled: 1
     path: Assets/nakahira/ClearScene/ClearScene.unity
     guid: 3565ffbfc15d832409152ff1b32d871b
