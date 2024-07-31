@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Device;
 
-public class PlayerBullet : MonoBehaviour
+public abstract class PlayerBullet : MonoBehaviour
 {
     protected Camera cameraComponent;
     protected float bulletSpeedy = 2f; // 移動速度
