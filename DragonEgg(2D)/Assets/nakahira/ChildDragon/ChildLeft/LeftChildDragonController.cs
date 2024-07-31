@@ -21,6 +21,7 @@ public class LeftChildDragonController : MonoBehaviour
         BattleTeam.sChildDragonDataLeft = races.thunder;
         myRace = BattleTeam.sChildDragonDataLeft;
         Debug.Log($"種族{myRace}");
+        // それぞれに対応したアニメーションと、弾を撃てるようにする
         switch (myRace)
         {
             case races.player:
@@ -28,16 +29,19 @@ public class LeftChildDragonController : MonoBehaviour
                 break;
             case races.fire:
                 myAnimator.SetTrigger("Fire");
+                gameObject.AddComponent<FireShooter>();
                 break;
             case races.ice:
                 myAnimator.SetTrigger("Ice");
+                gameObject.AddComponent<IceShooter>();
                 break;
             case races.wind:
                 myAnimator.SetTrigger("Wind");
+                gameObject.AddComponent<WindShooter>();
                 break;
             case races.thunder:
                 myAnimator.SetTrigger("Thunder");
-                gameObject.AddComponent<ThunderBulletShooter>();
+                gameObject.AddComponent<ThunderShooter>();
                 break;
             case races.none:
                 myAnimator.SetTrigger("Empty");

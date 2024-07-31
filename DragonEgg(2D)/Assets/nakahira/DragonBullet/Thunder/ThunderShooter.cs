@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceBulletShooter : MonoBehaviour
+public class ThunderShooter : MonoBehaviour
 {
     // リソースファイルからロード
-    private GameObject iceBullet;
+    private GameObject thunderBullet;
 
     private Vector3 instanceOffset = new Vector3(0, 0.2f, 0); // 口元から発射するための補正です。
 
@@ -13,7 +13,7 @@ public class IceBulletShooter : MonoBehaviour
 
     private void Start()
     {
-        iceBullet = (GameObject)Resources.Load("IceBullet");
+        thunderBullet = (GameObject)Resources.Load("ThunderBullet");
 
         // Start時にPlayerPrefsから攻撃力を参照
         // もしデータが見つからなかったら初期値として1をセーブ　
@@ -32,7 +32,7 @@ public class IceBulletShooter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
             //　仮で単押しで一回弾を出す
-            GameObject bullet = Instantiate(iceBullet, transform.position + instanceOffset , Quaternion.identity);
+            GameObject bullet = Instantiate(thunderBullet, transform.position + instanceOffset, Quaternion.identity);
             bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
         }
 
