@@ -26,6 +26,7 @@ public class RightChildDragonController : MonoBehaviour
                 break;
             case races.fire:
                 myAnimator.SetTrigger("Fire");
+                gameObject.AddComponent<FireShooter>();
                 break;
             case races.ice:
                 myAnimator.SetTrigger("Ice");
@@ -43,15 +44,6 @@ public class RightChildDragonController : MonoBehaviour
                 myAnimator.SetTrigger("Error");
                 Debug.Log("Error!!");
                 break;
-        }
-    }
-
-    private void Update()
-    {
-        // íeåÇÇ¬èàóù
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
         }
     }
 }
