@@ -906,6 +906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Out: 0
   In: 0
+  isFade: 0
 --- !u!114 &1273395992
 MonoBehaviour:
   m_ObjectHideFlags: 0
