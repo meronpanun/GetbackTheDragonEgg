@@ -472,6 +472,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9a7d381db077834f8952771704eeb44, type: 3}
+--- !u!4 &252591122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5212809872057411464, guid: d9a7d381db077834f8952771704eeb44, type: 3}
+  m_PrefabInstance: {fileID: 252591121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &395048826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6324372237424030676, guid: 96b185881ba0e3f42b76ddbb451fe165, type: 3}
@@ -1086,17 +1091,17 @@ Transform:
   - {fileID: 1882345331}
   - {fileID: 1874909011}
   - {fileID: 799214820}
-  - {fileID: 52064278}
   - {fileID: 1487464627}
   - {fileID: 894348715}
   - {fileID: 1499380075}
-  - {fileID: 129735247}
   - {fileID: 2135996371}
   - {fileID: 1056952725}
-  - {fileID: 54667608}
   - {fileID: 600797050}
   - {fileID: 1435672469}
   - {fileID: 729993290}
+  - {fileID: 252591122}
+  - {fileID: 1808403530}
+  - {fileID: 359712586792607657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &799214820 stripped
@@ -12682,6 +12687,7 @@ RectTransform:
   m_Children:
   - {fileID: 981445237}
   - {fileID: 83751220}
+  - {fileID: 1107539102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13274,6 +13280,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b185881ba0e3f42b76ddbb451fe165, type: 3}
+--- !u!4 &1808403530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6324372237424030676, guid: 96b185881ba0e3f42b76ddbb451fe165, type: 3}
+  m_PrefabInstance: {fileID: 1808403529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1831664988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13734,6 +13745,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9a7d381db077834f8952771704eeb44, type: 3}
+--- !u!4 &359712586792607657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5212809872057411464, guid: d9a7d381db077834f8952771704eeb44, type: 3}
+  m_PrefabInstance: {fileID: 359712586792607656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
