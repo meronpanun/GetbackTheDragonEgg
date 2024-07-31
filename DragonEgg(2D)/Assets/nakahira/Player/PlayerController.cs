@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     private Camera cameraComponent;
 
     // ビューポートの補正を定義
-    private float viewOffsetX = 0.3f;
-    private float viewOffsetY = 0.1f;
+    private float viewOffsetRight = 0.38f;
+    private float viewOffset = 0.1f;
 
     private Animator animator; // 自分のアニメーターコンポーネント
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         SetStatusFromData();
         // 自分の種族に応じて出る弾を設定する
         // 今はテストで炎
-        gameObject.AddComponent<FireBulletBehaviour>();
+        gameObject.AddComponent<FireShooter>();
     }
 
     private void SetStatusFromData()
@@ -63,20 +63,21 @@ public class PlayerController : MonoBehaviour
         // 自分の座標がカメラから出ないように制限
         Vector2 viewPos = cameraComponent.WorldToViewportPoint(transform.position);
 
-        // 越えたら戻す
-        if (viewPos.x + viewOffsetX < 1.0f && speedX > 0)
+        // 越えたら進めない
+        // 右方向にはUIがあるので追加で補正する
+        if (viewPos.x + viewOffsetRight < 1.0f && speedX > 0)
         {
             transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.x - viewOffsetX > 0f && speedX < 0)
+        if (viewPos.x - viewOffset > 0f && speedX < 0)
         {
             transform.Translate(speedX, 0f, 0f);
         }
-        if (viewPos.y + viewOffsetY < 1.0f && speedY > 0)
+        if (viewPos.y + viewOffset < 1.0f && speedY > 0)
         {
             transform.Translate(0f, speedY, 0f);
         }
-        if (viewPos.y - viewOffsetY > 0f && speedY < 0)
+        if (viewPos.y - viewOffset > 0f && speedY < 0)
         {
             transform.Translate(0f, speedY, 0f);
         }

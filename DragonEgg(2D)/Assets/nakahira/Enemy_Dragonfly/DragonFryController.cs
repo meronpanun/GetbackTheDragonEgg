@@ -26,7 +26,7 @@ public class DragonFryController : Enemy
         myRigid = GetComponent<Rigidbody2D>();
         shootSpan = SHOOTSPAN;
         // 左右のどちらによけるか。-1が左、1が右
-        leftOrRight = Random.Range(0, 1);
+        leftOrRight = Random.Range(0, 2);
         if (leftOrRight == 0)
         {
             leftOrRight = -1;
