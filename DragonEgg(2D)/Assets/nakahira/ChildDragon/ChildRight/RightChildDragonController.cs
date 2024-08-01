@@ -16,7 +16,7 @@ public class RightChildDragonController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         // 編成から情報を受け取る
         // 仮でバトルチームに適当なデータを入れる
-        BattleTeam.sChildDragonDataRight = DragonRace.races.fire;
+        //BattleTeam.sChildDragonDataRight = races.fire;
         myRace = BattleTeam.sChildDragonDataRight;
         Debug.Log($"種族{myRace}");
         switch (myRace)
@@ -30,12 +30,15 @@ public class RightChildDragonController : MonoBehaviour
                 break;
             case races.ice:
                 myAnimator.SetTrigger("Ice");
+                gameObject.AddComponent<IceShooter>();
                 break;
             case races.wind:
                 myAnimator.SetTrigger("Wind");
+                gameObject.AddComponent<WindShooter>();
                 break;
             case races.thunder:
                 myAnimator.SetTrigger("Thunder");
+                gameObject.AddComponent<ThunderShooter>();
                 break;
             case races.none:
                 myAnimator.SetTrigger("Empty");

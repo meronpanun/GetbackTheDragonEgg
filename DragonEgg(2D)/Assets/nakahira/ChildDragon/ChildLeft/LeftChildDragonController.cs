@@ -18,7 +18,7 @@ public class LeftChildDragonController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         // 編成から情報を受け取る
         // 仮でバトルチームに適当なデータを入れる
-        BattleTeam.sChildDragonDataLeft = races.thunder;
+        //BattleTeam.sChildDragonDataLeft = races.wind;
         myRace = BattleTeam.sChildDragonDataLeft;
         Debug.Log($"種族{myRace}");
         // それぞれに対応したアニメーションと、弾を撃てるようにする
