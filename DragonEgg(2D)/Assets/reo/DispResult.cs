@@ -5,6 +5,7 @@
 // スペースキーを押すとメッセージを即全部表示
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI; // 卵とか
 using TMPro;
 using System.Threading;  // sleep用
 
@@ -20,9 +21,11 @@ public class DispResult : MonoBehaviour
     //[SerializeField] private string msgText;  // 使わなくなった
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgSpeedEnter = 0.08f;  // 改行時待機時間
-    private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
-    private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
-    private int eggAnimNum = 8;  // 入れ替える回数
+    //private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
+    //private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
+    //private int eggAnimNum = 8;  // 入れ替える回数
+    private int eggAnimNum = 10;  // アニメーションの割る数
+    private float eggAnimSpeed = 0.4f;  // アニメーションの速度
     private int tempExp = 1234567;  // exp(仮)
 
     //int stageNum = 0;
@@ -143,24 +146,50 @@ public class DispResult : MonoBehaviour
     IEnumerator EggAnim()  // 卵からドラゴンへ変える
     {
         EggImage.SetActive(true);
-        yield return new WaitForSeconds(summonDragonFirstSpeed);
+        //yield return new WaitForSeconds(summonDragonFirstSpeed);
 
-        for (int i = 0; i < eggAnimNum; i++)
+
+        //// 旧処理
+        //for (int i = 0; i < eggAnimNum; i++)
+        //{
+        //    DragonImage.SetActive(false);
+        //    EggImage.SetActive(true);  // 卵を表示
+
+        //    yield return new WaitForSeconds(summonDragonSpeed);
+
+        //    EggImage.SetActive(false);  // 卵を隠す
+        //    DragonImage.SetActive(true);  // ドラゴンを表示
+
+        //    yield return new WaitForSeconds(summonDragonSpeed);
+
+        //    summonDragonSpeed *= 0.85f;
+        //}
+
+
+        // 新処理
+        RectTransform eggRectTransform = EggImage.GetComponent<RectTransform>();
+        for (float i = eggAnimNum; i > 0; i--)
         {
-            DragonImage.SetActive(false);
-            EggImage.SetActive(true);  // 卵を表示
-
-            yield return new WaitForSeconds(summonDragonSpeed);
-
-            EggImage.SetActive(false);  // 卵を隠す
-            DragonImage.SetActive(true);  // ドラゴンを表示
-
-            yield return new WaitForSeconds(summonDragonSpeed);
-
-            summonDragonSpeed *= 0.85f;
+            Debug.Log($"{eggAnimSpeed / eggAnimNum}");
+            // 卵の大きさを徐々に小さくする
+            eggRectTransform.localScale = new Vector3(i / eggAnimNum, i / eggAnimNum, 0);
+            yield return new WaitForSeconds(eggAnimSpeed / eggAnimNum);
         }
 
-        
+        EggImage.SetActive(false);  // 卵を隠す
+        DragonImage.SetActive(true);  // ドラゴンを表示
+
+        RectTransform dragonRectTransform = DragonImage.GetComponent<RectTransform>();
+        for (float i = 0; i < eggAnimNum; i++)
+        {
+            Debug.Log($"{eggAnimSpeed / eggAnimNum}");
+            // ドラゴンの大きさを徐々に大きくする
+            dragonRectTransform.localScale = new Vector3(i / eggAnimNum, i / eggAnimNum, 0);
+            yield return new WaitForSeconds(eggAnimSpeed / eggAnimNum);
+        }
+        dragonRectTransform.localScale = new Vector3(1, 1, 0);
+
+
         GoHomeButton.SetActive(true);  // ボタンを表示
         GoStageButton.SetActive(true);
 
