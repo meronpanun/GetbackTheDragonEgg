@@ -12,6 +12,8 @@ public class PlayerSelectManager : MonoBehaviour
     bool isNowSelect;
     public GameObject managerMember1;
     public GameObject managerMember2;
+
+    private StageSceneManager stageSceneManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class PlayerSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isNowSelect);
+        //Debug.Log(isNowSelect);
         if (!isMemberSelect)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -54,6 +56,7 @@ public class PlayerSelectManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G))
             {
                 Debug.Log("メンバー決定！！！");
+                Debug.Log($"左{SelectDragonManager1.selectDragonNum1},右{SelectDragonManager2.selectDragonNum2}");
                 isMemberSelect = true;
 
                 BattleTeam.sChildDragonDataLeft = SelectDragonManager1.selectDragonNum1;
@@ -112,5 +115,18 @@ public class PlayerSelectManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void SerectMenber()
+    {
+        Debug.Log("メンバー決定！！！");
+        Debug.Log($"左{SelectDragonManager1.selectDragonNum1},右{SelectDragonManager2.selectDragonNum2}");
+        isMemberSelect = true;
+
+        BattleTeam.sChildDragonDataLeft = SelectDragonManager1.selectDragonNum1;
+        BattleTeam.sChildDragonDataRight = SelectDragonManager2.selectDragonNum2;
+
+        Debug.Log(BattleTeam.sChildDragonDataLeft);
+        Debug.Log(BattleTeam.sChildDragonDataRight);
     }
 }
