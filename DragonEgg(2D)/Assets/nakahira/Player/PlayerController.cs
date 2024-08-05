@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private float viewOffset = 0.1f;
 
     private Animator animator; // 自分のアニメーターコンポーネント
+
+    [SerializeField] // Resourseファイルがゴミ屋敷になりそうなのでアウトレット接続
+    private AudioClip audioClip; 
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +101,8 @@ public class PlayerController : MonoBehaviour
 
     private void Damage(int attack) // hitPointはここから減らすこと
     {
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         DamageNumberGenerator.GenerateText(attack, transform.position, Color.red);
         hitPoint -= attack;
         if (hitPoint > 0) // 生きていたら

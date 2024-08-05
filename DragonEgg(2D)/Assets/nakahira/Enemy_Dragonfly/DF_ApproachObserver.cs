@@ -30,7 +30,7 @@ public class DF_ApproachObserver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("呼ばれてます");
+        //Debug.Log("呼ばれてます");
         // クールタイム中なら無効
         if (timer < coolTime) return;
 
