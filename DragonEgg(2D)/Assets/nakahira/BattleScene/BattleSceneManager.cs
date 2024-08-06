@@ -8,7 +8,7 @@ public class BattleSceneManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
-        //Destroy(GameObject.Find("StageLoadSceneData"));
+        Destroy(GameObject.Find("StageLoadSceneData"));
     }
 
     // Update is called once per frame
