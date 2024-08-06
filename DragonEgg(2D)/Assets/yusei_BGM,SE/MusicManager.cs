@@ -8,6 +8,8 @@ public class MusicManager : MonoBehaviour
     AudioSource audioSourse;
 
     Transform cam;
+
+    bool playFlag = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +17,17 @@ public class MusicManager : MonoBehaviour
         audioSourse = GetComponent<AudioSource>();
 
         cam = GameObject.Find("Main Camera").GetComponent<Transform>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cam.transform.position.y> 20)
+        if (cam.transform.position.y > 24 && !playFlag)
         {
             audioSourse.PlayOneShot(sound1);
+            playFlag = true;
         }
     }
 }

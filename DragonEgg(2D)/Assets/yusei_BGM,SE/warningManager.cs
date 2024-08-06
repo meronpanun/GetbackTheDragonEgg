@@ -10,6 +10,8 @@ public class warningManager : MonoBehaviour
     float fedeSpeed = 1.0f;
     CanvasGroup Transparency;
     bool isFadewarning = false;
+    float fadeStart = 24f;
+    float fadeEnd = 0.3f;
 
     Transform cam;
     // Start is called before the first frame update
@@ -24,25 +26,25 @@ public class warningManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (cam.transform.position.y> 20 && cam.transform.position.y < 21.5f)
+        if (cam.transform.position.y> fadeStart && cam.transform.position.y < fadeStart + fadeEnd)
         {
             StartCoroutine(FadeIn());
 
             Debug.Log("Test");
         }
-        else if (cam.transform.position.y > 21.5f && cam.transform.position.y < 23)
+        else if (cam.transform.position.y > fadeStart + fadeEnd && cam.transform.position.y < fadeStart + fadeEnd*2 )
         {
             StartCoroutine(FadeOut());
 
             Debug.Log("Test2");
         }
-        else if (cam.transform.position.y> 23 && cam.transform.position.y < 24.5f)
+        else if (cam.transform.position.y> fadeStart + fadeEnd *2 && cam.transform.position.y < fadeStart + fadeEnd*3)
         {
             StartCoroutine(FadeIn());
 
             Debug.Log("Test1");
         }
-        else if (cam.transform.position.y > 24.5f)
+        else if (cam.transform.position.y > fadeStart + fadeEnd * 3)
         {
             StartCoroutine(FadeOut());
 
@@ -51,12 +53,12 @@ public class warningManager : MonoBehaviour
     }
     IEnumerator FadeIn()
     {
-        Transparency.alpha += 0.02f;
+        Transparency.alpha += 0.03f;
         yield return new WaitForSeconds(Time.deltaTime);
     }
     IEnumerator FadeOut()
     {
-        Transparency.alpha -= 0.02f;
+        Transparency.alpha -= 0.03f;
         yield return new WaitForSeconds(Time.deltaTime);
     }
 
