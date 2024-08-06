@@ -45,7 +45,7 @@ public class FadeManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(StageLoadSceneData.stageLoadScene);
+        //Debug.Log(StageLoadSceneData.stageLoadScene);
         // スイッチがオンになっているならそれぞれの処理
         if (In)
         {

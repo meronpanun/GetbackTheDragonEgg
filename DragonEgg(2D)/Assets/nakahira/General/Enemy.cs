@@ -18,11 +18,15 @@ public abstract class Enemy : MonoBehaviour
 
     protected float shootSpan = 0; // 何秒おきに球を撃つか(canShootがfalseの時は関係ない)
     protected float shootTimer = 0; // 計測する変数
+
+    protected AudioClip deathSound; // 敵が消滅するときの音は今回固定にしよう
     // Start is called before the first frame update
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         cameraComponent = Camera.main;
+        // リソースファイルから取る
+        deathSound = (AudioClip)Resources.Load("EnemyDeathSound");
     }
 
     // Update is called once per frame
@@ -118,6 +122,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnDeath() // 自作のOnメソッドです。Hpが0になったときに実行されます。
     {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
         animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
     }
 

@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerFireController : PlayerBullet
 {
     private const int FIREATTACK = 1; // この値にドラゴンの攻撃力を掛けるつもり
-    // Start is called before the first frame update
-
+    // エディタで
+    // Resourceは見通しが悪くなる
+    public AudioClip audioClip;
     private void Awake()
     {
         baseAttack = FIREATTACK;
@@ -16,6 +17,8 @@ public class PlayerFireController : PlayerBullet
     {
         base.Start();
         bulletSpeedx = Random.Range(-1f, 1f); // ばらつかせる
+        // その場に音を鳴らす
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
     }
 
     // Update is called once per frame

@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerRapidBulletController : PlayerBullet
 {
     private const int RAPIDFIREATTACK = 3;@// ‚±‚Ì’l‚Éƒhƒ‰ƒSƒ“‚ÌUŒ‚—Í‚ğŠ|‚¯‚é‚Â‚à‚è
+    public AudioClip rapidFireAttackSound;
 
     private void Awake()
     {
         baseAttack = RAPIDFIREATTACK;
+        // ‰¹–Â‚ç‚·
+        AudioSource.PlayClipAtPoint(rapidFireAttackSound, transform.position);
     }
 
     // Start is called before the first frame update
