@@ -10,8 +10,6 @@ public class PlayerRapidBulletController : PlayerBullet
     private void Awake()
     {
         baseAttack = RAPIDFIREATTACK;
-        // âπñ¬ÇÁÇ∑
-        AudioSource.PlayClipAtPoint(rapidFireAttackSound, transform.position);
     }
 
     // Start is called before the first frame update
@@ -20,6 +18,8 @@ public class PlayerRapidBulletController : PlayerBullet
         base.Start();
         bulletSpeedy = 10f; // íeë¨ÅBìÆÇ≠ë¨Ç≥
         bulletSpeedx = 0;
+        // âπñ¬ÇÁÇ∑
+        AudioSource.PlayClipAtPoint(rapidFireAttackSound, transform.position);
     }
 
     // Update is called once per frame

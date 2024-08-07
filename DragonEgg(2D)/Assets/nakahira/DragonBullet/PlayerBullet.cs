@@ -8,7 +8,7 @@ public abstract class PlayerBullet : MonoBehaviour
     protected Camera cameraComponent;
     protected float bulletSpeedy = 2f; // 移動速度
     protected float bulletSpeedx = 0;
-    protected int baseAttack = 1;
+    protected int baseAttack = 0;
     // ドラゴンの攻撃力が勘定された後の攻撃力
     public int finalAttack { get; protected set; }
 

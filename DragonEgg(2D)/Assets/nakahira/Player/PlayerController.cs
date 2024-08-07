@@ -29,8 +29,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         SetStatusFromData();
         // 自分の種族に応じて出る弾を設定する
-        // 今はテストで炎
-        gameObject.AddComponent<FireShooter>();
+        // この機構要る？
+        // エディタで最初から設定してていいのでは　
+        gameObject.AddComponent<HadouShooter>();
     }
 
     private void SetStatusFromData()

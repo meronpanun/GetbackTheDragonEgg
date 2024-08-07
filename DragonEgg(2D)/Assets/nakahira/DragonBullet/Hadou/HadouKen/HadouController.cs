@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HadouController : PlayerBullet
 {
+    private const int HADOUKENATTACK = 2;
+    private void Awake()
+    {
+        baseAttack = HADOUKENATTACK;
+    }
     protected override void Start()
     {
         base.Start();

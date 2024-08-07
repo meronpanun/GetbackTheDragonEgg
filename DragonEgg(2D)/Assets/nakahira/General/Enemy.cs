@@ -20,6 +20,8 @@ public abstract class Enemy : MonoBehaviour
     protected float shootTimer = 0; // Œv‘ª‚·‚é•Ï”
 
     protected AudioClip deathSound; // “G‚ªÁ–Å‚·‚é‚Æ‚«‚Ì‰¹‚Í¡‰ñŒÅ’è‚É‚µ‚æ‚¤
+
+    protected float invincibleTime = 0.2f; // –³“GŠÔ‹L˜^—p
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -32,6 +34,16 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        // –³“GŠÔ‚ÌŒ¸Z‚ğ‚±‚±‚Å
+        if (invincibleTime > 0)
+        {
+            invincibleTime -= Time.deltaTime;
+        }
+        else
+        {
+            invincibleTime = 0;
+        }
+
         if (canMove)
         {
             Move();
@@ -75,11 +87,17 @@ public abstract class Enemy : MonoBehaviour
         return relativeDistance.normalized;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision) // colision‚Ætrigger•¹—p‚Å‚«‚È‚¢‚Ì–{“Á‘[
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        // –³“GŠÔ’†‚È‚ç‘Šúriturn
+        if (invincibleTime > 0) return;
+
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            Debug.Log(collision);
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
+            // –³“G‚É‚·‚é
+            Invincible(0.5f);
             return;
         }
 
@@ -135,5 +153,11 @@ public abstract class Enemy : MonoBehaviour
         GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.FromToRotation(Vector3.down, angle));
         // ˆÚ“®•ûŒü‚Í•Ê‚Åİ’è‚·‚éB
         bulletInstance.GetComponent<EnemyBullet>().SetAngle(angle);
+    }
+
+    // –³“GŠÔ‚ğ•t—^‚Å‚«‚éŠÖ”
+    public void Invincible(float time)
+    {
+        invincibleTime += time;
     }
 }
