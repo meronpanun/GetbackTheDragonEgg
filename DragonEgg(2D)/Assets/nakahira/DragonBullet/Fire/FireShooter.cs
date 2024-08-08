@@ -12,7 +12,7 @@ public class FireShooter : MonoBehaviour
 
     private const float rapidFireCooldown = 0.5f; // クールタイム
     private float rapidFireTimer = rapidFireCooldown; // 最初は撃てる
-    private const float fireInterval = 0.1f; // 発射するまでの長押し時間
+    private const float fireInterval = 0.1f; // 連射炎を発射するまでの長押し時間
     private const float srowFireRate = 0.1f; // 発射間隔
     private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
 

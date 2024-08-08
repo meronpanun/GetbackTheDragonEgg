@@ -14,4 +14,15 @@ public class HadouController : PlayerBullet
         base.Start();
         GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        // ìGÇ…ìñÇΩÇ¡ÇΩÇÁè¡Ç¶ÇÈ
+        GameObject g = collision.gameObject;
+        if (g.CompareTag("Enemy") ||
+            g.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

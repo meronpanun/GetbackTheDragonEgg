@@ -37,10 +37,12 @@ public class PlayerFireController : PlayerBullet
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // “G‚É“–‚½‚Á‚½‚ç‰Š©g‚àÁ‚¦‚é
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") ||
-            collision.gameObject.CompareTag("Boss"))
+        // “G‚É“–‚½‚Á‚½‚çÁ‚¦‚é
+        GameObject g = collision.gameObject;
+        if (g.CompareTag("Enemy") ||
+            g.CompareTag("Boss"))
         {
             Destroy(gameObject);
         }
