@@ -6,7 +6,7 @@ using UnityEngine.Device;
 public abstract class PlayerBullet : MonoBehaviour
 {
     protected Camera cameraComponent;
-    protected float bulletSpeedy = 2f; // 移動速度
+    protected float bulletSpeedy = 2f; // 移動速度 ベクトルで管理しろよ
     protected float bulletSpeedx = 0;
     protected int baseAttack = 0;
     // ドラゴンの攻撃力が勘定された後の攻撃力
@@ -43,5 +43,11 @@ public abstract class PlayerBullet : MonoBehaviour
     {
         finalAttack = baseAttack * dragonAttack;
         // Debug.Log($"base:{baseAttack},dragon:{dragonAttack},final:{finalAttack}");
+    }
+
+    protected void Stop()
+    {
+        bulletSpeedx = 0;
+        bulletSpeedy = 0;
     }
 }
