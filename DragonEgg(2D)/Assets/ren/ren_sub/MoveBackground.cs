@@ -15,6 +15,6 @@ public class MoveBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       background.Rotate(0, 0, 0.03f);
+      
     }
 }
