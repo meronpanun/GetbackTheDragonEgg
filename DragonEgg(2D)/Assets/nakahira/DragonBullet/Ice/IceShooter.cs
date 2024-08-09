@@ -7,7 +7,7 @@ public class IceShooter : MonoBehaviour
     // リソースファイルからロード
     private GameObject iceBullet;
 
-    private Vector3 instanceOffset = new Vector3(0, 0.2f, 0); // 口元から発射するための補正です。
+    private Vector3 instanceOffset = new Vector3(0, 1, 0); // 補正です。
 
     private int attack = 0;
     private float timer = 0; // いつもの
@@ -18,6 +18,13 @@ public class IceShooter : MonoBehaviour
     private void Start()
     {
         iceBullet = (GameObject)Resources.Load("IceBullet");
+
+        // アタッチされているドラゴンが右か左かで
+        // 弾を生成する向きを変える　
+        if (gameObject.name == "ChildDragonRight")
+        {
+            bulletAngle *= -1;
+        }
 
         // Start時にPlayerPrefsから攻撃力を参照
         // もしデータが見つからなかったら初期値として1をセーブ　
@@ -49,7 +56,11 @@ public class IceShooter : MonoBehaviour
             {
                 // インスタンス化
                 GameObject instance = Instantiate(iceBullet, transform.position + instanceOffset, Quaternion.identity);
-                Quaternion angleAxis = Quaternion.AngleAxis(bulletAngle * bulletCount, transform.position);
+
+                // 軸をずらして回転したい時は、
+                // 一回自分中心で回転させて
+                // 置きたい場所にずらせばよろし　
+                Quaternion angleAxis = Quaternion.AngleAxis(bulletAngle * bulletCount, Vector3.forward);
 
                 instance.transform.rotation *= angleAxis;
 
