@@ -23,13 +23,25 @@ public class warningManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (cam.transform.position.y> 20)
+        if (cam.transform.position.y> 25 && cam.transform.position.y<25.5f)
         {
             StartCoroutine(FadeIn());
 
             Debug.Log("Test");
         }
-        if (cam.transform.position.y > 25)
+        if (cam.transform.position.y > 25.5f && cam.transform.position.y < 26)
+        {
+            StartCoroutine(FadeOut());
+
+            Debug.Log("Test2");
+        }
+        if (cam.transform.position.y > 26 && cam.transform.position.y < 26.5f)
+        {
+            StartCoroutine(FadeIn());
+
+            Debug.Log("Test");
+        }
+        if (cam.transform.position.y > 26.5f && cam.transform.position.y < 27)
         {
             StartCoroutine(FadeOut());
 
@@ -38,12 +50,12 @@ public class warningManager : MonoBehaviour
     }
     IEnumerator FadeIn()
     {
-        Transparency.alpha += 0.01f;
+        Transparency.alpha += 0.02f;
         yield return new WaitForSeconds(Time.deltaTime);
     }
     IEnumerator FadeOut()
     {
-        Transparency.alpha -= 0.01f;
+        Transparency.alpha -= 0.02f;
         yield return new WaitForSeconds(Time.deltaTime);
     }
 

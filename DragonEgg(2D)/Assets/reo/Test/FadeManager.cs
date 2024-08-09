@@ -125,11 +125,18 @@ public class FadeManager : MonoBehaviour
                 StageLoadSceneData.stageLoadScene = "TestStage4";
                 break;
 
+            //case 11:
+            //    loadScene = "TestFade1";
+            //    break;
+            //case 12:
+            //    loadScene = "TestFade2";
+            //    break;
+
             case 11:
-                loadScene = "TestFade1";
+                loadScene = "SuccessResultScene";
                 break;
             case 12:
-                loadScene = "TestFade2";
+                loadScene = "FailResultScene";
                 break;
 
             default:
