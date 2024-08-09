@@ -55,7 +55,15 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log($"{speedVec}, {fadeSpeed}");
 
-        Move(speedVec, speed);
+        if (hitPoint <= 0) // Ž€‚ñ‚¾‚ç
+        {
+            // ƒJƒƒ‰‚ÉŽæ‚èŽc‚³‚ê‚éŠ´‚¶‚Åe‰ðœ
+            transform.parent = null;
+        }
+        else
+        {
+            Move(speedVec, speed);
+        }
     }
 
     private void Move(Vector2 speedVec, float speed) // ˆÚ“®‰Â”\”»’è‚Æ‚©‚ð‹l‚ßž‚ñ‚¾
@@ -134,6 +142,6 @@ public class PlayerController : MonoBehaviour
     // Ž€–SŽž‚Ìˆ—
     public void Death()
     {
-        fadePanel.GetComponent<FadeManager>().FadeOutSwitch(13);
+        fadePanel.GetComponent<FadeManager>().FadeOutSwitch(12);
     }
 }

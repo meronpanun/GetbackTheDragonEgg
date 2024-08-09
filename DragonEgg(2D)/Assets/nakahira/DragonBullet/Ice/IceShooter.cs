@@ -10,6 +10,9 @@ public class IceShooter : MonoBehaviour
     private Vector3 instanceOffset = new Vector3(0, 0.2f, 0); // 口元から発射するための補正です。
 
     private int attack = 0;
+    private float timer = 0; // いつもの
+    private float iceBulletInterval = 0.2f; // 次の弾が生成される間隔
+    private int bulletCount = 0; // 今何個の弾が出現しているか
 
     private void Start()
     {
@@ -31,17 +34,26 @@ public class IceShooter : MonoBehaviour
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
-            //　仮で単押しで一回弾を出す
-            GameObject bullet = Instantiate(iceBullet, transform.position + instanceOffset , Quaternion.identity);
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+            // 何もなし
         }
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
         {
+            // 長押ししていると弾が次々に生成
+            timer += Time.deltaTime;
+            if (timer > iceBulletInterval)
+            {
+                // インスタンス化
+
+                timer = 0;
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
+            // 離すと一斉に飛ぶ
+            // 処理を弾自身に持たせている
+            bulletCount = 0;
         }
     }
 }
