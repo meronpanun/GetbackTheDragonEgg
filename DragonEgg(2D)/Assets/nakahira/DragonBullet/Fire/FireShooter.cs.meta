@@ -3,7 +3,8 @@ guid: 4fb3da2a6c1c81742b4bf114c0549891
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fireChargeMeter: {fileID: 854832012201852617, guid: 35f5d872e26f8e24f872c92ed0a83aa9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

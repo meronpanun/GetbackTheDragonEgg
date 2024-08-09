@@ -97,7 +97,7 @@ public abstract class Enemy : MonoBehaviour
             Debug.Log(collision);
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
             // –³“G‚É‚·‚é
-            Invincible(0.5f);
+            Invincible(0.33f);
             return;
         }
 

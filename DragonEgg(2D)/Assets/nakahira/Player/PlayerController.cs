@@ -28,10 +28,6 @@ public class PlayerController : MonoBehaviour
         cameraComponent = Camera.main; // カメラコンポーネント取得
         animator = GetComponent<Animator>();
         SetStatusFromData();
-        // 自分の種族に応じて出る弾を設定する
-        // この機構要る？
-        // エディタで最初から設定してていいのでは　
-        gameObject.AddComponent<HadouShooter>();
     }
 
     private void SetStatusFromData()
@@ -49,11 +45,12 @@ public class PlayerController : MonoBehaviour
     {
         //左スティック
         Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
- 
+
         //Debug.Log("H" + Input.GetAxis("Horizontal"));
         //Debug.Log("V" + Input.GetAxis("Vertical"));
 
         //Debug.Log($"{speedVec}, {fadeSpeed}");
+
         Move(speedVec, speed);
     }
 
