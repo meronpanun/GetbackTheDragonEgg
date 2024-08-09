@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         // Staticクラスから自分のデータを取得
         // これはあくまでもテスト
         BattleTeam.sParentDragonData = DragonRace.races.thunder;
-        playerStatus = new TestDragonStatus("2,500,2,2,2,2,2");
+        playerStatus = new TestDragonStatus("2,50,2,2,2,2,2");
         hitPoint = playerStatus.hp;
         speed = playerStatus.speed;
     }

@@ -6,7 +6,7 @@ public class IceBulletController : PlayerBullet
 {
     private const int ICEATTACK= 1;
 
-    private const float speedX = 1;
+    private const float speedX = 0;
     private const float speedY = 1;
 
     public float angle = 0;
