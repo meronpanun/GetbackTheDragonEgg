@@ -13,6 +13,7 @@ public class IceShooter : MonoBehaviour
     private float timer = 0; // ‚¢‚Â‚à‚Ì
     private float iceBulletInterval = 0.2f; // ŽŸ‚Ì’e‚ª¶¬‚³‚ê‚éŠÔŠu
     private int bulletCount = 0; // ¡‰½ŒÂ‚Ì’e‚ªoŒ»‚µ‚Ä‚¢‚é‚©
+    private int bulletAngle = 20; // ‰½“x‰ñ“]‚·‚é‚©
 
     private void Start()
     {
@@ -41,10 +42,18 @@ public class IceShooter : MonoBehaviour
         {
             // ’·‰Ÿ‚µ‚µ‚Ä‚¢‚é‚Æ’e‚ªŽŸX‚É¶¬
             timer += Time.deltaTime;
+
+            if (bulletCount > 3) return; // Žw’èˆÈã‚È‚ç¶¬‚µ‚È‚¢
+
             if (timer > iceBulletInterval)
             {
                 // ƒCƒ“ƒXƒ^ƒ“ƒX‰»
+                GameObject instance = Instantiate(iceBullet, transform.position + instanceOffset, Quaternion.identity);
+                Quaternion angleAxis = Quaternion.AngleAxis(bulletAngle * bulletCount, transform.position);
 
+                instance.transform.rotation *= angleAxis;
+
+                bulletCount++;
                 timer = 0;
             }
         }
