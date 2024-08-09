@@ -60,6 +60,9 @@ EditorBuildSettings:
     path: Assets/reo/Test/TestErrorScene.unity
     guid: 4582cedad0341524289e9c95fd1f5680
   - enabled: 1
+    path: Assets/reo/FailResultScene.unity
+    guid: 18a8317bf65f250428a0926069d505fe
+  - enabled: 1
     path: Assets/ren/PartySelectScene.unity
     guid: f3125503c94b8994bb86077c67b2e110
   m_configObjects: {}

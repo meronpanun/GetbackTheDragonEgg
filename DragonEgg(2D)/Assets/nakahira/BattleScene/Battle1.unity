@@ -2470,8 +2470,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1169771548}
-  - {fileID: 1776112614}
   - {fileID: 1062499827}
+  - {fileID: 1776112614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3449,7 +3449,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4749,6 +4749,7 @@ GameObject:
   - component: {fileID: 1280426070}
   - component: {fileID: 1280426069}
   - component: {fileID: 1280426075}
+  - component: {fileID: 1280426076}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4921,6 +4922,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 8e93a41abfbd1a1409b87a90625999a1, type: 3}
+--- !u!114 &1280426076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280426067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d5c68cad8d0594181fa460b4901837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1291464535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5212809872057411464, guid: d9a7d381db077834f8952771704eeb44, type: 3}
@@ -5917,7 +5930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 228.66388}
+  m_AnchoredPosition: {x: 0, y: 225}
   m_SizeDelta: {x: 100, y: 473.589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1660292736
@@ -17650,7 +17663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846631719}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18565,8 +18578,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 202409703}
   - {fileID: 1920360182}
-  - {fileID: 1846631722}
   - {fileID: 1640434834}
   - {fileID: 703587847}
   - {fileID: 2057162255}
   - {fileID: 1072156931}
+  - {fileID: 1846631722}

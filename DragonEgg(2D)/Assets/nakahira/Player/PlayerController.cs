@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator; // 自分のアニメーターコンポーネント
 
     [SerializeField] // Resourseファイルがゴミ屋敷になりそうなのでアウトレット接続
-    private AudioClip audioClip; 
+    private AudioClip audioClip;
+
+    private GameObject fadePanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +31,7 @@ public class PlayerController : MonoBehaviour
         cameraComponent = Camera.main; // カメラコンポーネント取得
         animator = GetComponent<Animator>();
         SetStatusFromData();
-        // 自分の種族に応じて出る弾を設定する
-        // この機構要る？
-        // エディタで最初から設定してていいのでは　
-        gameObject.AddComponent<HadouShooter>();
+        fadePanel = GameObject.Find("FadePanel");
     }
 
     private void SetStatusFromData()
@@ -49,12 +49,21 @@ public class PlayerController : MonoBehaviour
     {
         //左スティック
         Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
- 
+
         //Debug.Log("H" + Input.GetAxis("Horizontal"));
         //Debug.Log("V" + Input.GetAxis("Vertical"));
 
         //Debug.Log($"{speedVec}, {fadeSpeed}");
-        Move(speedVec, speed);
+
+        if (hitPoint <= 0) // 死んだら
+        {
+            // カメラに取り残される感じで親解除
+            transform.parent = null;
+        }
+        else
+        {
+            Move(speedVec, speed);
+        }
     }
 
     private void Move(Vector2 speedVec, float speed) // 移動可能判定とかを詰め込んだ
@@ -128,5 +137,11 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.color = visibleColor;
             yield return new WaitForSeconds(interval); // こんなもんで　どうでしょう
         }
+    }
+
+    // 死亡時の処理
+    public void Death()
+    {
+        fadePanel.GetComponent<FadeManager>().FadeOutSwitch(12);
     }
 }

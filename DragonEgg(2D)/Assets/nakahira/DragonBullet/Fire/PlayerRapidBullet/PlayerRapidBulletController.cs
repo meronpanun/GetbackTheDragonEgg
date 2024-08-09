@@ -28,7 +28,7 @@ public class PlayerRapidBulletController : PlayerBullet
         base .Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // ボスに当たったらさすがに消える
+    private void OnTriggerStay2D(Collider2D collision) // ボスに当たったらさすがに消える
     {
         if (collision.gameObject.CompareTag("Boss"))
         {

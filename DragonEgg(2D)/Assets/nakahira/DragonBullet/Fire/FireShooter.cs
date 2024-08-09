@@ -7,14 +7,21 @@ public class FireShooter : MonoBehaviour
     // リソースファイルからロード
     private GameObject playerRapidBullet;
     private GameObject playerFireBullet;
+    private GameObject fireChargeMeter;
+    private PlayerChargeMeterController meter;
 
     private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // 口元から発射するための補正です。
+    private Vector3 meterPosition = new Vector3(550, 225, 0);
 
     private const float rapidFireCooldown = 0.5f; // クールタイム
     private float rapidFireTimer = rapidFireCooldown; // 最初は撃てる
     private const float fireInterval = 0.1f; // 連射炎を発射するまでの長押し時間
-    private const float srowFireRate = 0.1f; // 発射間隔
-    private float fireTimer = -fireInterval; // 初期値はfireInterval分減らしておく
+    private const float maxFireRateTime = 10f;// 最長の発射間隔になるまでの時間
+    private const float maxFireRateTimeFactor = 1 / maxFireRateTime;// 掛け算用
+    private float shootFireRate = 0; // (変数)発射間隔
+    private const float recoverySpeed = 5; // ゲージの回復係数
+    private float fireRateTimer = maxFireRateTime; // 発射間隔を制御するためのタイマー
+    private float fireShootTimer = -fireInterval; // 初期値はfireInterval分減らしておく
 
     private int attack = 0;
 
@@ -22,6 +29,12 @@ public class FireShooter : MonoBehaviour
     {
         playerFireBullet = (GameObject)Resources.Load("PlayerFire");
         playerRapidBullet = (GameObject)Resources.Load("PlayerRapidBullet");
+        fireChargeMeter = (GameObject)Resources.Load("FireChargeMeter");
+
+        // メーターを設置 なんだこれ
+        GameObject tempInstance = Instantiate(fireChargeMeter, GameObject.Find("Canvas").transform);
+        tempInstance.transform.SetSiblingIndex(1); // キャンバスのいい感じのところに置くことでフェードUIの下へ
+        meter = tempInstance.transform.GetChild(0).GetComponent<PlayerChargeMeterController>();
 
         // Start時にPlayerPrefsから攻撃力を参照
         // もしデータが見つからなかったら初期値として1をセーブ　
@@ -56,20 +69,57 @@ public class FireShooter : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
         {
-            fireTimer += Time.deltaTime;
+            fireShootTimer += Time.deltaTime;
 
-            if (fireTimer > srowFireRate) // fireRate秒に一回炎が発射される
+            if (fireShootTimer < 0) return; // 炎が出るまでゲージは消費しない
+
+            fireRateTimer -= Time.deltaTime;
+
+            if (fireRateTimer < 0)
+            {
+                // 0いかになろうとしたら抑える
+                fireRateTimer = 0;
+            }
+            // ここでfireRateTimerに応じてshootFireRateを変える
+            if (fireRateTimer > 3)
+            {
+                shootFireRate = 0.07f;
+            }
+            else if (fireRateTimer > 1f)
+            {
+                shootFireRate = 0.2f;
+            }
+            else
+            {
+                shootFireRate = 0.3f;
+            }
+            Debug.Log(fireRateTimer);
+            Debug.Log(shootFireRate);
+            if (fireShootTimer > shootFireRate) // fireRate秒に一回炎が発射される
             {
                 GameObject bullet = Instantiate(playerFireBullet, transform.position + instanceOffset, Quaternion.identity);
                 // 自分の攻撃力を上乗せ
                 bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
-                fireTimer = 0; // タイマーリセット
+                fireShootTimer = 0; // タイマーリセット
+            }
+        }
+        else
+        {
+            // 押していないとき、ゲージ回復。
+            fireRateTimer += Time.deltaTime * recoverySpeed;
+            if (fireRateTimer > maxFireRateTime)
+            {
+                // 幅抑える
+                fireRateTimer = maxFireRateTime;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
-            fireTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
+            fireShootTimer = -fireInterval; // fireTimerの初期値をfireInterval分ずらしておく
         }
+
+        // 最後にゲージを描画
+        meter.FillMeter(fireRateTimer * maxFireRateTimeFactor);
     }
 }
