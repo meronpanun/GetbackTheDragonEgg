@@ -102,6 +102,9 @@ public class FadeManager : MonoBehaviour
             case 103:
                 loadScene = "OptionScene";
                 break;
+            case 104:
+                loadScene = "CreditScene";
+                break;
 
 
             //case 1:
