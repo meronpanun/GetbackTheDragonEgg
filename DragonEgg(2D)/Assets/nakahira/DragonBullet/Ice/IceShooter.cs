@@ -7,13 +7,18 @@ public class IceShooter : MonoBehaviour
     // リソースファイルからロード
     private GameObject iceBullet;
 
-    private Vector3 instanceOffset = new Vector3(0, 1, 0); // 補正です。
+    private Vector3 instanceOffset = new Vector3(0, 0.3f, 0); // 補正です。
 
     private int attack = 0;
     private float timer = 0; // いつもの
     private float iceBulletInterval = 0.2f; // 次の弾が生成される間隔
     private int bulletCount = 0; // 今何個の弾が出現しているか
-    private int bulletAngle = 20; // 何度回転するか
+    private int bulletAngle = 30; // 何度回転するか
+    private int angleOffset = 0; // その名の通り
+    private const int maxBulletCount = 7; // 最大何個出現させられるか
+    // ここで悲報です
+    // 途中から定数をロワーキャメルケースで書いてました
+    // 今更変えないけど　
 
     private void Start()
     {
@@ -24,6 +29,7 @@ public class IceShooter : MonoBehaviour
         if (gameObject.name == "ChildDragonRight")
         {
             bulletAngle *= -1;
+            angleOffset *= -1;
         }
 
         // Start時にPlayerPrefsから攻撃力を参照
@@ -50,19 +56,23 @@ public class IceShooter : MonoBehaviour
             // 長押ししていると弾が次々に生成
             timer += Time.deltaTime;
 
-            if (bulletCount > 3) return; // 指定以上なら生成しない
+            if (bulletCount >= maxBulletCount) return; // 指定以上なら生成しない
 
             if (timer > iceBulletInterval)
             {
-                // インスタンス化
-                GameObject instance = Instantiate(iceBullet, transform.position + instanceOffset, Quaternion.identity);
+                // 回転を生成
+                Quaternion bulletRotation = Quaternion.AngleAxis(bulletAngle * bulletCount + angleOffset, Vector3.forward);
+
+                // インスタンス化 親は自分にして、追尾させる
+                GameObject instance = Instantiate(iceBullet, 
+                    transform.position, 
+                    bulletRotation ,
+                    transform);
 
                 // 軸をずらして回転したい時は、
-                // 一回自分中心で回転させて
-                // 置きたい場所にずらせばよろし　
-                Quaternion angleAxis = Quaternion.AngleAxis(bulletAngle * bulletCount, Vector3.forward);
-
-                instance.transform.rotation *= angleAxis;
+                // 一回自分中心で回転させてから
+                // そのあと置きたい場所にずらせばよろし　
+                instance.transform.position += bulletRotation * instanceOffset;
 
                 bulletCount++;
                 timer = 0;
@@ -71,9 +81,10 @@ public class IceShooter : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
-            // 離すと一斉に飛ぶ
-            // 処理を弾自身に持たせている
+            // 移動する処理は弾自身に持たせている
+            // 弾の数もリセット
             bulletCount = 0;
+            timer = 0;
         }
     }
 }
