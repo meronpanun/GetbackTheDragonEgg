@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53bf8768c9b37f49a6bf8d129346f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateSoundEffect: {fileID: 8300000, guid: 2ade5e5cc1cdba845a9c0a46e5dabfeb, type: 3}
 --- !u!61 &7923595886156902054
 BoxCollider2D:
   m_ObjectHideFlags: 0

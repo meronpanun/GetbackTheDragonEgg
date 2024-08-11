@@ -8,6 +8,9 @@ public class IceBulletController : PlayerBullet
 
     private bool isStay = true;
 
+    [SerializeField] // エディタ
+    private AudioClip generateSoundEffect; // 生成時のSE
+
     private void Awake()
     {
         baseAttack = ICEATTACK;
@@ -16,6 +19,7 @@ public class IceBulletController : PlayerBullet
     protected override void Start()
     {
         base.Start();
+        AudioSource.PlayClipAtPoint(generateSoundEffect, transform.position);
     }
 
     protected override void Update()

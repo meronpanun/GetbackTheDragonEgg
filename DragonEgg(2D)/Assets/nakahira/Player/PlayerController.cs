@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     public static GameObject player;
 
-    private TestDragonStatus playerStatus;
-
     private float speed = 1f;
     private float hitPoint = 10;
 
@@ -24,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip audioClip;
 
     private GameObject fadePanel;
+
+    public static int playerAttack; // 攻撃力
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +36,17 @@ public class PlayerController : MonoBehaviour
 
     private void SetStatusFromData()
     {
-        // Staticクラスから自分のデータを取得
-        // これはあくまでもテスト
-        BattleTeam.sParentDragonData = DragonRace.races.thunder;
-        playerStatus = new TestDragonStatus("2,50,2,2,2,2,2");
-        hitPoint = playerStatus.hp;
-        speed = playerStatus.speed;
+        // Start時にPlayerPrefsから攻撃力を参照
+        // もしデータが見つからなかったら初期値として1をセーブ　
+        playerAttack = PlayerPrefs.GetInt("Attack", 0);
+        if (playerAttack == 0)
+        {
+            playerAttack = 1;
+            PlayerPrefs.SetInt("Attack", 1);
+            PlayerPrefs.Save();
+        }
+        hitPoint = 50; // リテラルパンチ
+        speed = 2;
     }
 
     // Update is called once per frame

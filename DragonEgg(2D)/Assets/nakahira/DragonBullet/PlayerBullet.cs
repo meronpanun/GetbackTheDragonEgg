@@ -16,6 +16,8 @@ public abstract class PlayerBullet : MonoBehaviour
     protected virtual void Start()
     {
         cameraComponent = Camera.main;
+        // baseAttackは派生クラスでAwakeで設定しているっていうね
+        finalAttack = baseAttack * PlayerController.playerAttack;
     }
 
     // Update is called once per frame
@@ -37,12 +39,6 @@ public abstract class PlayerBullet : MonoBehaviour
                 viewPos.y > 1 ||
                 viewPos.x < 0 ||
                 viewPos.x > 1); // これ短くならないかな
-    }
-
-    public void AttackCalc(int dragonAttack)
-    {
-        finalAttack = baseAttack * dragonAttack;
-        // Debug.Log($"base:{baseAttack},dragon:{dragonAttack},final:{finalAttack}");
     }
 
     protected void Stop()

@@ -39,7 +39,7 @@ public class DF_ApproachObserver : MonoBehaviour
         if (g.CompareTag("Player") || g.CompareTag("PlayerBullet"))
         {
             // よけろ！！
-            Debug.Log("よけろ！");
+            //Debug.Log("よけろ！");
             dragonFry.GetComponent<DragonFryController>().Dodge();
             timer = 0;
         }

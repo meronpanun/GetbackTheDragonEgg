@@ -30,7 +30,7 @@ public class HadouShooter : MonoBehaviour
     {
         hadouKen = (GameObject)Resources.Load("HadouBullet");
         hadouBeam = (GameObject)Resources.Load("HadouBeamBase");
-        chargeMeterUI = GameObject.Find("ChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        chargeMeterUI = GameObject.Find("PlayerChargeMeterInside").GetComponent<PlayerChargeMeterController>();
 
         // Start時にPlayerPrefsから攻撃力を参照
         // もしデータが見つからなかったら初期値として1をセーブ　
@@ -63,8 +63,7 @@ public class HadouShooter : MonoBehaviour
             // 一定時間のクールタイムを設ける常套手段
             if (hadouKenTimer > hadouKenCoolTime)
             {
-                GameObject bullet = Instantiate(hadouKen, transform.position + instanceOffset, Quaternion.identity);
-                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+                Instantiate(hadouKen, transform.position + instanceOffset, Quaternion.identity);
 
                 hadouKenTimer = 0; // きちんと元に戻しておく
             }
@@ -90,15 +89,12 @@ public class HadouShooter : MonoBehaviour
             if (beamChargeTimer >= beamChargeMax)
             {
                 beamInstance = Instantiate(hadouBeam);
-                // 攻撃力計算。これ忘れない。誰だこんな仕組みのコード書いたの
-                beamInstance.transform.GetChild(0).gameObject.GetComponent<PlayerBullet>().AttackCalc(attack);
                 reduceTime = beamChargeMax; // チャージと同じ時間かけて戻り、撃ってる感じを出す
             }
             // そうでなくても波動拳のクールタイムが完了してたら普通の弾がでる
             else if (hadouKenTimer > hadouKenCoolTime)
             {
-                GameObject bullet = Instantiate(hadouKen, transform.position + instanceOffset, Quaternion.identity);
-                bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+                Instantiate(hadouKen, transform.position + instanceOffset, Quaternion.identity);
 
                 hadouKenTimer = 0; // きちんと元に戻しておく
             }

@@ -32,8 +32,7 @@ public class WindShooter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
             //　仮で単押しで一回弾を出す
-            GameObject bullet = Instantiate(windBullet, transform.position + instanceOffset, Quaternion.identity);
-            bullet.GetComponent<PlayerBullet>().AttackCalc(attack);
+            Instantiate(windBullet, transform.position + instanceOffset, Quaternion.identity);
         }
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
