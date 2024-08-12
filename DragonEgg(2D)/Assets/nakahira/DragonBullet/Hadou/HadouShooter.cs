@@ -30,7 +30,19 @@ public class HadouShooter : MonoBehaviour
     {
         hadouKen = (GameObject)Resources.Load("HadouBullet");
         hadouBeam = (GameObject)Resources.Load("HadouBeamBase");
-        chargeMeterUI = GameObject.Find("PlayerChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        if (name == "Player")
+        {
+            chargeMeterUI = GameObject.Find("PlayerChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        }
+        else if (name == "ChildDragonRight")
+        {
+            chargeMeterUI = GameObject.Find("RightChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        }
+        else
+        {
+            chargeMeterUI = GameObject.Find("LeftChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        }
+        
 
         // Start時にPlayerPrefsから攻撃力を参照
         // もしデータが見つからなかったら初期値として1をセーブ　

@@ -2301,8 +2301,8 @@ MonoBehaviour:
   iceMeterGuageSprite: {fileID: 21300000, guid: 09a735281087cb24787881da34540eb6, type: 3}
   windMeterSprite: {fileID: 0}
   windMeterGuageSprite: {fileID: 0}
-  thunderMeterSprite: {fileID: 0}
-  thunderMeterGuageSprite: {fileID: 0}
+  thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
+  thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
   noneMeterSprite: {fileID: 0}
   noneMeterGuageSprite: {fileID: 0}
 --- !u!58 &684546060
@@ -18155,8 +18155,8 @@ MonoBehaviour:
   iceMeterGuageSprite: {fileID: 21300000, guid: 09a735281087cb24787881da34540eb6, type: 3}
   windMeterSprite: {fileID: 0}
   windMeterGuageSprite: {fileID: 0}
-  thunderMeterSprite: {fileID: 0}
-  thunderMeterGuageSprite: {fileID: 0}
+  thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
+  thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
   noneMeterSprite: {fileID: 0}
   noneMeterGuageSprite: {fileID: 0}
 --- !u!58 &1907845413
