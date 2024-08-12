@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ren/PartySelectScene.unity
     guid: f3125503c94b8994bb86077c67b2e110
+  - enabled: 1
+    path: Assets/yusei_BGM,SE/Credit/CreditScene.unity
+    guid: be5c9f52c30847245a2a1606cc2d3ba8
   m_configObjects: {}
