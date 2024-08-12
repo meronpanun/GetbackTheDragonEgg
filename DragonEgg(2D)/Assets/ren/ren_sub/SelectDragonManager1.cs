@@ -7,6 +7,7 @@ using TMPro;
 public class SelectDragonManager1 : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject noneDragon;
     public GameObject fireDragon;
     public GameObject iceDragon;
     public GameObject windDragon;
@@ -19,7 +20,7 @@ public class SelectDragonManager1 : MonoBehaviour
 
     void Start()
     {
-        selectDragonNum1 = races.fire;
+        selectDragonNum1 = races.none;
         objMemberText = GameObject.Find("Canvas/member1/member1text");
         memberText = objMemberText.GetComponent<TextMeshProUGUI>();
 
@@ -30,10 +31,23 @@ public class SelectDragonManager1 : MonoBehaviour
         return selectDragonNum1;
     }
 
+    public void NoneDragon()
+    {
+        selectDragonNum1 = races.none;
+        noneDragon.SetActive(true);
+        fireDragon.SetActive(false);
+        iceDragon.SetActive(false);
+        windDragon.SetActive(false);
+        thunderDragon.SetActive(false);
+        memberText.text = "None";
+        memberText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
     public void FireDragon()
     {
         selectDragonNum1 = races.fire;
         fireDragon.SetActive(true);
+        noneDragon.SetActive(false);
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
@@ -45,6 +59,7 @@ public class SelectDragonManager1 : MonoBehaviour
     {
         selectDragonNum1 = races.ice;
         iceDragon.SetActive(true);
+        noneDragon.SetActive(false);
         fireDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
@@ -55,6 +70,7 @@ public class SelectDragonManager1 : MonoBehaviour
     public void WindDragon()
     {
         selectDragonNum1 = races.wind;
+        noneDragon.SetActive(false);
         windDragon.SetActive(true);
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
@@ -65,6 +81,7 @@ public class SelectDragonManager1 : MonoBehaviour
     public void ThunderDragon()
     {
         selectDragonNum1 = races.thunder;
+        noneDragon.SetActive(false);
         thunderDragon.SetActive(true);
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
@@ -80,6 +97,9 @@ public class SelectDragonManager1 : MonoBehaviour
 
         switch (selectDragonNum1)
         {
+            case races.none:
+                NoneDragon();
+                break;
             case races.fire:
                 FireDragon();
                 break;
