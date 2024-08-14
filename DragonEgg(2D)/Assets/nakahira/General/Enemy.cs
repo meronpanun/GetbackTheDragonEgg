@@ -94,6 +94,8 @@ public abstract class Enemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            PlayerBullet script = collision.gameObject.GetComponent<PlayerBullet>();
+
             //Debug.Log(collision);
             Damage(collision.gameObject.GetComponent<PlayerBullet>().finalAttack);
             // –³“G‚É‚·‚é

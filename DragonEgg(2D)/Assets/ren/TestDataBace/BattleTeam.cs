@@ -11,6 +11,6 @@ public static class BattleTeam
     //public static TestDragonStatus sChildDragonDataLeft;
 
     public static races sParentDragonData;
-    public static races sChildDragonDataRight;
+    public static races sChildDragonDataRight = races.wind;
     public static races sChildDragonDataLeft;
 }

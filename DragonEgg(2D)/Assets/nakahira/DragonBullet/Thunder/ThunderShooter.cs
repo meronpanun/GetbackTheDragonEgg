@@ -68,6 +68,9 @@ public class ThunderShooter : MonoBehaviour
 
             // タイマーに応じて攻撃力を変更
             attack = timer * maxAttackFacter;
+            // 攻撃力計算も長押し中毎フレーム行う
+            // チェーンソーみたいになる
+            thunderBulletInstance.GetComponent<ThunderBulletController>().SetAttack((int)attack);
         }
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
@@ -76,7 +79,6 @@ public class ThunderShooter : MonoBehaviour
             thunderBulletInstance.transform.parent = null;
             // 今のチャージ時間に則った攻撃力と弾サイズで放出される　
             timer = 0;
-            thunderBulletInstance.GetComponent<ThunderBulletController>().SetAttack((int)attack);
         }
 
         // 毎フレームゲージ描画

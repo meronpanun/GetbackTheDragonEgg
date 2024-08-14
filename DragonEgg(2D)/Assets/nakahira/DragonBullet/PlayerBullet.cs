@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Device;
 
 public abstract class PlayerBullet : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public abstract class PlayerBullet : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+
         // 毎フレーム移動
         transform.Translate(bulletSpeedx * Time.deltaTime, bulletSpeedy * Time.deltaTime, 0f);
 

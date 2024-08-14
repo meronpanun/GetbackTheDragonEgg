@@ -9,20 +9,19 @@ public class WindShooter : MonoBehaviour
 
     private Vector3 instanceOffset = new Vector3(0, 0.2f, 0); // 口元から発射するための補正です。
 
-    private int attack = 0;
+    private PlayerChargeMeterController meter;
 
     private void Start()
     {
         windBullet = (GameObject)Resources.Load("WindBullet");
 
-        // Start時にPlayerPrefsから攻撃力を参照
-        // もしデータが見つからなかったら初期値として1をセーブ　
-        attack = PlayerPrefs.GetInt("Attack", 0);
-        if (attack == 0)
+        if (name == "ChildDragonRight")
         {
-            attack = 1;
-            PlayerPrefs.SetInt("Attack", 1);
-            PlayerPrefs.Save();
+            meter = GameObject.Find("RightChargeMeter").GetComponent<PlayerChargeMeterController>();
+        }
+        else
+        {
+            meter = GameObject.Find("LeftChargeMeter").GetComponent<PlayerChargeMeterController>();
         }
     }
 
@@ -42,5 +41,7 @@ public class WindShooter : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら
         {
         }
+
+
     }
 }

@@ -2259,6 +2259,7 @@ GameObject:
   - component: {fileID: 684546061}
   - component: {fileID: 684546060}
   - component: {fileID: 684546059}
+  - component: {fileID: 684546064}
   m_Layer: 0
   m_Name: ChildDragonLeft
   m_TagString: ChildDragon
@@ -2303,8 +2304,8 @@ MonoBehaviour:
   windMeterGuageSprite: {fileID: 0}
   thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
   thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
-  noneMeterSprite: {fileID: 0}
-  noneMeterGuageSprite: {fileID: 0}
+  noneMeterSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
+  noneMeterGuageSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
 --- !u!58 &684546060
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2440,6 +2441,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &684546064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684546056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad471c4580ca994499021e9edf9cb968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &684641160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4924598698279375509, guid: 3e1d754ab5d4df742a48aaf849a2d3f2, type: 3}
@@ -4325,7 +4338,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1072156931}
   - component: {fileID: 1072156930}
-  - component: {fileID: 1072156929}
   - component: {fileID: 1072156932}
   m_Layer: 0
   m_Name: Audio
@@ -4334,18 +4346,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1072156929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072156928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e26fb6a2f7b0f41b3d0e9c7c561f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1072156930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4353,10 +4353,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072156928}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0e447824cce8403459293aebb80378b0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -18157,8 +18157,8 @@ MonoBehaviour:
   windMeterGuageSprite: {fileID: 0}
   thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
   thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
-  noneMeterSprite: {fileID: 0}
-  noneMeterGuageSprite: {fileID: 0}
+  noneMeterSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
+  noneMeterGuageSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
 --- !u!58 &1907845413
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18420,7 +18420,6 @@ GameObject:
   - component: {fileID: 1920360181}
   - component: {fileID: 1920360180}
   - component: {fileID: 1920360179}
-  - component: {fileID: 1920360183}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -18515,102 +18514,6 @@ Transform:
   - {fileID: 1280426068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1920360183
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920360178}
-  m_Enabled: 0
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0e447824cce8403459293aebb80378b0, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &1920760048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5212809872057411464, guid: d9a7d381db077834f8952771704eeb44, type: 3}

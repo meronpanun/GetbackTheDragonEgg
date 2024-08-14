@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class WindBulletController : PlayerBullet
 {
+    private const int attack = 1;
 
+    private void Awake()
+    {
+        baseAttack = attack;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
 }
