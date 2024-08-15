@@ -22,9 +22,10 @@ public abstract class PlayerBullet : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-
         // 毎フレーム移動
         transform.Translate(bulletSpeedx * Time.deltaTime, bulletSpeedy * Time.deltaTime, 0f);
+        // カメラに追従(回転の影響を受けないようスペワにする)
+        transform.Translate(BattleCameraController.cameraSpeed * Time.deltaTime, Space.World);
 
         // 画面外に出たら
         if (OffScreenJudgment())

@@ -10,9 +10,4 @@ public class WindBulletController : PlayerBullet
     {
         baseAttack = attack;
     }
-
-    protected override void Start()
-    {
-        base.Start();
-    }
 }

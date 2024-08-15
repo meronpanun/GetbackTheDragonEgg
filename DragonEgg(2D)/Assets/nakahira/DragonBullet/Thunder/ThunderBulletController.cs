@@ -28,4 +28,12 @@ public class ThunderBulletController : PlayerBullet
     {
         finalAttack = attack;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
