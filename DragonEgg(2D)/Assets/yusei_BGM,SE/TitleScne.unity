@@ -601,9 +601,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dc79177490e032c4490d6a7823fcc8a8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -852,6 +852,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2435365817451557549, guid: 9a3095d393fc4a14aaeed87ced791f51, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5347602885426800674, guid: 9a3095d393fc4a14aaeed87ced791f51, type: 3}
       propertyPath: m_Name
       value: NegativeSE
@@ -1177,6 +1181,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2921939369801907186, guid: 72092d4cf6f2d27498628f20ce231c48, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3092764184717987692, guid: 72092d4cf6f2d27498628f20ce231c48, type: 3}
       propertyPath: m_Name
       value: PositiveSE
@@ -1488,6 +1496,7 @@ GameObject:
   - component: {fileID: 2114780764}
   - component: {fileID: 2114780763}
   - component: {fileID: 2114780762}
+  - component: {fileID: 2114780765}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1571,6 +1580,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2114780765}
+        m_TargetAssemblyTypeName: ExitButtonController, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2114780763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,6 +1630,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114780760}
   m_CullTransparentMesh: 1
+--- !u!114 &2114780765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114780760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8858ac639c4d5884ea3c1ac3f689ea33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
