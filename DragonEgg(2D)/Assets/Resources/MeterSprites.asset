@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b584996ca1f78be498b48df30f960e54, type: 3}
+  m_Name: MeterSprites
+  m_EditorClassIdentifier: 
+  playerMeterSprite: {fileID: 21300000, guid: 02b1796de08d50342ae21aabc22cad9c, type: 3}
+  playerMeterGuageSprite: {fileID: 21300000, guid: 3205ca935c2b0d84fa46789820b04852, type: 3}
+  fireMeterSprite: {fileID: 21300000, guid: ed20d39a4df1224499d688f4134feb06, type: 3}
+  fireMeterGuageSprite: {fileID: 21300000, guid: 4a98ecc46018bbb4ba523fab290e5fd6, type: 3}
+  iceMeterSprite: {fileID: 21300000, guid: 8050146782732e641b0869637266aeba, type: 3}
+  iceMeterGuageSprite: {fileID: 21300000, guid: 09a735281087cb24787881da34540eb6, type: 3}
+  windMeterSprite: {fileID: 21300000, guid: ca26c2ed5d0e4e846a163d9e24c88876, type: 3}
+  windMeterGuageSprite: {fileID: 21300000, guid: 48effba7bc111d947b6aa0fa642a9500, type: 3}
+  thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
+  thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
+  noneMeterSprite: {fileID: 21300000, guid: dfe7fd165bc7cbb41abe8715cd9cb86d, type: 3}
+  noneMeterGuageSprite: {fileID: 21300000, guid: dfe7fd165bc7cbb41abe8715cd9cb86d, type: 3}

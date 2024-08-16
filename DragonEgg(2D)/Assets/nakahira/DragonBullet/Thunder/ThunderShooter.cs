@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderShooter : MonoBehaviour
+public class ThunderShooter : Shooter
 {
     // リソースファイルからロード
     private GameObject thunderBullet;
@@ -39,8 +39,9 @@ public class ThunderShooter : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
+        if (!canShoot) return;
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {

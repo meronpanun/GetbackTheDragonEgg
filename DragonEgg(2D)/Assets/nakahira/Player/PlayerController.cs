@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public static GameObject player;
 
     private float speed = 1f;
-    private float hitPoint = 10;
+    private int hitPoint = 10;
 
     private Camera cameraComponent;
 
@@ -24,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private GameObject fadePanel;
 
     public static int playerAttack; // 攻撃力
+
+    private HPUIController hpText;
+
+    private Shooter playerShooter;
+    private Shooter rightShooter;
+    private Shooter leftShooter;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,12 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         SetStatusFromData();
         fadePanel = GameObject.Find("FadePanel");
+        hpText = GameObject.Find("HP").GetComponent<HPUIController>();
+        hpText.DispHp(hitPoint);
+        // 
+        playerShooter = GetComponent<Shooter>();
+        rightShooter = transform.GetChild(0).GetComponent<Shooter>();
+        leftShooter = transform.GetChild(1).GetComponent<Shooter>();
     }
 
     private void SetStatusFromData()
@@ -123,10 +133,17 @@ public class PlayerController : MonoBehaviour
         if (hitPoint > 0) // 生きていたら
         {
             StartCoroutine(Blinking(4, 0.05f)); // 点滅
+            hpText.DispHp(hitPoint); // HPの減少を反映
         }
         else // でなければ
         {
             animator.SetTrigger("Death"); // 脂肪モーションを再生
+            hpText.DispHp(0);
+            // プレイヤーとコドモドラゴンについているコンポーネントを取得して
+            // 弾を撃たせないようにしたい
+            playerShooter.SetCanShoot(false);
+            if (rightShooter != null) rightShooter.SetCanShoot(false);
+            if (leftShooter != null) leftShooter.SetCanShoot(false);
         }
     }
 
@@ -144,7 +161,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 死亡時の処理
+    // 死亡時の処理 アニメーションで実行している
     public void Death()
     {
         fadePanel.GetComponent<FadeManager>().FadeOutSwitch(12);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HadouShooter : MonoBehaviour
+public class HadouShooter : Shooter
 {
     // リソースファイルからロード
     private GameObject hadouKen;
@@ -55,8 +55,9 @@ public class HadouShooter : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
+        if (!canShoot) return;
         // Debug.Log(beamChargeTimer);
 
         // ビームが出てる間弾撃つのを禁止する
