@@ -89,7 +89,7 @@ public class DispFailResult : MonoBehaviour
     {
         ResultText.text = "";
         
-        dialogText = "//////S/t/a/g/e// F/a/i/l/e/d/...||" + "Continue?";  //  + "(dragon.png)" dialogText•Ï”‚É•¶‚ğ‘ã“ü
+        dialogText = "|//////S/t/a/g/e// F/a/i/l/e/d/...///||" + "Continue?";  //  + "(dragon.png)" dialogText•Ï”‚É•¶‚ğ‘ã“ü
 
         GoHomeButton.SetActive(false);  // ƒ{ƒ^ƒ“‚ğ‰B‚·
         GoStageButton.SetActive(false);
