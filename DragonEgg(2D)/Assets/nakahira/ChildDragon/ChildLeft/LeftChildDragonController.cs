@@ -15,31 +15,7 @@ public class LeftChildDragonController : MonoBehaviour
     private Image meterImage;
     private Image meterGuageImage;
 
-    // めんどくさいからエディタで付ける
-    [SerializeField]
-    private Sprite playerMeterSprite;
-    [SerializeField]
-    private Sprite playerMeterGuageSprite;
-    [SerializeField]
-    private Sprite fireMeterSprite;
-    [SerializeField]
-    private Sprite fireMeterGuageSprite;
-    [SerializeField]
-    private Sprite iceMeterSprite;
-    [SerializeField]
-    private Sprite iceMeterGuageSprite;
-    [SerializeField]
-    private Sprite windMeterSprite;
-    [SerializeField]
-    private Sprite windMeterGuageSprite;
-    [SerializeField]
-    private Sprite thunderMeterSprite;
-    [SerializeField]
-    private Sprite thunderMeterGuageSprite;
-    [SerializeField]
-    private Sprite noneMeterSprite;
-    [SerializeField]
-    private Sprite noneMeterGuageSprite;
+    private MeterSpriteStore sprites;
 
     private void Start()
     {
@@ -51,6 +27,8 @@ public class LeftChildDragonController : MonoBehaviour
         //BattleTeam.sChildDragonDataLeft = races.wind;
         myRace = BattleTeam.sChildDragonDataLeft;
         //Debug.Log($"種族{myRace}");
+        // ScriptableObjectを取得
+        sprites = (MeterSpriteStore)Resources.Load("MeterSprites");
         // 自分の種族のゲージに
         // それぞれに対応したアニメーションと、弾を撃てるようにする
         switch (myRace)
@@ -58,37 +36,37 @@ public class LeftChildDragonController : MonoBehaviour
             case races.player:
                 myAnimator.SetTrigger("Player");
                 gameObject.AddComponent<HadouShooter>();
-                meterImage.sprite = playerMeterSprite;
-                meterGuageImage.sprite = playerMeterGuageSprite;
+                meterImage.sprite = sprites.playerMeterSprite;
+                meterGuageImage.sprite = sprites.playerMeterGuageSprite;
                 break;
             case races.fire:
                 myAnimator.SetTrigger("Fire");
                 gameObject.AddComponent<FireShooter>();
-                meterImage.sprite = fireMeterSprite;
-                meterGuageImage.sprite = fireMeterGuageSprite;
+                meterImage.sprite = sprites.fireMeterSprite;
+                meterGuageImage.sprite = sprites.fireMeterGuageSprite;
                 break;
             case races.ice:
                 myAnimator.SetTrigger("Ice");
                 gameObject.AddComponent<IceShooter>();
-                meterImage.sprite = iceMeterSprite;
-                meterGuageImage.sprite = iceMeterGuageSprite;
+                meterImage.sprite = sprites.iceMeterSprite;
+                meterGuageImage.sprite = sprites.iceMeterGuageSprite;
                 break;
             case races.wind:
                 myAnimator.SetTrigger("Wind");
                 gameObject.AddComponent<WindShooter>();
-                meterImage.sprite = windMeterSprite;
-                meterGuageImage.sprite = windMeterGuageSprite;
+                meterImage.sprite = sprites.windMeterSprite;
+                meterGuageImage.sprite = sprites.windMeterGuageSprite;
                 break;
             case races.thunder:
                 myAnimator.SetTrigger("Thunder");
                 gameObject.AddComponent<ThunderShooter>();
-                meterImage.sprite = thunderMeterSprite;
-                meterGuageImage.sprite = thunderMeterGuageSprite;
+                meterImage.sprite = sprites.thunderMeterSprite;
+                meterGuageImage.sprite = sprites.thunderMeterGuageSprite;
                 break;
             case races.none:
                 myAnimator.SetTrigger("Empty");
-                meterImage.sprite = noneMeterSprite;
-                meterGuageImage.sprite = noneMeterGuageSprite;
+                meterImage.sprite = sprites.noneMeterSprite;
+                meterGuageImage.sprite = sprites.noneMeterGuageSprite;
                 break;
             default:
                 myAnimator.SetTrigger("Error");

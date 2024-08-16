@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DragonRace;
 
-public class FireShooter : MonoBehaviour
+public class FireShooter : Shooter
 {
     // リソースファイルからロード
     private GameObject playerRapidBullet;
@@ -41,8 +41,9 @@ public class FireShooter : MonoBehaviour
         meter = GameObject.Find(temp).GetComponent<PlayerChargeMeterController>();
     }
 
-    private void Update()
+    void Update()
     {
+        if (!canShoot) return;
         // タイマー加算
         rapidFireTimer += Time.deltaTime;
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindShooter : MonoBehaviour
+public class WindShooter : Shooter
 {
     // リソースファイルからロード
     private GameObject windBullet;
@@ -16,22 +16,30 @@ public class WindShooter : MonoBehaviour
 
     private int leftOrRight = 1;
 
+    PlayerChargeMeterController meter;
+
     private void Start()
     {
         windBullet = (GameObject)Resources.Load("WindBullet");
         // 左右で横に発射する弾の向きを逆にしなければ
+        // あとゲージも
         if (name == "ChildDragonRight")
         {
             leftOrRight = -1;
+            meter = GameObject.Find("RightChargeMeterInside").GetComponent<PlayerChargeMeterController>();
+        }
+        else
+        {
+            meter = GameObject.Find("LeftChargeMeterInside").GetComponent<PlayerChargeMeterController>();
         }
     }
 
-    private void Update()
+    void Update()
     {
+        if (!canShoot) return;
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
-
 
             // 単押しで一回弾を出す
             if (isStraight)
@@ -41,6 +49,8 @@ public class WindShooter : MonoBehaviour
                 // trueなら前に撃つ
                 Instantiate(windBullet, transform.position + angle * instanceOffset, angle);
                 isStraight = false;
+                // ゲージをスイッチ
+                meter.FillMeter(1);
             }
             else
             {
@@ -49,6 +59,8 @@ public class WindShooter : MonoBehaviour
                 // falseなら横にも出すか
                 Instantiate(windBullet, transform.position + angle * instanceOffset, angle);
                 isStraight = true;
+                // ゲージをスイッチ
+                meter.FillMeter(0);
             }
         }
 

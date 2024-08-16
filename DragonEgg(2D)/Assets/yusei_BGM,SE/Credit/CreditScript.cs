@@ -20,7 +20,7 @@ public class CreditScript : MonoBehaviour
     void Update()
     {
         
-        if(this.transform.position.y > 1000)
+        if(this.transform.position.y > 850)
         {
             isEnd = true;
             button.SetActive(true);
