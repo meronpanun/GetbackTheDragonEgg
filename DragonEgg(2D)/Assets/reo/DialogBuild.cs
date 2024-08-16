@@ -12,6 +12,8 @@ using UnityEngine.EventSystems;
 
 public class DialogBuild : MonoBehaviour
 {
+    [SerializeField] private StageSelect _stageSelect;
+
     [SerializeField] private TextMeshProUGUI DialogText;
     [SerializeField] private GameObject NoButton;
     [SerializeField] private GameObject GoButton;
@@ -58,10 +60,14 @@ public class DialogBuild : MonoBehaviour
         }
     }
 
-    public void Push_Button(int number)
+    public void PushButton(int number)
     {
         // クラス名.変数名
         LoadingScene.stageNum = number;  // ボタン側からステージ数を取得
+
+        // OnSelectPressed()を実行し成功しなかったらreturn
+        if (!(_stageSelect.OnSelectPressed(number))) return;
+
         DialogText.text = "";
         dialogText = "Stage " + LoadingScene.stageNum + "||Ready?";  // dialogText変数に文を代入
 
