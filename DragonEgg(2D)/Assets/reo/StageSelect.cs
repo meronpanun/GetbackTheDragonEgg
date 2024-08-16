@@ -23,6 +23,8 @@ public class StageSelect : MonoBehaviour
     void Start()
     {
         EventSystem = EventSystem.current;
+
+        //
     }
 
     void Update()
@@ -30,7 +32,7 @@ public class StageSelect : MonoBehaviour
 
     }
 
-    public void OnSelectPressed()
+    public bool OnSelectPressed(int number)
     {
         if (!isSelectUiActive)  // selectUIÇ™èoÇƒÇ¢Ç»Ç¢Ç»ÇÁ
         {
@@ -38,10 +40,14 @@ public class StageSelect : MonoBehaviour
             _selectUI.SetActive(true);
             _shadePanel.SetActive(true);
             EventSystem.SetSelectedGameObject(_noButton);
+
+            return true;
         }
         else
         {
             Debug.Log("StageSelectFailed");
+
+            return false;
         }
     }
 
