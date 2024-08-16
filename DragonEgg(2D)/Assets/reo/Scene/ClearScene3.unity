@@ -152,14 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c234463ea75488b42afd3bd071981f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResultText: {fileID: 1369202722}
-  GoHomeButton: {fileID: 1606581962}
-  GoStageButton: {fileID: 572631327}
-  EggImage: {fileID: 1558271362}
-  DragonImage1: {fileID: 1619113334}
-  DragonImage2: {fileID: 1492434252}
-  DragonImage3: {fileID: 1517590872}
-  DragonImage4: {fileID: 1750765780}
+  _resultText: {fileID: 1369202722}
+  _goHomeButton: {fileID: 1606581962}
+  _goStageButton: {fileID: 572631327}
+  _dragonImage1: {fileID: 1619113334}
+  _dragonImage2: {fileID: 1492434252}
+  _dragonImage3: {fileID: 1517590872}
+  _dragonImage4: {fileID: 1750765780}
   Panel: {fileID: 1034388042}
 --- !u!4 &291273847
 Transform:
@@ -1973,7 +1972,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1851504680}
-  - {fileID: 1272475676}
   - {fileID: 1679709400}
-  - {fileID: 847600196}
   - {fileID: 291273847}
+  - {fileID: 1272475676}
+  - {fileID: 847600196}

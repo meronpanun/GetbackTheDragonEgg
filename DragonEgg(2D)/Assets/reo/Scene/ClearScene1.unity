@@ -783,14 +783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c234463ea75488b42afd3bd071981f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResultText: {fileID: 1455482103}
-  GoHomeButton: {fileID: 490700987}
-  GoStageButton: {fileID: 1831997422}
-  EggImage: {fileID: 999830025}
-  DragonImage1: {fileID: 1035185716}
-  DragonImage2: {fileID: 388351306}
-  DragonImage3: {fileID: 576786560}
-  DragonImage4: {fileID: 1400220218}
+  _resultText: {fileID: 1455482103}
+  _goHomeButton: {fileID: 490700987}
+  _goStageButton: {fileID: 1831997422}
+  _dragonImage1: {fileID: 1035185716}
+  _dragonImage2: {fileID: 388351306}
+  _dragonImage3: {fileID: 576786560}
+  _dragonImage4: {fileID: 1400220218}
   Panel: {fileID: 456510923}
 --- !u!4 &918264249
 Transform:

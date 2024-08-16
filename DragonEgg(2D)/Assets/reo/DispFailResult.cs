@@ -18,17 +18,12 @@ public class DispFailResult : MonoBehaviour
     [TextArea(5, 5)]
 
     private GameObject DispDragonImage;
-    //[SerializeField] private string msgText;  // 使わなくなった
 
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgLineSpeedEnter = 0.08f;  // 改行時待機時間
     private float msgSpeedEnter = 0.01f;  // 時待機時間
-    //private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
-    //private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
-    //private int eggAnimNum = 8;  // 入れ替える回数
     private int eggAnimNum = 10;  // アニメーションの割る数
     private float eggAnimSpeed = 0.6f;  // アニメーションの速度
-    //private int tempExp = 1234567;  // exp(仮)
 
     float dragonScale = 3.5f;
 
