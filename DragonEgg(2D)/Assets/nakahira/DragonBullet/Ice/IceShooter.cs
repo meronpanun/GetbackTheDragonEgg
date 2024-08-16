@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DragonRace;
 
-public class IceShooter : MonoBehaviour
+public class IceShooter : Shooter
 {
     // リソースファイルからロード
     private GameObject iceBullet;
@@ -48,8 +48,9 @@ public class IceShooter : MonoBehaviour
         meter = chargeMeter.transform.GetChild(0).GetComponent<PlayerChargeMeterController>();
     }
 
-    private void Update()
+    void Update()
     {
+        if (canShoot) return;
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
