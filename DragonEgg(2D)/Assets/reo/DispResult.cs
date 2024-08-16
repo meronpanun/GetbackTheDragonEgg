@@ -6,62 +6,55 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // 卵とか
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading;  // sleep用
 
 
+
 public class DispResult : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI ResultText;
-    [SerializeField] private GameObject GoHomeButton;
-    [SerializeField] private GameObject GoStageButton;
-    [SerializeField] private GameObject EggImage;
-    [SerializeField] private GameObject DragonImage1;
-    [SerializeField] private GameObject DragonImage2;
-    [SerializeField] private GameObject DragonImage3;
-    [SerializeField] private GameObject DragonImage4;
+    [SerializeField] private TextMeshProUGUI _resultText;
+    [SerializeField] private GameObject _goHomeButton;
+    [SerializeField] private GameObject _goStageButton;
+    [SerializeField] private GameObject _dragonImage1;
+    [SerializeField] private GameObject _dragonImage2;
+    [SerializeField] private GameObject _dragonImage3;
+    [SerializeField] private GameObject _dragonImage4;
     [TextArea(5, 5)]
 
-    private GameObject DispDragonImage;
-    //[SerializeField] private string msgText;  // 使わなくなった
+    private GameObject _dispDragonImage;
+
+    private const string kSceneName = "ClearScene";
+    private const string kPlayerPrefsKey = "Progress";
 
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgLineSpeedEnter = 0.08f;  // 改行時待機時間
     private float msgSpeedEnter = 0.01f;  // 時待機時間
-    //private float summonDragonSpeed = 0.2f;  // ドラゴンを表示するまでの待機時間
-    //private float summonDragonFirstSpeed = 0.5f;  // ドラゴンを表示するまでの待機時間
-    //private int eggAnimNum = 8;  // 入れ替える回数
-    private int eggAnimNum = 10;  // アニメーションの割る数
-    private float eggAnimSpeed = 0.6f;  // アニメーションの速度
-    //private int tempExp = 1234567;  // exp(仮)
+    private int dragonAnimNum = 10;  // アニメーションの割る数
+    private float dragonAnimSpeed = 0.6f;  // アニメーションの速度
 
-    float dragonScale = 3.5f;
+    private float dragonScale = 3.5f;
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
 
     [SerializeField] private GameObject Panel;
 
-    //int test = 0;
-
-
-    // ゲームシーンからクリアしたステージと初クリアかどうかを貰う
-    int clearStageNum = 1;
+    // 直前にクリアしてきたステージ
+    int clearStageNum = 0;
+    // trueになるとdragon表示
     bool isFirstClear = false;
     
-    // 
-
 
     void Start()
     {
-        //DialogText.text = dialogText;
-        GoHomeButton.SetActive(false);  // ボタンを隠す
-        GoStageButton.SetActive(false);
-        EggImage.SetActive(false);
-        DragonImage1.SetActive(false);
-        DragonImage2.SetActive(false);
-        DragonImage3.SetActive(false);
-        DragonImage4.SetActive(false);
+        _goHomeButton.SetActive(false);  // ボタンを隠す
+        _goStageButton.SetActive(false);
+        _dragonImage1.SetActive(false);
+        _dragonImage2.SetActive(false);
+        _dragonImage3.SetActive(false);
+        _dragonImage4.SetActive(false);
         //StartCoroutine(TypeDisplay());
 
         DispResultFunc();
@@ -71,14 +64,15 @@ public class DispResult : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
         {
             StopAllCoroutines();
+
             //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
-            ResultText.text = "";
+            _resultText.text = "";
             foreach (char item in dialogText)
             {
                 if (item == '|')
                 {
                     // <br>をDialogText.textに代入する
-                    ResultText.text += "<br>";
+                    _resultText.text += "<br>";
                 }
                 else if (item == '/')
                 {
@@ -86,38 +80,51 @@ public class DispResult : MonoBehaviour
                 }
                 else
                 {
-                    ResultText.text += item;  // 
+                    _resultText.text += item;  // 
                 }
             }
 
-            //DialogText.text = msgText;  // 使わなくなった
-            GoHomeButton.SetActive(true);  // ボタンを表示
-            GoStageButton.SetActive(true);
+            _dispDragonImage = GetDispDragonImage();
 
-            DragonImage1.SetActive(true);  // ドラゴンを表示
+            // 初クリアならドラゴンを表示
+            if (isFirstClear) _dispDragonImage.SetActive(true);
+
+            _goHomeButton.SetActive(true);  // ボタンを表示
+            _goStageButton.SetActive(true);
         }
     }
 
     public void DispResultFunc()
     {
-        //ResultText.text = "獲得した経験値 ... " + "(獲得経験値)||" + "助けたドラゴン|" + "(画像)";
-        //ResultText.text = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|" + "(dragon.png)";
-        //dialogText = "";  // dialogText変数に文を代入
-        ResultText.text = "";
-        //dialogText = "Get EXP ... " + tempExp + "||" + "Rescue Dragon|";  //  + "(dragon.png)" dialogText変数に文を代入
-        dialogText = "//////S/t/a/g/e// C/l/e/a/r/!/!/||" + "Rescue Dragon///|";  //  + "(dragon.png)" dialogText変数に文を代入
+        // 0~4
+        int debug = 0;
+        PlayerPrefs.SetInt(kPlayerPrefsKey, debug);
 
-        GoHomeButton.SetActive(false);  // ボタンを隠す
-        GoStageButton.SetActive(false);
-        EggImage.SetActive(false);
-        DragonImage1.SetActive(false);
+        Debug.Log($"DispResultFunc.Debug PlayerPrefs.{kPlayerPrefsKey} = {debug}");
 
-        //StartCoroutine(ScaleChange());
+        clearStageNum = GetClearStageNum();
+
+        // debug
+        isFirstClear = true;
+        //clearStageNum = 4;
+
+        Debug.Log($"DispResultFunc.Debug isFirstClear = {isFirstClear}");
+
+
+
+        _resultText.text = "";
+        dialogText = "//////S/t/a/g/e// C/l/e/a/r/!/!/||";  // dialogText変数に文を代入
+
+        if (isFirstClear)
+        {
+            // 初クリアなら
+            dialogText += "Rescue Dragon///|";
+        }
+
+        _goHomeButton.SetActive(false);  // ボタンを隠す
+        _goStageButton.SetActive(false);
+
         StartCoroutine(TypeDisplay());  // メッセージ表示を開始
-
-
-        //Debug.Log("Stage " + LoadingScene.stageNum + "||Ready?");
-        //Debug.Log(DialogText.text);
     }
 
     IEnumerator ScaleChange()  // サイズを徐々に大きくする
@@ -137,22 +144,21 @@ public class DispResult : MonoBehaviour
 
     IEnumerator TypeDisplay()  // メッセージを表示させる機構 IEnumeratorは非同期処理を行うために用いるデータ型の一種
     {
-        GoHomeButton.SetActive(false);  // ボタンを隠す
-        GoStageButton.SetActive(false);
-        EggImage.SetActive(false);
-        DragonImage1.SetActive(false);
+        _goHomeButton.SetActive(false);  // ボタンを隠す
+        _goStageButton.SetActive(false);
+        //_dragonImage1.SetActive(false);
 
         foreach (char item in dialogText)
         {
             if (item == '|')
             {
                 // <br>をDialogText.textに代入する
-                ResultText.text += "<br>";
+                _resultText.text += "<br>";
                 yield return new WaitForSeconds(msgLineSpeedEnter);
             }
             else if (item == '.')
             {
-                ResultText.text += item;
+                _resultText.text += item;
                 yield return new WaitForSeconds(msgSpeedEnter);
             }
             else if (item == '/')
@@ -162,7 +168,7 @@ public class DispResult : MonoBehaviour
             }
             else
             {
-                ResultText.text += item;  // 
+                _resultText.text += item;  // 
             }
 
 
@@ -175,88 +181,99 @@ public class DispResult : MonoBehaviour
         }
         else
         {
-
+            _goHomeButton.SetActive(true);  // ボタンを表示
+            _goStageButton.SetActive(true);
         }
         
     }
 
     IEnumerator EggAnim()  // 卵からドラゴンへ変える
     {
+        _dispDragonImage = GetDispDragonImage();
+
+
+        _dispDragonImage.SetActive(true);  // ドラゴンを表示
+
+        RectTransform dragonRectTransform = _dispDragonImage.GetComponent<RectTransform>();
+        //Transform dragonTransform = DispDragonImage.GetComponent<Transform>();
+        for (float i = 0; i < dragonAnimNum; i++)
+        {
+            //Debug.Log($"{(dragonAnimSpeed / dragonAnimNum) * dragonScale}");
+            // ドラゴンの大きさを徐々に大きくする
+            dragonRectTransform.localScale = new Vector3((i / dragonAnimNum) * dragonScale, (i / dragonAnimNum) * dragonScale, 0);
+            //dragonTransform.localScale = new Vector3((i / dragonAnimNum) * dragonScale, (i / dragonAnimNum) * dragonScale, 0);
+            yield return new WaitForSeconds(dragonAnimSpeed / dragonAnimNum);
+        }
+        dragonRectTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
+        //dragonTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
+        Debug.Log(dragonRectTransform.localScale);
+
+        _goHomeButton.SetActive(true);  // ボタンを表示
+        _goStageButton.SetActive(true);
+
+        yield return 0;
+    }
+
+    private GameObject GetDispDragonImage()
+    {
+        GameObject GameObject = _dragonImage1;
+
         switch (clearStageNum)
         {
             case 1:
-                DispDragonImage = DragonImage1;
+                GameObject = _dragonImage1;
                 break;
 
             case 2:
-                DispDragonImage = DragonImage2;
+                GameObject = _dragonImage2;
                 break;
 
             case 3:
-                DispDragonImage = DragonImage3;
+                GameObject = _dragonImage3;
                 break;
 
             case 4:
-                DispDragonImage = DragonImage4;
+                GameObject = _dragonImage4;
                 break;
 
             default:
                 Debug.Log("EggAnimError");
                 break;
         }
-        
 
-        EggImage.SetActive(true);
-        //yield return new WaitForSeconds(summonDragonFirstSpeed);
+        return GameObject;
+    }
 
-
-        //// 旧処理
-        //for (int i = 0; i < eggAnimNum; i++)
-        //{
-        //    DragonImage.SetActive(false);
-        //    EggImage.SetActive(true);  // 卵を表示
-
-        //    yield return new WaitForSeconds(summonDragonSpeed);
-
-        //    EggImage.SetActive(false);  // 卵を隠す
-        //    DragonImage.SetActive(true);  // ドラゴンを表示
-
-        //    yield return new WaitForSeconds(summonDragonSpeed);
-
-        //    summonDragonSpeed *= 0.85f;
-        //}
+    private int GetClearStageNum()
+    {
+        // 直前にクリアしたステージを今のシーンの名前から求める
+        string s = SceneManager.GetActiveScene().name;
 
 
-        // 新処理
-        //RectTransform eggRectTransform = EggImage.GetComponent<RectTransform>();
-        //for (float i = eggAnimNum; i > 0; i--)
-        //{
-        //    Debug.Log($"{eggAnimSpeed / eggAnimNum}");
-        //    // 卵の大きさを徐々に小さくする
-        //    eggRectTransform.localScale = new Vector3(i / eggAnimNum, i / eggAnimNum, 0);
-        //    yield return new WaitForSeconds(eggAnimSpeed / eggAnimNum);
-        //}
+        Debug.Log(s);
 
-        EggImage.SetActive(false);  // 卵を隠す
-        DispDragonImage.SetActive(true);  // ドラゴンを表示
-
-        RectTransform dragonRectTransform = DispDragonImage.GetComponent<RectTransform>();
-        //Transform dragonTransform = DispDragonImage.GetComponent<Transform>();
-        for (float i = 0; i < eggAnimNum; i++)
+        for (int i = 1; i < 5; i++)
         {
-            Debug.Log($"{(eggAnimSpeed / eggAnimNum) * dragonScale}");
-            // ドラゴンの大きさを徐々に大きくする
-            dragonRectTransform.localScale = new Vector3((i / eggAnimNum) * dragonScale, (i / eggAnimNum) * dragonScale, 0);
-            //dragonTransform.localScale = new Vector3((i / eggAnimNum) * dragonScale, (i / eggAnimNum) * dragonScale, 0);
-            yield return new WaitForSeconds(eggAnimSpeed / eggAnimNum);
+            Debug.Log(kSceneName + i);
+            // 見つかったら代入しbreak
+            if (s == kSceneName + i) { clearStageNum = i; break; }
         }
-        dragonRectTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
-        //dragonTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
-        Debug.Log(dragonRectTransform.localScale);
 
-        GoHomeButton.SetActive(true);  // ボタンを表示
-        GoStageButton.SetActive(true);
+        // エラー処理
+        if (clearStageNum == 0) { Debug.Log("SceneNumError"); return 0; }
 
-        yield return 0;
+        // valueは今まででクリアしたステージの最高値
+        int value = PlayerPrefs.GetInt(kPlayerPrefsKey);
+
+        Debug.Log($"v = {value}, num = {clearStageNum}");
+
+        // valueを1だけ(valueより、でもいいかも)更新したら
+        if (value == clearStageNum - 1)
+        {
+            PlayerPrefs.SetInt(kPlayerPrefsKey, clearStageNum);
+            isFirstClear = true;
+        }
+
+        return clearStageNum;
     }
 }
