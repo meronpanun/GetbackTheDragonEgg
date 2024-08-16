@@ -69,7 +69,6 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutSwitch(int number)  // ƒ{ƒ^ƒ“‚©‚çó‚¯æ‚Á‚½”š‚ğÆ‚ç‚µ‡‚í‚¹‚é
     {
-
         if (number != 0)
         {
             LoadingScene.stageNum = number;

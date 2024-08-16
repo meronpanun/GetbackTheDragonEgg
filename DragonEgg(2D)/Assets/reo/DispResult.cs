@@ -6,8 +6,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // 卵とか
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading;  // sleep用
+
 
 
 public class DispResult : MonoBehaviour
@@ -24,6 +26,9 @@ public class DispResult : MonoBehaviour
 
     private GameObject DispDragonImage;
     //[SerializeField] private string msgText;  // 使わなくなった
+
+    private const string kSceneName = "ClearScene";
+    private const string kPlayerPrefsKey = "Progress";
 
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgLineSpeedEnter = 0.08f;  // 改行時待機時間
@@ -42,15 +47,9 @@ public class DispResult : MonoBehaviour
 
     [SerializeField] private GameObject Panel;
 
-    //int test = 0;
-
-
-    // ゲームシーンからクリアしたステージと初クリアかどうかを貰う
-    int clearStageNum = 1;
+    int clearStageNum = 0;
     bool isFirstClear = false;
     
-    // 
-
 
     void Start()
     {
@@ -100,12 +99,52 @@ public class DispResult : MonoBehaviour
 
     public void DispResultFunc()
     {
+        // 0~4
+        int debug = 0;
+        PlayerPrefs.SetInt(kPlayerPrefsKey, debug);
+
+        // 直前にクリアしたステージを今のシーンの名前から求める
+        string s = SceneManager.GetActiveScene().name;
+        
+
+        Debug.Log(s);
+
+        for (int i = 1; i < 5; i++)
+        {
+            Debug.Log(kSceneName + i);
+            // 見つかったら代入しbreak
+            if (s == kSceneName + i) { clearStageNum = i; break; }
+        }
+
+        // エラー処理
+        if (clearStageNum == 0) { Debug.Log("SceneNumError"); return; }
+
+        // valueは今まででクリアしたステージの最高値
+        int value = PlayerPrefs.GetInt(kPlayerPrefsKey);
+
+        // valueを1だけ(valueより、でもいいかも)更新したら
+        if (value == clearStageNum - 1)
+        { 
+            PlayerPrefs.SetInt(kPlayerPrefsKey, clearStageNum);
+            isFirstClear = true;
+        }
+
+        // debug
+        //isFirstClear = true;
+        //clearStageNum = 2;
+
         //ResultText.text = "獲得した経験値 ... " + "(獲得経験値)||" + "助けたドラゴン|" + "(画像)";
         //ResultText.text = "Get EXP ... " + "(GetEXP)||" + "Rescue Dragon|" + "(dragon.png)";
         //dialogText = "";  // dialogText変数に文を代入
         ResultText.text = "";
         //dialogText = "Get EXP ... " + tempExp + "||" + "Rescue Dragon|";  //  + "(dragon.png)" dialogText変数に文を代入
-        dialogText = "//////S/t/a/g/e// C/l/e/a/r/!/!/||" + "Rescue Dragon///|";  //  + "(dragon.png)" dialogText変数に文を代入
+        dialogText = "//////S/t/a/g/e// C/l/e/a/r/!/!/||";  //  + "(dragon.png)" dialogText変数に文を代入
+
+        if (isFirstClear)
+        {
+            // 初クリアなら
+            dialogText += "Rescue Dragon///|";
+        }
 
         GoHomeButton.SetActive(false);  // ボタンを隠す
         GoStageButton.SetActive(false);
@@ -175,7 +214,8 @@ public class DispResult : MonoBehaviour
         }
         else
         {
-
+            GoHomeButton.SetActive(true);  // ボタンを表示
+            GoStageButton.SetActive(true);
         }
         
     }
