@@ -10,12 +10,13 @@ namespace DragonRace
     // —ñ‹“‚µ‚Æ‚­
     public enum races
     {
-        player,
+        none,
         fire,
         ice,
         wind,
         thunder,
-        none
+        player,
+      
     }
 }
 
