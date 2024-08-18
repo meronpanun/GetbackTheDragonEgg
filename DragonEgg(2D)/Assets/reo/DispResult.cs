@@ -97,15 +97,15 @@ public class DispResult : MonoBehaviour
     public void DispResultFunc()
     {
         // 0~4
-        int debug = 0;
-        PlayerPrefs.SetInt(kPlayerPrefsKey, debug);
+        //int debug = 0;
+        //PlayerPrefs.SetInt(kPlayerPrefsKey, debug);
 
-        Debug.Log($"DispResultFunc.Debug PlayerPrefs.{kPlayerPrefsKey} = {debug}");
+        //Debug.Log($"DispResultFunc.Debug PlayerPrefs.{kPlayerPrefsKey} = {debug}");
 
         clearStageNum = GetClearStageNum();
 
         // debug
-        isFirstClear = true;
+        //isFirstClear = true;
         //clearStageNum = 4;
 
         Debug.Log($"DispResultFunc.Debug isFirstClear = {isFirstClear}");
