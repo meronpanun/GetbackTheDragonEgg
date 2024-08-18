@@ -22,7 +22,7 @@ public class DispResult : MonoBehaviour
     [SerializeField] private GameObject _dragonImage3;
     [SerializeField] private GameObject _dragonImage4;
     [TextArea(5, 5)]
-
+    //
     private GameObject _dispDragonImage;
 
     private const string kSceneName = "ClearScene";

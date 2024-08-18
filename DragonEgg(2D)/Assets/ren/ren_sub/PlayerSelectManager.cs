@@ -13,6 +13,12 @@ public class PlayerSelectManager : MonoBehaviour
     public GameObject managerMember2;
 
     private StageSceneManager stageSceneManager;
+
+    bool isStage1;
+    bool isStage2;
+    bool isStage3;
+    bool isStage4;
+    races maxRace;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +26,13 @@ public class PlayerSelectManager : MonoBehaviour
         isBeforeSelect1 = false;
         isBeforeSelect2 = false;
         isNowSelect = false;//メンバー1を選んでるときfalse　の２はture
+
+        //trueはクリアを意味する
+        isStage1 = true;
+        isStage2 = true;
+        isStage3 = true;
+        isStage4 = true;
+        maxRace = races.none;
     }
 
     // Update is called once per frame
@@ -55,20 +68,33 @@ public class PlayerSelectManager : MonoBehaviour
            
         }
 
-        if (SelectDragonManager1.selectDragonNum1 > races.none)
+        //Prefas使ってやりたい
+        //ステージ１をクリアしたらアイスドラゴンまでを解放
+        if(isStage1)
         {
-            SelectDragonManager1.selectDragonNum1 = races.fire;
+            maxRace = races.ice;//ファイアーとアイスが使用可能になる
         }
-        if (SelectDragonManager1.selectDragonNum1 == races.player)
+        //ステージ2をクリアしたらサンダードラゴンまでを解放
+        if (isStage2)
+        {
+            maxRace = races.thunder;//ウィンドとサンダーが使用可能になる
+        }
+       
+
+        if (SelectDragonManager1.selectDragonNum1 < races.none)
+        {
+            SelectDragonManager1.selectDragonNum1 = maxRace;
+        }
+        if (SelectDragonManager1.selectDragonNum1 > maxRace)
         {
             SelectDragonManager1.selectDragonNum1 = races.none;
         }
         //メンバー２がメンバー１と同じドラゴンを選択した際に飛ばす
-        if (SelectDragonManager2.selectDragonNum2 > races.none)
+        if (SelectDragonManager2.selectDragonNum2 < races.none)
         {
-            SelectDragonManager2.selectDragonNum2 = races.fire;
+            SelectDragonManager2.selectDragonNum2 = maxRace;
         }
-        if (SelectDragonManager2.selectDragonNum2 == races.player)
+        if (SelectDragonManager2.selectDragonNum2 > maxRace)
         {
             SelectDragonManager2.selectDragonNum2 = races.none;
         }
@@ -82,7 +108,21 @@ public class PlayerSelectManager : MonoBehaviour
             {
                 return;
             }
-            else
+            if (isStage3)
+            {
+                if ((SelectDragonManager1.selectDragonNum1 == races.fire && SelectDragonManager2.selectDragonNum2 == races.fire) || (SelectDragonManager1.selectDragonNum1 == races.ice && SelectDragonManager2.selectDragonNum2 == races.ice))
+                {
+                    return;
+                }
+            }
+            if (isStage4)
+            {
+                if ((SelectDragonManager1.selectDragonNum1 == races.wind && SelectDragonManager2.selectDragonNum2 == races.wind) || (SelectDragonManager1.selectDragonNum1 == races.thunder && SelectDragonManager2.selectDragonNum2 == races.thunder))
+                {
+                    return;
+                }
+            }
+            
             {
                 if (isNowSelect == false)
                 {

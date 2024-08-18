@@ -22,10 +22,6 @@ public class DispFailResult : MonoBehaviour
     private float msgSpeed = 0.03f;  // テキスト表示間隔
     private float msgLineSpeedEnter = 0.08f;  // 改行時待機時間
     private float msgSpeedEnter = 0.01f;  // 時待機時間
-    private int eggAnimNum = 10;  // アニメーションの割る数
-    private float eggAnimSpeed = 0.6f;  // アニメーションの速度
-
-    float dragonScale = 3.5f;
 
     //int stageNum = 0;
     string dialogText = "";  // 非同期処理のforeach文の指定でつっかえたので変数を作って解決させた
@@ -33,13 +29,6 @@ public class DispFailResult : MonoBehaviour
     [SerializeField] private GameObject Panel;
 
     //int test = 0;
-
-
-    // ゲームシーンからクリアしたステージと初クリアかどうかを貰う
-    int clearStageNum = 1;
-    bool isFirstClear = false;
-
-    // 
 
 
     void Start()
