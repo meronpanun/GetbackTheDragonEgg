@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameAudio : MonoBehaviour
 {
-    public static GameObject SE;
+    private static GameObject SE;
 
     private void Start()
     {
