@@ -25,11 +25,14 @@ public class IceShooter : Shooter
                                           // 途中から定数をロワーキャメルケースで書いてました
                                           // 今更変えれません　
     private float meterFactor = 1 / (iceBulletInterval * maxBulletCount);
+    private AudioClip se; // リソース
+    private bool isPlayedSE = false; // 今回の弾生成でSEを鳴らしたかどうか
 
     private void Start()
     {
         Debug.Log(iceBulletInterval * maxBulletCount);
         iceBullet = (GameObject)Resources.Load("IceBullet");
+        se = (AudioClip)Resources.Load("IceCharge");
 
         // アタッチされているドラゴンが右か左かで
         // 弾を生成する向きを変える
@@ -50,7 +53,7 @@ public class IceShooter : Shooter
 
     void Update()
     {
-        if (canShoot) return;
+        if (!canShoot) return;
         // スペースキーで弾を発射。
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
@@ -63,6 +66,13 @@ public class IceShooter : Shooter
             timer += Time.deltaTime;
 
             if (bulletCount >= maxBulletCount) return; // 指定以上なら生成しない
+
+            if (!isPlayedSE) // ここを通った時一回だけ流れる
+            {
+                // まだ再生されていなかったら
+                GameAudio.InstantiateSE(se);
+                isPlayedSE = true;
+            }
 
             if (timer > instantiateThreshold)
             {
@@ -79,6 +89,7 @@ public class IceShooter : Shooter
                 // ここでまたInterval秒後に生成されるようにする
                 // Timerを蓄積させたかったため
                 instantiateThreshold = iceBulletInterval * (bulletCount + 1);
+                isPlayedSE = false;
             }
         }
 
@@ -90,6 +101,7 @@ public class IceShooter : Shooter
             // タイマー関連もリセット
             timer = 0;
             instantiateThreshold = iceBulletInterval;
+            isPlayedSE = false; // SEフラグもリセット
         }
 
         Debug.Log($"タイマー{timer}");

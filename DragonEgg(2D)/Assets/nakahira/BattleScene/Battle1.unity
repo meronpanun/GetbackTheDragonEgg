@@ -2259,7 +2259,6 @@ GameObject:
   - component: {fileID: 684546061}
   - component: {fileID: 684546060}
   - component: {fileID: 684546059}
-  - component: {fileID: 684546064}
   m_Layer: 0
   m_Name: ChildDragonLeft
   m_TagString: ChildDragon
@@ -2294,18 +2293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4135fe03411b848944bff97bc70a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMeterSprite: {fileID: 21300000, guid: 02b1796de08d50342ae21aabc22cad9c, type: 3}
-  playerMeterGuageSprite: {fileID: 21300000, guid: 3205ca935c2b0d84fa46789820b04852, type: 3}
-  fireMeterSprite: {fileID: 21300000, guid: ed20d39a4df1224499d688f4134feb06, type: 3}
-  fireMeterGuageSprite: {fileID: 21300000, guid: 4a98ecc46018bbb4ba523fab290e5fd6, type: 3}
-  iceMeterSprite: {fileID: 21300000, guid: 8050146782732e641b0869637266aeba, type: 3}
-  iceMeterGuageSprite: {fileID: 21300000, guid: 09a735281087cb24787881da34540eb6, type: 3}
-  windMeterSprite: {fileID: 0}
-  windMeterGuageSprite: {fileID: 0}
-  thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
-  thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
-  noneMeterSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
-  noneMeterGuageSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
 --- !u!58 &684546060
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2441,18 +2428,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &684546064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684546056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad471c4580ca994499021e9edf9cb968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &684641160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4924598698279375509, guid: 3e1d754ab5d4df742a48aaf849a2d3f2, type: 3}
@@ -3302,6 +3277,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d754ab5d4df742a48aaf849a2d3f2, type: 3}
+--- !u!1 &866682917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866682919}
+  - component: {fileID: 866682918}
+  m_Layer: 0
+  m_Name: SEGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &866682918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866682917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6c12ef28564dc40a7f41bf9daa2cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &866682919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866682917}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2314816, y: 5.2083673, z: -0.08232897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &876196986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4924598698279375509, guid: 3e1d754ab5d4df742a48aaf849a2d3f2, type: 3}
@@ -4366,9 +4385,9 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072156928}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1417856724842676413, guid: c35293710570581429fa540bf083ab84, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0e447824cce8403459293aebb80378b0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -18160,18 +18179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7a1128575440941a0fe5eb8be45fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMeterSprite: {fileID: 21300000, guid: 02b1796de08d50342ae21aabc22cad9c, type: 3}
-  playerMeterGuageSprite: {fileID: 21300000, guid: 3205ca935c2b0d84fa46789820b04852, type: 3}
-  fireMeterSprite: {fileID: 21300000, guid: ed20d39a4df1224499d688f4134feb06, type: 3}
-  fireMeterGuageSprite: {fileID: 21300000, guid: 4a98ecc46018bbb4ba523fab290e5fd6, type: 3}
-  iceMeterSprite: {fileID: 21300000, guid: 8050146782732e641b0869637266aeba, type: 3}
-  iceMeterGuageSprite: {fileID: 21300000, guid: 09a735281087cb24787881da34540eb6, type: 3}
-  windMeterSprite: {fileID: 0}
-  windMeterGuageSprite: {fileID: 0}
-  thunderMeterSprite: {fileID: 21300000, guid: f6df2ce90719e4244a0e14a725f0a9b1, type: 3}
-  thunderMeterGuageSprite: {fileID: 21300000, guid: 6f3b2a7ca0d91ec488b3dfb23547b555, type: 3}
-  noneMeterSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
-  noneMeterGuageSprite: {fileID: 21300000, guid: 0513e7bae7f66c14aab49b08077cfd46, type: 3}
 --- !u!58 &1907845413
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18937,3 +18944,4 @@ SceneRoots:
   - {fileID: 2057162255}
   - {fileID: 1072156931}
   - {fileID: 1846631722}
+  - {fileID: 866682919}

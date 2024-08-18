@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
     private HPUIController hpText;
 
     private Shooter playerShooter;
-    private Shooter rightShooter;
-    private Shooter leftShooter;
+    private GameObject rightShooter;
+    private GameObject leftShooter;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +40,10 @@ public class PlayerController : MonoBehaviour
         hpText.DispHp(hitPoint);
         // 
         playerShooter = GetComponent<Shooter>();
-        rightShooter = transform.GetChild(0).GetComponent<Shooter>();
-        leftShooter = transform.GetChild(1).GetComponent<Shooter>();
+        leftShooter = transform.GetChild(0).gameObject;
+        // ここ最初にShooterを取得する感じだったけど
+        // なぜか取得できなかったので死んだときに取得する
+        rightShooter = transform.GetChild(1).gameObject;
     }
 
     private void SetStatusFromData()
@@ -126,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     private void Damage(int attack) // hitPointはここから減らすこと
     {
-        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+        GameAudio.InstantiateSE(audioClip);
 
         DamageNumberGenerator.GenerateText(attack, transform.position, Color.red);
         hitPoint -= attack;
@@ -142,8 +144,8 @@ public class PlayerController : MonoBehaviour
             // プレイヤーとコドモドラゴンについているコンポーネントを取得して
             // 弾を撃たせないようにしたい
             playerShooter.SetCanShoot(false);
-            if (rightShooter != null) rightShooter.SetCanShoot(false);
-            if (leftShooter != null) leftShooter.SetCanShoot(false);
+            if (rightShooter.GetComponent<Shooter>() != null) rightShooter.GetComponent<Shooter>().SetCanShoot(false);
+            if (leftShooter.GetComponent<Shooter>() != null) leftShooter.GetComponent<Shooter>().SetCanShoot(false);
         }
     }
 

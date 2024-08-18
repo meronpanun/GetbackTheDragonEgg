@@ -138,7 +138,7 @@ public class FadeManager : MonoBehaviour
                 loadScene = "SuccessResultScene";
                 break;
             case 12:
-                loadScene = "FailResultScene";
+                loadScene = "FailScene";
                 break;
 
             default:

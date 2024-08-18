@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IceBulletController : PlayerBullet
 {
-    private const int ICEATTACK= 1;
+    private const int ICEATTACK= 2;
 
     private bool isStay = true;
 
@@ -19,7 +19,7 @@ public class IceBulletController : PlayerBullet
     protected override void Start()
     {
         base.Start();
-        AudioSource.PlayClipAtPoint(generateSoundEffect, transform.position);
+        GameAudio.InstantiateSE(generateSoundEffect);
     }
 
     protected override void Update()

@@ -5,6 +5,8 @@ using UnityEngine;
 public class HadouController : PlayerBullet
 {
     private const int HADOUKENATTACK = 2;
+    [SerializeField]
+    private AudioClip se;
     private void Awake()
     {
         baseAttack = HADOUKENATTACK;
@@ -12,7 +14,7 @@ public class HadouController : PlayerBullet
     protected override void Start()
     {
         base.Start();
-        GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+        GameAudio.InstantiateSE(se);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
