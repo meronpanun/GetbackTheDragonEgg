@@ -11,13 +11,15 @@ public class BeamBaseController : MonoBehaviour
 
     private float beamLifeSpan = 2; // ビームの寿命
 
+    public GameObject myParent; // 追尾先 HadouShooterから直接もらっちゃおう
+
     // Update is called once per frame
     void Update()
     {
         // プレイヤーの口元に追尾する
         // プレイヤーの子オブジェクトにすると
         // コライダー関連で不都合が出るため
-        transform.position = PlayerController.player.transform.position + beamOffset;
+        transform.position = myParent.transform.position + beamOffset;
 
         // 一定時間たったら消したい
         if (beamLifeSpan < 0)
