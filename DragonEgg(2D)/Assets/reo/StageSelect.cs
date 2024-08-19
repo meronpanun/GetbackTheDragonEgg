@@ -8,7 +8,7 @@ public class StageSelect : MonoBehaviour
 {
     FadeManager FadeManager;
 
-    EventSystem EventSystem;
+    EventSystem _eventSystem;
 
     //[SerializeField] private GameObject _stageUI;
     [SerializeField] private GameObject _selectUI;
@@ -22,7 +22,7 @@ public class StageSelect : MonoBehaviour
 
     void Start()
     {
-        EventSystem = EventSystem.current;
+        _eventSystem = EventSystem.current;
 
         
 
@@ -41,7 +41,7 @@ public class StageSelect : MonoBehaviour
             Debug.Log("StageSelect");
             _selectUI.SetActive(true);
             _shadePanel.SetActive(true);
-            EventSystem.SetSelectedGameObject(_noButton);
+            _eventSystem.SetSelectedGameObject(_noButton);
 
             return true;
         }
@@ -57,7 +57,7 @@ public class StageSelect : MonoBehaviour
     {
         _selectUI.SetActive(false);
         _shadePanel.SetActive(false);
-        EventSystem.SetSelectedGameObject(_stageButton1);
+        _eventSystem.SetSelectedGameObject(_stageButton1);
     }
 
     public void SummonStageSelect()
