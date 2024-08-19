@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using System.Threading.Tasks;
-using UnityEngine.UIElements;
+using UnityEngine;
 
-public class ORBController : Enemy
+public class GreenORBController : Enemy
 {
 
     protected float cycleSpeed = 2f; // 大きくすれば回転周期が小さくなり、より早く往復します。
@@ -13,9 +9,9 @@ public class ORBController : Enemy
 
     protected float angle; // 角度の計算に使うタイマー
 
-     //プレハブなのでエディタからよろしく
+    //プレハブなのでエディタからよろしく
     public GameObject bulletPrefab;
-    
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -23,7 +19,7 @@ public class ORBController : Enemy
         hitPoint = 3;
         attack = 1;
         speed.y = -0.5f;
-        shootSpan = 2;
+        shootSpan = 4;
     }
 
     // Update is called once per frame
