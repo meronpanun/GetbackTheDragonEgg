@@ -161,6 +161,9 @@ public class TitleManager : MonoBehaviour
 
     public void OnclickQuitButton()
     {
+        _positiveSe.Play();
         Application.Quit();
+        // editorã‚ÅI—¹‚³‚¹‚éˆ—
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }

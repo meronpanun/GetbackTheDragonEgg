@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class AudioMixerScript : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
+    private float setDecibel;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class AudioMixerScript : MonoBehaviour
 
                 float decibel = 20f * Mathf.Log10(value);
                 decibel = Mathf.Clamp(decibel, -80f, 0f);
+                PlayerPrefs.SetFloat("MasterDecibel", decibel);
                 audioMixer.SetFloat("Master_Volume", decibel);
             });
         }
@@ -35,6 +38,7 @@ public class AudioMixerScript : MonoBehaviour
 
                 float decibel = 20f * Mathf.Log10(value);
                 decibel = Mathf.Clamp(decibel, -80f, 0f);
+                PlayerPrefs.SetFloat("BgmDecibel", decibel);
                 audioMixer.SetFloat("BGM_Volume", decibel);
             });
         }
@@ -46,11 +50,19 @@ public class AudioMixerScript : MonoBehaviour
 
                 float decibel = 20f * Mathf.Log10(value);
                 decibel = Mathf.Clamp(decibel, -80f, 0f);
+                PlayerPrefs.SetFloat("SeDecibel", decibel);
                 audioMixer.SetFloat("SE_Volume", decibel);
             });
         }
 
-       
+        //•Û‘¶‚³‚ê‚½‰¹—Ê‚ðƒZƒbƒg‚·‚é
+        setDecibel = PlayerPrefs.GetFloat("MasterDecibel", 0f);
+        audioMixer.SetFloat("Master_Volume", setDecibel);
+        setDecibel = PlayerPrefs.GetFloat("BgmDecibel", 0f);
+        audioMixer.SetFloat("BGM_Volume", setDecibel);
+        setDecibel = PlayerPrefs.GetFloat("SeDecibel", 0f);
+        audioMixer.SetFloat("SE_Volume", setDecibel);
+
     }
 
     // Update is called once per frame
