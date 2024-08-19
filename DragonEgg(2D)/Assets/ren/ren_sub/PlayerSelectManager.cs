@@ -4,21 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelectManager : MonoBehaviour
 {
-    bool isMemberSelect;
+    private bool isMemberSelect;
     //上がture 下がfalse
-    bool isBeforeSelect1;
-    bool isBeforeSelect2;
-    bool isNowSelect;
+    private bool isBeforeSelect1;
+    private bool isBeforeSelect2;
+    private bool isNowSelect;
     public GameObject managerMember1;
     public GameObject managerMember2;
 
     private StageSceneManager stageSceneManager;
 
-    bool isStage1;
-    bool isStage2;
-    bool isStage3;
-    bool isStage4;
-    races maxRace;
+    private bool isStage1;
+    private bool isStage2;
+    private bool isStage3;
+    private bool isStage4;
+    private bool isDebugMode;
+    private races maxRace;
+    int clearNum;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +30,63 @@ public class PlayerSelectManager : MonoBehaviour
         isNowSelect = false;//メンバー1を選んでるときfalse　の２はture
 
         //trueはクリアを意味する
-        isStage1 = true;
-        isStage2 = true;
-        isStage3 = true;
-        isStage4 = true;
+        isStage1 = false;
+        isStage2 = false;
+        isStage3 = false;
+        isStage4 = false;
+        isDebugMode = false;
         maxRace = races.none;
+
+        //clearNum = PlayerPrefs.GetInt("Progress");
+        clearNum = 100;
+       switch (clearNum)
+        {
+            case 0:
+                break;
+            case 1:
+                isStage1 = true;
+                break;
+            case 2:
+                isStage1 = true;
+                isStage2 = true;
+                break;
+            case 3:
+                isStage1 = true;
+                isStage2 = true;
+                isStage3 = true;
+                break;
+            case 4:
+                isStage1 = true;
+                isStage2 = true;
+                isStage3 = true;
+                isStage4 = true;
+                break ;
+            default:
+                isStage1 = true;
+                isStage2 = true;
+                isStage3 = true;
+                isStage4 = true;
+                isDebugMode =true;
+                break;
+
+        }
+
+        //Prefas使ってやりたい
+        //ステージ１をクリアしたらアイスドラゴンまでを解放
+        if (isStage1)
+        {
+            maxRace = races.ice;//ファイアーとアイスが使用可能になる
+        }
+        //ステージ2をクリアしたらサンダードラゴンまでを解放
+        if (isStage2)
+        {
+            maxRace = races.thunder;//ウィンドとサンダーが使用可能になる
+        }
+        if (isDebugMode)
+        {
+            maxRace = races.player;//隠しキャラ
+        }
+       
     }
 
     // Update is called once per frame
@@ -67,18 +121,8 @@ public class PlayerSelectManager : MonoBehaviour
             }
            
         }
-
-        //Prefas使ってやりたい
-        //ステージ１をクリアしたらアイスドラゴンまでを解放
-        if(isStage1)
-        {
-            maxRace = races.ice;//ファイアーとアイスが使用可能になる
-        }
-        //ステージ2をクリアしたらサンダードラゴンまでを解放
-        if (isStage2)
-        {
-            maxRace = races.thunder;//ウィンドとサンダーが使用可能になる
-        }
+       
+       
        
 
         if (SelectDragonManager1.selectDragonNum1 < races.none)
@@ -122,7 +166,14 @@ public class PlayerSelectManager : MonoBehaviour
                     return;
                 }
             }
-            
+            if (isDebugMode)
+            {
+                if (SelectDragonManager1.selectDragonNum1 == races.player && SelectDragonManager2.selectDragonNum2 == races.player)
+                {
+                    return;
+                }
+            }
+
             {
                 if (isNowSelect == false)
                 {
