@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TitleManager : MonoBehaviour
 {
+    EventSystem _eventSystem;
+
     [SerializeField] private AudioSource _negativeSe;
     [SerializeField] private AudioSource _positiveSe;
 
@@ -14,6 +17,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private Image _continueButtonImage;
 
     [SerializeField] private GameObject _dialogPanel;
+    [SerializeField] private GameObject _newgameButton;
     [SerializeField] private GameObject _noButton;
     [SerializeField] private GameObject _goButton;
 
@@ -30,8 +34,10 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log($"{kPlayerPrefsKey} Change");
-        //PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
+
+
+        Debug.Log($"{kPlayerPrefsKey} Change");
+        PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
         
         value = PlayerPrefs.GetInt(kPlayerPrefsKey);
 
@@ -48,6 +54,8 @@ public class TitleManager : MonoBehaviour
         }
 
         _continueButtonImage.color = new Color(red, green, blue, alpha);
+
+        _eventSystem.SetSelectedGameObject(_newgameButton);
     }
 
     // Update is called once per frame
@@ -134,12 +142,14 @@ public class TitleManager : MonoBehaviour
         }
         _noButton.SetActive(true);
         _goButton.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_newgameButton);
     }
 
     public void OnclickNoButton()
     {
         _negativeSe.Play();
         _dialogPanel.SetActive(false);
+        _eventSystem.SetSelectedGameObject(_newgameButton);
     }
 
     public void OnclickGoButton()
