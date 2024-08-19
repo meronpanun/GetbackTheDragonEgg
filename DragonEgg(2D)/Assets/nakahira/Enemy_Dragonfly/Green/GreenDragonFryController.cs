@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueDragonFryController : Enemy
+public class GreenDragonFryController : Enemy
 {
     private const int DRAGONFRYATTACK = 1;
     private const float SHOOTSPAN = 1;
