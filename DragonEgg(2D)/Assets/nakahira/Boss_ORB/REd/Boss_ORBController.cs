@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Boss_ORBController : ORBController // 継承
 {
+    private FadeManager fadeManager;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -12,18 +13,19 @@ public class Boss_ORBController : ORBController // 継承
         hitPoint = 100;
         shootSpan = 0.3f;
         attack = 5;
+        fadeManager = GameObject.Find("FadePanel").GetComponent<FadeManager>();
     }
 
     // 動く関連の処理はORBと同じ
-
-    private void OnDestroy() // 死んだとき、クリア画面へ
-    {
-        SceneManager.LoadScene("ClearScene1"); // OnDestroyではコルーチン使えないんかい
-    }
 
     protected override void OnDeath()
     {
         base.OnDeath();
         canMove = false; // 親のORBスクリプトでcanShootもfalseにしてます。
+    }
+
+    public void LoadClearScene()
+    {
+        fadeManager.FadeOutSwitch(0);
     }
 }

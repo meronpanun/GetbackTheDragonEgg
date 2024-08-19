@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class warningManager : MonoBehaviour
 {
     Image fadeImage;
-    float time = 0.0f;
-    float fedeSpeed = 1.0f;
+    //float time = 0.0f;
+    //float fedeSpeed = 1.0f;
     CanvasGroup Transparency;
-    bool isFadewarning = false;
+    //bool isFadewarning = false;
 
     Transform cam;
     // Start is called before the first frame update

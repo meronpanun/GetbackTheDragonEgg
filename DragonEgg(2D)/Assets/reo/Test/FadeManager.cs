@@ -186,7 +186,7 @@ public class FadeManager : MonoBehaviour
         {
             Out = false;
             isFade = false;
-            SceneManager.LoadSceneAsync(loadScene);
+            SceneManager.LoadScene(loadScene);
         }
     }
 
