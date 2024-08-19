@@ -25,4 +25,12 @@ public class Scene : MonoBehaviour
     {
         SceneManager.LoadScene("CreditScene");
     }
+    public void SceneChange3()
+    {
+        SceneManager.LoadScene("SoundScene");
+    }  
+    public void SceneChange4()
+    {
+        SceneManager.LoadScene("optionScene");
+    }
 }

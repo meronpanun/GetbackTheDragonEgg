@@ -71,5 +71,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/yusei_BGM,SE/Credit/CreditScene.unity
     guid: be5c9f52c30847245a2a1606cc2d3ba8
+  - enabled: 1
+    path: Assets/yusei_BGM,SE/SoundScene.unity
+    guid: 7d207cbb7db997d45836bc75230c04c2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6d1ad761088107e41b6a4a9e603647e6, type: 2}
