@@ -10,8 +10,8 @@ public static class BattleTeam
     //public static TestDragonStatus sChildDragonDataRight;
     //public static TestDragonStatus sChildDragonDataLeft;
 
-    // 初期値は適当にプレイヤー西都甲
-    public static races sParentDragonData = races.player;
-    public static races sChildDragonDataRight = races.player;
-    public static races sChildDragonDataLeft = races.player;
+    // 初期値は適当に空に西都甲
+    public static races sParentDragonData = races.none;
+    public static races sChildDragonDataRight = races.none;
+    public static races sChildDragonDataLeft = races.none;
 }

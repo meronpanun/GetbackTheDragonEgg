@@ -142,7 +142,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnDeath() // 自作のOnメソッドです。Hpが0になったときに実行されます。
     {
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        GameAudio.InstantiateSE(deathSound);
         animator.SetTrigger("Death"); // 継承したオブジェクトには必ずDeathをつけること
     }
 
