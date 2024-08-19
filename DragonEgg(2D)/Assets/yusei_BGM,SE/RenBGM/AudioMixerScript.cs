@@ -11,7 +11,7 @@ public class AudioMixerScript : MonoBehaviour
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
     // Start is called before the first frame update
-    void Start()
+     void Start()
     {
         if (masterSlider != null)
         {
