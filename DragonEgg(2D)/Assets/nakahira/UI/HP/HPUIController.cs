@@ -9,6 +9,7 @@ public class HPUIController : MonoBehaviour
 
     private void Start()
     {
+        // ‚±‚±‚Ç‚¤‚ ‚ª‚¢‚Ä‚àPlayerController‚ÌStart‚ÌŒã‚ÉÀs‚³‚ê‚ÄPlayer‘¤‚ªNull‚é
         m_TextMeshProUGUI = GetComponent<TextMeshProUGUI>();
     }
 

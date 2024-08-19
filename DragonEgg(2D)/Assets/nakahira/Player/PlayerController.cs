@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public static int playerAttack; // 攻撃力
 
-    private HPUIController hpText;
+    private TextMeshProUGUI hpText;
 
     private Shooter playerShooter;
     private GameObject rightShooter;
@@ -36,8 +37,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         SetStatusFromData();
         fadePanel = GameObject.Find("FadePanel");
-        hpText = GameObject.Find("HP").GetComponent<HPUIController>();
-        hpText.DispHp(hitPoint);
+        hpText = GameObject.Find("HP").GetComponent<TextMeshProUGUI>();
+        hpText.text = hitPoint.ToString(); // スクリプト操作だとNullるから直接操作しかないってマ?
         // 
         playerShooter = GetComponent<Shooter>();
         leftShooter = transform.GetChild(0).gameObject;
@@ -48,17 +49,43 @@ public class PlayerController : MonoBehaviour
 
     private void SetStatusFromData()
     {
-        // Start時にPlayerPrefsから攻撃力を参照
-        // もしデータが見つからなかったら初期値として1をセーブ　
-        playerAttack = PlayerPrefs.GetInt("Attack", 0);
-        if (playerAttack == 0)
+        // 現在のステージクリア状況を記録している"Progress"から
+        // 今のステータスを決める
+        int saveData = PlayerPrefs.GetInt("Progress", 0);　
+        switch (saveData)
         {
-            playerAttack = 1;
-            PlayerPrefs.SetInt("Attack", 1);
-            PlayerPrefs.Save();
+            case 0:
+                hitPoint = 50; // リテラルパンチ
+                speed = 2;
+                playerAttack = 1;
+                break;
+            case 1:
+                hitPoint = 75;
+                speed = 3;
+                playerAttack = 3;
+                break;
+            case 2:
+                hitPoint = 100;
+                speed = 3;
+                playerAttack = 6;
+                break;
+            case 3:
+                hitPoint = 125;
+                speed = 3.5f;
+                playerAttack = 10;
+                break;
+            case 4:
+                hitPoint = 150;
+                speed = 4;
+                playerAttack = 12;
+                break;
+            default:
+                hitPoint = 999;
+                speed = 8;
+                playerAttack = 114514;
+                break;
         }
-        hitPoint = 50; // リテラルパンチ
-        speed = 2;
+
     }
 
     // Update is called once per frame
@@ -135,12 +162,12 @@ public class PlayerController : MonoBehaviour
         if (hitPoint > 0) // 生きていたら
         {
             StartCoroutine(Blinking(4, 0.05f)); // 点滅
-            hpText.DispHp(hitPoint); // HPの減少を反映
+            hpText.text = hitPoint.ToString(); // HPの減少を反映
         }
         else // でなければ
         {
             animator.SetTrigger("Death"); // 脂肪モーションを再生
-            hpText.DispHp(0);
+            hpText.text = "0";
             // プレイヤーとコドモドラゴンについているコンポーネントを取得して
             // 弾を撃たせないようにしたい
             playerShooter.SetCanShoot(false);
