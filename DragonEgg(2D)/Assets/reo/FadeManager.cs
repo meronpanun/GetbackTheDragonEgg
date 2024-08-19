@@ -134,12 +134,23 @@ public class FadeManager : MonoBehaviour
             //    loadScene = "TestFade2";
             //    break;
 
-            case 11:
-                loadScene = "SuccessResultScene";
-                break;
-            case 12:
+            case 10:
                 loadScene = "FailScene";
                 break;
+
+            case 11:
+                loadScene = "ClearScene1";
+                break;
+            case 12:
+                loadScene = "ClearScene2";
+                break;
+            case 13:
+                loadScene = "ClearScene3";
+                break;
+            case 14:
+                loadScene = "ClearScene4";
+                break;
+            
 
             default:
                 loadScene = "TestErrorScene";
