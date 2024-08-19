@@ -88,6 +88,9 @@ public class FadeManager : MonoBehaviour
             //case 100:
             //    loadScene = "TestStageSelectScene";
             //    break;
+            case 0:
+                loadScene = "TitleScene";
+                break;
             case 100:
                 loadScene = "StageSelectScene";
                 break;
@@ -95,9 +98,9 @@ public class FadeManager : MonoBehaviour
                 loadScene = "HomeScene";
                 break;
 
-            case 102:
-                loadScene = "ReinforcementScene";  // "ren"
-                break;
+            //case 102:
+            //    loadScene = "ReinforcementScene";  // "ren"
+            //    break;
             case 103:
                 loadScene = "OptionScene";
                 break;
@@ -120,11 +123,11 @@ public class FadeManager : MonoBehaviour
                 break;
             case 3:
                 loadScene = "PartySelectScene";
-                StageLoadSceneData.stageLoadScene = "TestStage3";
+                StageLoadSceneData.stageLoadScene = "Battle3";
                 break;
             case 4:
                 loadScene = "PartySelectScene";
-                StageLoadSceneData.stageLoadScene = "TestStage4";
+                StageLoadSceneData.stageLoadScene = "Battle4";
                 break;
 
             //case 11:

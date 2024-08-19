@@ -24,8 +24,8 @@ public class Boss_ORBController : ORBController // 継承
         canMove = false; // 親のORBスクリプトでcanShootもfalseにしてます。
     }
 
-    public void LoadClearScene()
+    public void LoadClearScene(int value)
     {
-        fadeManager.FadeOutSwitch(0);
+        fadeManager.FadeOutSwitch(value);
     }
 }
