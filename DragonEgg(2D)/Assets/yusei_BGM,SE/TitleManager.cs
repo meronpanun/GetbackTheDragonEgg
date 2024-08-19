@@ -161,6 +161,7 @@ public class TitleManager : MonoBehaviour
 
     public void OnclickQuitButton()
     {
+        _positiveSe.Play();
         Application.Quit();
     }
 }
