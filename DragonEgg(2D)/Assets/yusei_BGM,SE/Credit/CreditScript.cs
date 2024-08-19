@@ -8,6 +8,7 @@ public class CreditScript : MonoBehaviour
 {
     private GameObject button;
     private bool isEnd;
+    private const int scroolSpeed = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class CreditScript : MonoBehaviour
     void Update()
     {
         
-        if(this.transform.position.y > 850)
+        if(this.transform.position.y > 1300)
         {
             isEnd = true;
             button.SetActive(true);
@@ -28,9 +29,16 @@ public class CreditScript : MonoBehaviour
 
         if (!isEnd)
         {
-            this.transform.position += new Vector3(0, 0.05f, 0);
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                this.transform.position += new Vector3(0, scroolSpeed * 3 * Time.deltaTime, 0);
+            }
+            else
+            {
+                this.transform.position += new Vector3(0, scroolSpeed * Time.deltaTime, 0);
+            }
         }
-       
     }
 
     public void OnSceneMove()

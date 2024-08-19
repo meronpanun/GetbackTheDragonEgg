@@ -18,7 +18,7 @@ public class Boss_ORBController : ORBController // 継承
 
     private void OnDestroy() // 死んだとき、クリア画面へ
     {
-        SceneManager.LoadScene("ClearScene"); // OnDestroyではコルーチン使えないんかい
+        SceneManager.LoadScene("ClearScene1"); // OnDestroyではコルーチン使えないんかい
     }
 
     protected override void OnDeath()
