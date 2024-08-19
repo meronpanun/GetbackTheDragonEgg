@@ -12,6 +12,7 @@ public class SelectDragonManager1 : MonoBehaviour
     public GameObject iceDragon;
     public GameObject windDragon;
     public GameObject thunderDragon;
+    public GameObject playerDragon;
     public static races selectDragonNum1;
     private GameObject objMemberText;
     private TextMeshProUGUI memberText;
@@ -39,6 +40,7 @@ public class SelectDragonManager1 : MonoBehaviour
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        playerDragon.SetActive(false);
         memberText.text = "None";
         memberText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
@@ -51,6 +53,7 @@ public class SelectDragonManager1 : MonoBehaviour
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        playerDragon.SetActive(false);
         memberText.text = "Fire";
         memberText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
     }
@@ -63,6 +66,7 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         windDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        playerDragon.SetActive(false);
         memberText.text = "Ice";
         memberText.color = new Color(0.0f, 0.5f, 1.0f, 1.0f);
     }
@@ -75,6 +79,7 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
         thunderDragon.SetActive(false);
+        playerDragon.SetActive(false);
         memberText.text = "Wind";
         memberText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
     }
@@ -86,8 +91,21 @@ public class SelectDragonManager1 : MonoBehaviour
         fireDragon.SetActive(false);
         iceDragon.SetActive(false);
         windDragon.SetActive(false);
+        playerDragon.SetActive(false);
         memberText.text = "Thunder";
         memberText.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+    }
+    public void PlayerDragon()
+    {
+        selectDragonNum1 = races.player;
+        playerDragon.SetActive(true);
+        noneDragon.SetActive(false);
+        thunderDragon.SetActive(false);
+        fireDragon.SetActive(false);
+        iceDragon.SetActive(false);
+        windDragon.SetActive(false);
+        memberText.text = "Player";
+        memberText.color = new Color(1.0f, 1.0f, 0.9f, 1.0f);
     }
 
     // Update is called once per frame
@@ -111,6 +129,9 @@ public class SelectDragonManager1 : MonoBehaviour
                 break;
             case races.thunder:
                 ThunderDragon();
+                break;
+            case races.player:
+                PlayerDragon();
                 break;
             default:
                 break;
