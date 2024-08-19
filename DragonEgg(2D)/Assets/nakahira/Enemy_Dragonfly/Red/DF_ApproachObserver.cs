@@ -10,6 +10,7 @@ public class DF_ApproachObserver : MonoBehaviour
 {
     // 親のオブジェクト
     private GameObject dragonFry;
+    private DragonFryController dragonFryController;
     // 一度回避したら何秒のクールタイムに入るか
     private const float coolTime = 1f;
     // 記録用タイマー
@@ -19,6 +20,7 @@ public class DF_ApproachObserver : MonoBehaviour
     {
         // 取得
         dragonFry = transform.parent.gameObject;
+        dragonFryController = dragonFry.GetComponent<DragonFryController>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class DF_ApproachObserver : MonoBehaviour
         {
             // よけろ！！
             //Debug.Log("よけろ！");
-            dragonFry.GetComponent<DragonFryController>().Dodge();
+            dragonFryController.Dodge();
             timer = 0;
         }
     }
