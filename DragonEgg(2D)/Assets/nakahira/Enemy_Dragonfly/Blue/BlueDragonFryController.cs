@@ -19,6 +19,9 @@ public class BlueDragonFryController : Enemy
     private float timer = 0;
     // Start時に左にはけるか右にはけるか決めておく
     private int leftOrRight = 0;
+
+    private const float DODGEINCREACE = 1.5f;
+    private float blueDodgeInterval = DODGEINCREACE;
     protected override void Start()
     {
         base.Start();
@@ -40,10 +43,20 @@ public class BlueDragonFryController : Enemy
         base.Update();
         // タイマー加算
         timer += Time.deltaTime;
-        // 寿命を超えていなければこの先の処理は実行されない
-        if (timer < LIFESPAN) return;
-        // 退場するためにAddForceしている
-        Exit();
+
+        // 寿命を超えていれば
+        if (timer > LIFESPAN)
+        {
+            // 退場するためにAddForceしている
+            Exit();
+        }
+        else if (timer > blueDodgeInterval)
+        {
+            // 青い奴は一定時間ごとに勝手にぴょんぴょんする
+            // Exit()とは同時に起きない
+            Dodge();
+            blueDodgeInterval += DODGEINCREACE;
+        }
     }
 
     private void Exit()

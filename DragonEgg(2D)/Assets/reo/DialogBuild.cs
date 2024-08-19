@@ -26,6 +26,13 @@ public class DialogBuild : MonoBehaviour
     [SerializeField] private TextMeshProUGUI DialogText;
     [SerializeField] private GameObject NoButton;
     [SerializeField] private GameObject GoButton;
+
+    [SerializeField] private Image _selectPanelImage;
+
+    [SerializeField] private Sprite _selectPanelSprite1;
+    [SerializeField] private Sprite _selectPanelSprite2;
+    [SerializeField] private Sprite _selectPanelSprite3;
+    [SerializeField] private Sprite _selectPanelSprite4;
     [TextArea(5, 5)]
 
     private const string kPlayerPrefsKey = "Progress";
