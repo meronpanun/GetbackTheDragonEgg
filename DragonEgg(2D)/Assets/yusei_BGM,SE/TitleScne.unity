@@ -2424,9 +2424,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2114780765}
-        m_TargetAssemblyTypeName: ExitButtonController, Assembly-CSharp
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 1722301312}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: OnclickQuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

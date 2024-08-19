@@ -34,7 +34,7 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _eventSystem = EventSystem.current;
 
         Debug.Log($"{kPlayerPrefsKey} Change");
         PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
@@ -157,5 +157,10 @@ public class TitleManager : MonoBehaviour
         PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
         _positiveSe.Play();
         fadeManager.FadeOutSwitch(101);
+    }
+
+    public void OnclickQuitButton()
+    {
+        Application.Quit();
     }
 }
