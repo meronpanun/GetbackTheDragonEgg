@@ -102,6 +102,8 @@ public class HadouShooter : Shooter
             if (beamChargeTimer >= beamChargeMax)
             {
                 beamInstance = Instantiate(hadouBeam);
+                // 私が親だ
+                beamInstance.GetComponent<BeamBaseController>().myParent = gameObject;
                 reduceTime = beamChargeMax; // チャージと同じ時間かけて戻り、撃ってる感じを出す
             }
             // そうでなくても波動拳のクールタイムが完了してたら普通の弾がでる
