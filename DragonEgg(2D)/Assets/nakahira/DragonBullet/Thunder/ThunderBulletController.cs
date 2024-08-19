@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class ThunderBulletController : PlayerBullet
 {
-    private bool isStay = true; // 最初は待機
+    private bool isStay = true; // 最初は待機s
+    private AudioClip se;
+
+    protected override void Start()
+    {
+        base.Start();
+        se = (AudioClip)Resources.Load("電撃魔法2");
+    }
 
     protected override void Update()
     {

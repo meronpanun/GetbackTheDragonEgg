@@ -23,7 +23,7 @@ public class ORBController : Enemy
         hitPoint = 3;
         attack = 1;
         speed.y = -0.5f;
-        shootSpan = 4;
+        shootSpan = 2;
     }
 
     // Update is called once per frame

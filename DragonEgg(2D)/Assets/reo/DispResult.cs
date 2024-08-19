@@ -6,6 +6,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // 卵とか
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading;  // sleep用
@@ -17,13 +18,15 @@ public class DispResult : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _resultText;
     [SerializeField] private GameObject _goHomeButton;
     [SerializeField] private GameObject _goStageButton;
+    [SerializeField] private GameObject _creditButton;
     [SerializeField] private GameObject _dragonImage1;
     [SerializeField] private GameObject _dragonImage2;
     [SerializeField] private GameObject _dragonImage3;
     [SerializeField] private GameObject _dragonImage4;
     [TextArea(5, 5)]
     //
-    private GameObject _dispDragonImage;
+    private GameObject _dispDragon1Image;
+    private GameObject _dispDragon2Image;
 
     private const string kSceneName = "ClearScene";
     private const string kPlayerPrefsKey = "Progress";
@@ -51,6 +54,7 @@ public class DispResult : MonoBehaviour
     {
         _goHomeButton.SetActive(false);  // ボタンを隠す
         _goStageButton.SetActive(false);
+        _creditButton.SetActive(false);
         _dragonImage1.SetActive(false);
         _dragonImage2.SetActive(false);
         _dragonImage3.SetActive(false);
@@ -61,37 +65,64 @@ public class DispResult : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
+        if (Input.GetKey(KeyCode.Alpha0))
         {
-            StopAllCoroutines();
-
-            //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
-            _resultText.text = "";
-            foreach (char item in dialogText)
-            {
-                if (item == '|')
-                {
-                    // <br>をDialogText.textに代入する
-                    _resultText.text += "<br>";
-                }
-                else if (item == '/')
-                {
-                    // 何もしない
-                }
-                else
-                {
-                    _resultText.text += item;  // 
-                }
-            }
-
-            _dispDragonImage = GetDispDragonImage();
-
-            // 初クリアならドラゴンを表示
-            if (isFirstClear) _dispDragonImage.SetActive(true);
-
-            _goHomeButton.SetActive(true);  // ボタンを表示
-            _goStageButton.SetActive(true);
+            Debug.Log($"{kPlayerPrefsKey}.Change:0");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
         }
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:1");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 1);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:2");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 2);
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:3");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 3);
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:4");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 4);
+        }
+
+        // バグりそうなので廃止
+        //if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
+        //{
+        //    StopAllCoroutines();
+
+            //    //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
+            //    _resultText.text = "";
+            //    foreach (char item in dialogText)
+            //    {
+            //        if (item == '|')
+            //        {
+            //            // <br>をDialogText.textに代入する
+            //            _resultText.text += "<br>";
+            //        }
+            //        else if (item == '/')
+            //        {
+            //            // 何もしない
+            //        }
+            //        else
+            //        {
+            //            _resultText.text += item;  // 
+            //        }
+            //    }
+
+            //    _dispDragonImage = GetDispDragonImage();
+
+            //    // 初クリアならドラゴンを表示
+            //    if (isFirstClear) _dispDragonImage.SetActive(true);
+
+            //    _goHomeButton.SetActive(true);  // ボタンを表示
+            //    _goStageButton.SetActive(true);
+            //}
     }
 
     public void DispResultFunc()
@@ -123,6 +154,7 @@ public class DispResult : MonoBehaviour
 
         _goHomeButton.SetActive(false);  // ボタンを隠す
         _goStageButton.SetActive(false);
+        _creditButton.SetActive(false);
 
         StartCoroutine(TypeDisplay());  // メッセージ表示を開始
     }
@@ -146,6 +178,7 @@ public class DispResult : MonoBehaviour
     {
         _goHomeButton.SetActive(false);  // ボタンを隠す
         _goStageButton.SetActive(false);
+        _creditButton.SetActive(false);
         //_dragonImage1.SetActive(false);
 
         foreach (char item in dialogText)
@@ -177,7 +210,7 @@ public class DispResult : MonoBehaviour
 
         if (isFirstClear)
         {
-            StartCoroutine(EggAnim());  // 卵表示を開始
+            StartCoroutine(Dragon1Anim());  // 卵表示を開始
         }
         else
         {
@@ -187,14 +220,14 @@ public class DispResult : MonoBehaviour
         
     }
 
-    IEnumerator EggAnim()  // 卵からドラゴンへ変える
+    IEnumerator Dragon1Anim()  // 卵からドラゴンへ変える
     {
-        _dispDragonImage = GetDispDragonImage();
+        _dispDragon1Image = GetDispDragonImage(1);
 
 
-        _dispDragonImage.SetActive(true);  // ドラゴンを表示
+        _dispDragon1Image.SetActive(true);  // ドラゴンを表示
 
-        RectTransform dragonRectTransform = _dispDragonImage.GetComponent<RectTransform>();
+        RectTransform dragonRectTransform = _dispDragon1Image.GetComponent<RectTransform>();
         //Transform dragonTransform = DispDragonImage.GetComponent<Transform>();
         for (float i = 0; i < dragonAnimNum; i++)
         {
@@ -208,36 +241,71 @@ public class DispResult : MonoBehaviour
         //dragonTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
         Debug.Log(dragonRectTransform.localScale);
 
-        _goHomeButton.SetActive(true);  // ボタンを表示
-        _goStageButton.SetActive(true);
+
+        yield return Dragon2Anim();
+    }
+    
+
+    IEnumerator Dragon2Anim()  // 卵からドラゴンへ変える
+    {
+        _dispDragon2Image = GetDispDragonImage(2);
+
+
+        _dispDragon2Image.SetActive(true);  // ドラゴンを表示
+
+        RectTransform dragonRectTransform = _dispDragon2Image.GetComponent<RectTransform>();
+        //Transform dragonTransform = DispDragonImage.GetComponent<Transform>();
+        for (float i = 0; i < dragonAnimNum; i++)
+        {
+            //Debug.Log($"{(dragonAnimSpeed / dragonAnimNum) * dragonScale}");
+            // ドラゴンの大きさを徐々に大きくする
+            dragonRectTransform.localScale = new Vector3((i / dragonAnimNum) * dragonScale, (i / dragonAnimNum) * dragonScale, 0);
+            //dragonTransform.localScale = new Vector3((i / dragonAnimNum) * dragonScale, (i / dragonAnimNum) * dragonScale, 0);
+            yield return new WaitForSeconds(dragonAnimSpeed / dragonAnimNum);
+        }
+        dragonRectTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
+        //dragonTransform.localScale = new Vector3(dragonScale, dragonScale, 0);
+        Debug.Log(dragonRectTransform.localScale);
+
+        // valueは今まででクリアしたステージの最高値
+        int value = PlayerPrefs.GetInt(kPlayerPrefsKey);
+
+        if (value == 4) // 最後のステージをクリアしたら
+        {
+            _creditButton.SetActive(true);
+            //EventSystem.SetSelectedGameObject(_creditButton);
+        }
+        else
+        {
+            _goHomeButton.SetActive(true);  // ボタンを表示
+            _goStageButton.SetActive(true);
+        }
 
         yield return 0;
     }
 
-    private GameObject GetDispDragonImage()
+    private GameObject GetDispDragonImage(int num)
     {
         GameObject GameObject = _dragonImage1;
 
         switch (clearStageNum)
         {
             case 1:
-                GameObject = _dragonImage1;
+            case 3:
+                if      (num == 1) GameObject = _dragonImage1;
+                else if (num == 2) GameObject = _dragonImage2;
+                else Debug.Log("DragonAnimError");
                 break;
 
             case 2:
-                GameObject = _dragonImage2;
-                break;
-
-            case 3:
-                GameObject = _dragonImage3;
-                break;
-
             case 4:
-                GameObject = _dragonImage4;
+                if     (num == 1) GameObject = _dragonImage3;
+                else if(num == 2) GameObject = _dragonImage4;
+                else Debug.Log("DragonAnimError");
                 break;
 
             default:
-                Debug.Log("EggAnimError");
+                Debug.Log("DragonAnimError");
                 break;
         }
 

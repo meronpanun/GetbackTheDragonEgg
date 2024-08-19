@@ -23,7 +23,7 @@ public class ThunderShooter : Shooter
     private float attack = 0; // 弾の攻撃力　チャージで変動
 
     private GameObject thunderBulletInstance; // インスタンス保存用
-    private GameObject thunderBulletController; // コンポーネント保存用
+    private ThunderBulletController thunderBulletController; // コンポーネント保存用
 
     private void Start()
     {
@@ -50,6 +50,7 @@ public class ThunderShooter : Shooter
                 transform.position + instanceOffset,
                 Quaternion.identity,
                 transform);
+            thunderBulletController = thunderBulletInstance.GetComponent<ThunderBulletController>();
         }
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // Spaceキー長押しで
@@ -71,7 +72,7 @@ public class ThunderShooter : Shooter
             attack = timer * maxAttackFacter;
             // 攻撃力計算も長押し中毎フレーム行う
             // チェーンソーみたいになる
-            thunderBulletInstance.GetComponent<ThunderBulletController>().SetAttack((int)attack);
+            thunderBulletController.SetAttack((int)attack);
         }
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) // キーを離したら

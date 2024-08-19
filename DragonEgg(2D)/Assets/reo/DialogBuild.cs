@@ -180,23 +180,26 @@ public class DialogBuild : MonoBehaviour
         switch (number)
         {
             case 1:
+                _selectPanelImage.sprite = _selectPanelSprite1;
                 // false‚È‚ç
                 if (!isStage1) isPossible = false;
                 break;
 
             case 2:
+                _selectPanelImage.sprite = _selectPanelSprite2;
                 if (!isStage2) isPossible = false;
                 break;
 
             case 3:
+                _selectPanelImage.sprite = _selectPanelSprite3;
                 if (!isStage3) isPossible = false;
                 break;
 
             case 4:
+                _selectPanelImage.sprite = _selectPanelSprite4;
                 if (!isStage4) isPossible = false;
                 break;
         }
-
 
         if (isPossible)
         {
