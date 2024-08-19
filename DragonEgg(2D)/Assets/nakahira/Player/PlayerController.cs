@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             case 0:
                 hitPoint = 50; // ƒŠƒeƒ‰ƒ‹ƒpƒ“ƒ`
                 speed = 2;
-                playerAttack = 1;
+                playerAttack = 1000;
                 break;
             case 1:
                 hitPoint = 75;
