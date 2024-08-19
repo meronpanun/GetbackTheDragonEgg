@@ -13,6 +13,9 @@ public class AudioMixerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        masterSlider.value = PlayerPrefs.GetFloat("MasterValue", 1f);
+        bgmSlider.value = PlayerPrefs.GetFloat("BgmValue", 1f);
+        seSlider.value = PlayerPrefs.GetFloat("SeValue", 1f);
         if (masterSlider != null)
         {
             masterSlider.onValueChanged.AddListener((value) =>
@@ -54,5 +57,15 @@ public class AudioMixerScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnSaveValue()
+    {
+        float masterValue = masterSlider.value;
+        PlayerPrefs.SetFloat("MasterValue", masterValue);
+        float bgmValue = bgmSlider.value;
+        PlayerPrefs.SetFloat("BgmValue", bgmValue);
+        float seValue = seSlider.value;
+        PlayerPrefs.SetFloat("SeValue", seValue);
     }
 }
