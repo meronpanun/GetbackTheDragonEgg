@@ -91,7 +91,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //左スティック
+        // 左スティック
+        // Horizontal 横
+        // Vertical 　縦
         Vector2 speedVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         //Debug.Log("H" + Input.GetAxis("Horizontal"));
