@@ -61,37 +61,64 @@ public class DispResult : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
+        if (Input.GetKey(KeyCode.Alpha0))
         {
-            StopAllCoroutines();
-
-            //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
-            _resultText.text = "";
-            foreach (char item in dialogText)
-            {
-                if (item == '|')
-                {
-                    // <br>をDialogText.textに代入する
-                    _resultText.text += "<br>";
-                }
-                else if (item == '/')
-                {
-                    // 何もしない
-                }
-                else
-                {
-                    _resultText.text += item;  // 
-                }
-            }
-
-            _dispDragonImage = GetDispDragonImage();
-
-            // 初クリアならドラゴンを表示
-            if (isFirstClear) _dispDragonImage.SetActive(true);
-
-            _goHomeButton.SetActive(true);  // ボタンを表示
-            _goStageButton.SetActive(true);
+            Debug.Log($"{kPlayerPrefsKey}.Change:0");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 0);
         }
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:1");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 1);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:2");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 2);
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:3");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 3);
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            Debug.Log($"{kPlayerPrefsKey}.Change:4");
+            PlayerPrefs.SetInt(kPlayerPrefsKey, 4);
+        }
+
+        // バグりそうなので廃止
+        //if (Input.GetKey(KeyCode.Space)) // スペースキーが押されたら
+        //{
+        //    StopAllCoroutines();
+
+            //    //DialogText.text = dialogText;  // DialogText.text関数にdialogText変数の中身を代入
+            //    _resultText.text = "";
+            //    foreach (char item in dialogText)
+            //    {
+            //        if (item == '|')
+            //        {
+            //            // <br>をDialogText.textに代入する
+            //            _resultText.text += "<br>";
+            //        }
+            //        else if (item == '/')
+            //        {
+            //            // 何もしない
+            //        }
+            //        else
+            //        {
+            //            _resultText.text += item;  // 
+            //        }
+            //    }
+
+            //    _dispDragonImage = GetDispDragonImage();
+
+            //    // 初クリアならドラゴンを表示
+            //    if (isFirstClear) _dispDragonImage.SetActive(true);
+
+            //    _goHomeButton.SetActive(true);  // ボタンを表示
+            //    _goStageButton.SetActive(true);
+            //}
     }
 
     public void DispResultFunc()

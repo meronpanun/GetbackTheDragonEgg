@@ -37,8 +37,8 @@ public class PlayerSelectManager : MonoBehaviour
         isDebugMode = false;
         maxRace = races.none;
 
-        //clearNum = PlayerPrefs.GetInt("Progress");
-        clearNum = 100;
+        clearNum = PlayerPrefs.GetInt("Progress");
+       
        switch (clearNum)
         {
             case 0:

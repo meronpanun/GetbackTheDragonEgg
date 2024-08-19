@@ -24,6 +24,8 @@ public class StageSelect : MonoBehaviour
     {
         EventSystem = EventSystem.current;
 
+        
+
         //
     }
 

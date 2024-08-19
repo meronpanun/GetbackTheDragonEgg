@@ -2106,6 +2106,11 @@ MonoBehaviour:
   DialogText: {fileID: 43734887}
   NoButton: {fileID: 2115140173}
   GoButton: {fileID: 277245020}
+  _selectPanelImage: {fileID: 1730220396}
+  _selectPanelSprite1: {fileID: 21300000, guid: a03f69457ffef6943afb1c98d92c7810, type: 3}
+  _selectPanelSprite2: {fileID: 21300000, guid: 721437648500ad74da9907726c17647a, type: 3}
+  _selectPanelSprite3: {fileID: 21300000, guid: fc8afb79c56cf464d88fdc615a06b4ad, type: 3}
+  _selectPanelSprite4: {fileID: 21300000, guid: 64b1eb9d1e4fff144b8a40b8b1fbbf16, type: 3}
   Panel: {fileID: 1730220393}
 --- !u!114 &1681808313
 MonoBehaviour:
@@ -2333,7 +2338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64b595b40c244ff4db29494a2a921ffd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 721437648500ad74da9907726c17647a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
