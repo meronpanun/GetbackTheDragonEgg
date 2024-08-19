@@ -2247,6 +2247,7 @@ GameObject:
   - component: {fileID: 684546061}
   - component: {fileID: 684546060}
   - component: {fileID: 684546059}
+  - component: {fileID: 684546064}
   m_Layer: 0
   m_Name: ChildDragonLeft
   m_TagString: ChildDragon
@@ -2416,6 +2417,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &684546064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684546056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad471c4580ca994499021e9edf9cb968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &684641160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4924598698279375509, guid: 3e1d754ab5d4df742a48aaf849a2d3f2, type: 3}
